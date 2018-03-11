@@ -17,19 +17,13 @@ export class LoginComponent implements OnInit {
   
   mail:String;
   mdp :String;
+  mode : String;
   ngOnInit() {
-    var millis = Date.now();
-    
-    var expireTime = +localStorage.getItem('expire');
-    if ( ( millis - expireTime ) > 0 )
+    this.mode = "0";
+    if(localStorage.getItem('blur')==="false")
     {
-      //this.router.navigateByUrl('/gestionnaire');
+      this.router.navigateByUrl('/gestionnaire');
     }
-  }
-  
-  
-  tryAuth(){
-    this.authentifier( this.mail, this.mdp );
   }
 
 
@@ -40,30 +34,17 @@ export class LoginComponent implements OnInit {
     
     
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
-    headers = headers.append("Authorization","Basic Y2xpZW50d2ViOm9yY2FAMjAxOA==");    
+
+     
+    const body="userId=" + userMail + "&Pwd=" + pass + "&code="+this.mode+"";
     
-
-
-    const body="grant_type=password&username=" + userMail + "&password=" + pass + "";
-
-
-
-    this.httpClient.post('http://auththarwa.cleverapps.io/oauth/login',body, {headers: headers})
+    this.httpClient.post('https://auththarwa.cleverapps.io/oauth/code',body, {headers: headers})
     .subscribe(response => 
       {
         console.log(response);
-
         localStorage.setItem('blur','true');
-        localStorage.setItem('token_access',response["access_token"]);
-        localStorage.setItem('code',response["code"]);
-        localStorage.setItem('auth','true');
-        localStorage.setItem('refresh',response["refresh_token"]);
-        var expire = response["expires_in"];
-        expire = expire * 1000 + Date.now();
-        localStorage.setItem('expire',expire);
-        
+        localStorage.setItem('mail',""+this.mail);
         this.router.navigateByUrl('/gestionnaire');
-
       }
       ,err => {
         if(err["status"]===403)
@@ -75,7 +56,6 @@ export class LoginComponent implements OnInit {
           alert("oups il y a un soucis de la prt de notre serveur :'(");
         }
         console.log(err);
-        console.log("User authentication failed!");
       }
     );
   }
