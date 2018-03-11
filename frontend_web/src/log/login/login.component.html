@@ -6,36 +6,33 @@
         <div class="card">
 
                 <div class="card-avatar">
-                        <i class="material-icons material-icons--profil">
-                            account_circle
-                        </i>
+                        <img class="logo" src="../../assets/img/TharwaLogo.png">
                 </div>
                 <form> 
                         <div class="form-group label-floating" id="mail">
                             <label class="control-label">Email address</label>
-                            <input type="text" class="form-control" name="mail" value="dl_ikhadallem@esi.dz">
+                            <input type="text" class="form-control" name="mail" [(ngModel)]='mail'>
                         </div>
                     
     
                         <div class="form-group label-floating">
                             <label class="control-label">Mot de passe</label>
-                            <input type="password" class="form-control" name="mdp" value="Ikhadallem">
+                            <input type="password" class="form-control" name="mdp" [(ngModel)]='mdp'>
                         </div>
                         
                         <div class="col-md-3 envoie">
-                            <div class="envoie-mail">
-                                <input type="checkbox" name="mail" value="dl_ikhadallem@esi.dz">
-                                <label for="mail" class="control-label">Par E-mail</label>
-                            </div>
-                            <div class="envoie-sms">
-                                <input type="checkbox" name="mail" value="dl_ikhadallem@esi.dz">
-                                <label for="mail" class="control-label">Par SMS</label>
-                            </div>        
+                            <input type="radio" value="0" name="mode" [(ngModel)]="mode" checked> Mail <br>
+                            <input type="radio" value="1" name="mode" [(ngModel)]="mode" > SMS
                         </div>    
 
-                        <button type="submit"   
-                        class="btn btn-info pull-center form-group" (click)="authentifier()">
-                            Continuer
+                        <div class="form-group label-floating tel">
+                            <label class="control-label">Telephone</label>
+                            <input type="tel" class="form-control" name="tel" [(ngModel)]='tel'>
+                        </div>
+
+                        <button type="submit"  class="btn btn-info pull-center form-group" 
+                        id="submit-log" (click)="authentifier(mail,mdp)"> 
+                        Continuer
                             <i class="material-icons">arrow_forward</i>
                         </button>
                         <div class="clearfix"></div>
