@@ -1,7 +1,3 @@
-  
-    
-    
-    
     <div class="content-fluid">
         <div class="card">
 
@@ -22,13 +18,8 @@
                         
                         <div class="col-md-3 envoie">
                             <input type="radio" value="0" name="mode" [(ngModel)]="mode" checked> Mail <br>
-                            <input type="radio" value="1" name="mode" [(ngModel)]="mode" > SMS
+                            <input type="radio" value="1" name="mode" [(ngModel)]="mode"> SMS
                         </div>    
-
-                        <div class="form-group label-floating tel">
-                            <label class="control-label">Telephone</label>
-                            <input type="tel" class="form-control" name="tel" [(ngModel)]='tel'>
-                        </div>
 
                         <button type="submit"  class="btn btn-info pull-center form-group" 
                         id="submit-log" (click)="authentifier(mail,mdp)"> 
