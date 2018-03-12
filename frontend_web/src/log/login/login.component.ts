@@ -18,11 +18,12 @@ export class LoginComponent implements OnInit {
   mail:String;
   mdp :String;
   mode : String;
-  ngOnInit() {
+  tel: String;
+  ngOnInit() { 
     this.mode = "0";
     if(localStorage.getItem('blur')==="false")
     {
-      this.router.navigateByUrl('/gestionnaire');
+      //this.router.navigateByUrl('/gestionnaire');
     }
   }
 
@@ -32,10 +33,10 @@ export class LoginComponent implements OnInit {
   {
     var headers = new HttpHeaders();
     
-    
+
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
 
-     
+    
     const body="userId=" + userMail + "&Pwd=" + pass + "&code="+this.mode+"";
     
     this.httpClient.post('https://auththarwa.cleverapps.io/oauth/code',body, {headers: headers})
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
         console.log(response);
         localStorage.setItem('blur','true');
         localStorage.setItem('mail',""+this.mail);
+        localStorage.setItem('name',""+response["username"]);
         this.router.navigateByUrl('/gestionnaire');
       }
       ,err => {
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
         {
           alert("oups il y a un soucis de la prt de notre serveur :'(");
         }
+        this.tel = "";
         console.log(err);
       }
     );
