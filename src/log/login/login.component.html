@@ -1,0 +1,37 @@
+    <div class="content-fluid">
+        <div class="card">
+
+                <div class="card-avatar">
+                        <img class="logo" src="../../assets/img/TharwaLogo.png">
+                </div>
+                <form> 
+                        <div class="form-group label-floating" id="mail">
+                            <label class="control-label">Email address</label>
+                            <input type="text" class="form-control" name="mail" [(ngModel)]='mail'>
+                        </div>
+                    
+    
+                        <div class="form-group label-floating">
+                            <label class="control-label">Mot de passe</label>
+                            <input type="password" class="form-control" name="mdp" [(ngModel)]='mdp'>
+                        </div>
+                        
+                        <div class="col-md-3 envoie">
+                            <input type="radio" value="0" name="mode" [(ngModel)]="mode" checked> Mail <br>
+                            <input type="radio" value="1" name="mode" [(ngModel)]="mode"> SMS
+                        </div>    
+
+                        <button type="submit"  class="btn btn-info pull-center form-group" 
+                        id="submit-log" (click)="authentifier(mail,mdp)"> 
+                        Continuer
+                            <i class="material-icons">arrow_forward</i>
+                        </button>
+                        <div class="clearfix"></div>
+                </form>
+
+
+        </div>
+
+        <div class="fond"></div>
+
+    </div>
