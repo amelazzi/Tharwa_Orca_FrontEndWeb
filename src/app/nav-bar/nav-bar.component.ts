@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AppComponent} from '../../app/app.component';
 
 import { LogComponent} from '../../log/log.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,14 +12,28 @@ import { LogComponent} from '../../log/log.component';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
 
   getBlurState()
   {
-    return LogComponent.blur;
+    if (localStorage.getItem('blur')==='true')
+    {
+      return true; 
+    }
+    else
+    {
+      return false;
+    }
   }
+
+  Deconnexion()
+  {
+    localStorage.clear();
+    this.router.navigateByUrl('/');
+  }
+
 
 }

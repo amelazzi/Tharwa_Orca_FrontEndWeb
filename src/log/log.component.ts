@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { HttpClientModule,HttpClient } from '@angular/common/http';
+
  
 import { AppModule } from '../app/app.module';
+import { AppBanquierModule } from '../appBanquier/app.module';
+
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 @Component({
   selector: 'log-root',
@@ -10,7 +12,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 })
 export class LogComponent {
   title = 'app';
-  constructor(private httpClient:HttpClient){}
+  constructor(){}
   static blur : boolean;
   ngOnInit(){
    

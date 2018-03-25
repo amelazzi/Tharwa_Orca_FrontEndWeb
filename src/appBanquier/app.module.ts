@@ -2,52 +2,43 @@
 import { CommonModule} from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
+import { AppBanquierComponent } from './appBanquier.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { ChartistModule } from 'ng-chartist';
-
-
-import { ProfilComponent } from './profil/profil.component';
-import { ListbanqueComponent } from './listbanque/listbanque.component';
-import { ListbanquierComponent } from './listbanquier/listbanquier.component';
-import { AddbanquierComponent } from './addbanquier/addbanquier.component';
-import { ListvirexterneComponent } from './listvirexterne/listvirexterne.component';
-import { AddbanqueComponent } from './addbanque/addbanque.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { ListordreComponent } from './listordre/listordre.component';
+import { ProfilBanquierComponent } from './profil/profil.component';
+import { ListvireComponent } from './listvire/listvire.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { HomeComponent } from './home/home.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { HomeBanquierComponent} from './homeBanquier/homeBanquier.component';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms'; 
+
 
 
 @NgModule({
   declarations: [
-    
-
-    AppComponent,
-    HomeComponent,
-    NavBarComponent,
-    SidebarComponent,
-    AddbanqueComponent,
-    ListvirexterneComponent,
-    AddbanquierComponent ,
-    ListbanquierComponent,
-    ListbanqueComponent,
-    ProfilComponent,
-  ],
+  AppBanquierComponent,
+  ProfilBanquierComponent,
+  ListvireComponent,
+  NavBarComponent,
+  SidebarComponent,
+  HomeBanquierComponent,
+  ListordreComponent
+],
   imports: [
     ChartistModule,
-    //BrowserModule,
     CommonModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppBanquierComponent]
 })
-export class AppModule 
+export class AppBanquierModule 
 {
 }

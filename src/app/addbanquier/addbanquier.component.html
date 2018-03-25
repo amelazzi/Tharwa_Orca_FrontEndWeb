@@ -16,24 +16,27 @@
         <p>Ajoutez un nouveau Banquier à THARWA</p>
       </div>
       <div class="card-content">
-        <form>
+        <form [formGroup] = "formAddBanquier">
           <div class="row">
             <div class="col-md-4">
               <div class="form-group label-floating ">
                   <label class="control-label">Adresse E-mail</label>
-                  <input type="email" class="form-control" required>
+                  <input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
+                    formControlName ="mail" name="mail" class="form-control" [(ngModel)]='mail'>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group label-floating">
                   <label class="control-label">Nom</label>
-                  <input type="text" class="form-control" required maxlength="25">
+                  <input type="text" formControlName ="nom" name="nom" 
+                    pattern="[A-Za-z]+" class="form-control"[(ngModel)]='nom'>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group label-floating ">
                   <label class="control-label">Prénom</label>
-                  <input type="text" class="form-control" required maxlength="25">
+                  <input type="text" formControlName ="prenom" name="prenom" 
+                    pattern="[A-Za-z]+" required class="form-control"[(ngModel)]='prenom'>
               </div>
             </div>
           </div>
@@ -42,13 +45,15 @@
               <div class="col-md-6"> 
                 <div class="form-group label-floating ">
                     <label class="control-label">Adresse</label>
-                    <input type="email" class="form-control" required>
+                    <input type="text" formControlName ="adresse" name="adr" 
+                    required class="form-control"[(ngModel)]='adr'>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group label-floating ">
                     <label class="control-label">Téléphone</label>
-                    <input type="tel" class="form-control" required maxlength="14">
+                    <input type="text" formControlName ="tel" name="tel" 
+                      pattern="[0-9]{10}"required class="form-control"[(ngModel)]='tel'>
                 </div>
               </div>
           </div>
@@ -56,21 +61,20 @@
           <div class="row">
             <div class="col-md-3">
               <div class="form-group label-floating ">
-                  <label class="control-label">Photo</label>
-                  <input type="email" class="form-control" required>
+                  <label class="control-label">Mot de passe</label>
+                  <input type="password" class="form-control" required name="pass"
+                  [(ngModel)]='pass' formControlName ="pass" >
               </div>
             </div>
-              <button class="btn parcourir-photo" data-background-color="red">
-                <label for="file" class="label-file">Parcourir</label>
-                <input id="file" class="input-file" type="file">
-              </button>
           </div>
 
-          <button type="submit" class="btn pull-right" data-background-color="red">Ajouter</button>
+          <button [disabled]="formAddBanquier.invalid" class="btn pull-right" 
+          data-background-color="red" (click)="addBanquier()">
+            Ajouter
+          </button>
         </form>
       </div>
     </div>
   </div>
 </body>
 </html>
-

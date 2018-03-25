@@ -14,20 +14,24 @@ export class SidebarComponent implements OnInit {
   selectedItem : number = 1;
   ngOnInit() 
   {
-    this.selectedItem = 1 ;
+    
   }
 
   getBlurState()
   {
     if (localStorage.getItem('blur')==='true'){
       
-      alert(localStorage.getItem('blur'));
       return true;
 
     }else
     {
       return false;
     }
+  }
+
+  getSelectedItem():number
+  {
+    return parseInt(localStorage.getItem('selectedItem'));
   }
 
 }

@@ -28,7 +28,7 @@
                 <br>
                 <a>pas reçu ? <b>Renvoyer</b> </a>
         </div>  
-            <div class="container-cards" [ngClass] = "{'body':getBlurState()===true}">
+            <div class="container-cards" [ngClass] = "{'body':getBlurState()=== true}">
                 <div class="row">
                     <div class="card-dash">
                         <div class="card card-stats">
@@ -115,10 +115,10 @@
                         <div class="tab-pane container active" id="operation">
                             
                             <div class=" card container-graphe">
-                                    <div class="card-header" data-background-color="purple">
-                                        <h4 class="title">Opérations par Mois</h4>
-                                        <i class="category">Nombre d'opéarions par types et par mois</i>
-                                    </div>
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">Opérations par Mois</h4>
+                                    <i class="category">Nombre d'opéarions par types et par mois</i>
+                                </div>
                                 <div class="ct-chart">    
                                     <div class="ct-chart">
                                         <svg  width="100%" height="245px" class="ct-chart-line"
@@ -365,8 +365,7 @@
                                     </div>
                                 </div>
                             </div>
-        
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>    

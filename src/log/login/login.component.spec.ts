@@ -37,6 +37,7 @@ fdescribe ('Service ', () =>
     httpMock.verify();
     expect(requete.request.method).toBe('POST');
     expect(requete.request.body).toBe("userId=test_tharwa@mailinator.com&Pwd=orca@2018&code=0");
+
     expect(response).toBeTruthy();
     requete.flush(response);
 

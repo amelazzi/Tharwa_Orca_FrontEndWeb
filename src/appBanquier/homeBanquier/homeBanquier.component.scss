@@ -1,0 +1,278 @@
+.content
+{
+    margin-left: 20%;
+}
+
+.table-header
+{
+    background-color: rgb(24, 184, 64);
+   
+    border-style: none;
+    position: absolute;
+    width: 98%;
+    top: -20px;
+    left: 10px;
+    color: white;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgb(120,120,120);
+    display: flex;
+    flex-direction: row;
+}
+
+.table-header li
+{
+    
+    font-style: bold;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+       border-style: none;
+    text-decoration: none;
+    list-style: none;
+    width:250px;
+}
+
+
+
+.table-header li:nth-child(1)
+{
+    width: 100px;
+    margin-left: 1%;
+}
+
+
+.table-header li:nth-child(2)
+{
+    margin-left: 12%;
+}
+
+.table-header li:nth-child(3)
+{
+    margin-left: 5%;
+}
+
+
+
+
+
+.table-header li:nth-child(4)
+{
+    margin-left: 5%;
+    margin-left: 1%;
+}
+
+
+#tbody td
+{
+    width:300px;
+}
+
+
+#tbody td:nth-child(1)
+{
+    width:300px;
+}
+
+#tbody td:last-child i
+{
+    margin-left: -10%;
+    
+    width: 20px;
+
+    cursor: pointer;
+}
+
+
+ 
+
+
+
+///////////////
+.nav-header
+{
+    color:black;
+}
+.nav-items
+{
+    text-align: center;
+    color: black;
+    width: 50%;
+}
+.nav-tabs
+{
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    width: 100%;
+}
+
+
+.link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: black;
+  }
+  
+  .link:hover, .link:focus {
+    text-decoration: none;
+    color: red;
+  }
+  
+  .link.disabled {
+    color: #6c757d;
+  }
+  
+  .nav-tabs .link {
+    border: 1px solid transparent;
+  }
+  
+  .nav-tabs .link.disabled {
+    color: #6c757d;
+    background-color: transparent;
+    border-color: transparent;
+  }
+  
+  .nav-tabs .link.active,
+  .nav-tabs .nav-item.show .link {
+    color:red;
+  }
+
+.link:visited
+{
+    color: black;
+}
+
+
+
+.activTab
+{
+    background-color: rgba(250, 206, 206,0.2);
+    border-bottom-color: red;
+    border-bottom-style: solid;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    color: red;
+}
+
+
+
+
+
+.header
+{
+    width: 100%;
+    border-style: none;    
+}
+
+.header:hover
+{
+    border-style: none;
+}
+
+
+.modal-content
+{
+    width: 125%;
+}
+
+
+#client
+{
+    text-align: center;
+}
+
+
+
+#client .infoClient .icon-mail
+{
+    color:rgb(243, 160, 7);
+
+}
+
+#client .infoClient .icon-phone
+{
+    color:rgb(7, 50, 243);
+
+}
+
+
+#client .infoClient .icon-location
+{
+    color:rgb(243, 7, 7);
+}
+
+
+#client .infoClient .icon-work
+{
+    color:rgb(58, 7, 243);
+}
+
+
+#client .infoClient 
+{
+    text-align: left;
+    margin-left: 15%;
+}
+
+
+#client .infoClient i 
+{
+    margin-right: 5%;
+    margin-bottom: 2%;
+}
+
+
+#client img 
+{
+    border-radius: 50%;
+    width: 20%;
+}
+
+
+.monnaie-dz
+{
+    text-align: center;
+    background-color: rgb(247, 40, 40);
+}
+
+
+.monnaie-euro
+{
+    text-align: center;
+    background-color: rgb(40, 123, 247);
+}
+
+
+.monnaie-dollar
+{
+    text-align: center;
+    background-color: rgb(47, 247, 40);
+}
+
+.monnaie 
+{
+    color: white;
+    font-weight: 900;
+    padding-top: 12%;
+    padding-bottom: 12%;
+}
+
+
+.form-group
+{
+    width: 80%;
+    margin-left: 5%;
+    
+}
+
+
+#bloquer
+{
+    margin-left: 5%;
+}
+
+
+#valider
+{
+    margin-left: 55%;
+}

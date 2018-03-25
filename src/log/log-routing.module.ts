@@ -2,12 +2,27 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
-import {AppModule} from '../app/app.module';
-import {AppComponent} from '../app/app.component';
+
 
 
 import { LoginComponent } from './login/login.component';
 
+
+
+import {AppBanquierModule} from '../appBanquier/app.module';
+import {AppBanquierComponent} from '../appBanquier/appBanquier.component';
+import { ProfilBanquierComponent } from '../appBanquier/profil/profil.component';
+import {HomeBanquierComponent} from '../appBanquier/homeBanquier/homeBanquier.component'
+import { ListvireComponent } from '../appBanquier/listvire/listvire.component';
+import { ListordreComponent } from '../appBanquier/listordre/listordre.component';
+
+
+
+
+
+
+import {AppModule} from '../app/app.module';
+import {AppComponent} from '../app/app.component';
 import {HomeComponent} from '../app/home/home.component';
 import { ProfilComponent } from '../app/profil/profil.component';
 import { ListbanqueComponent } from '../app/listbanque/listbanque.component';
@@ -68,7 +83,42 @@ const routes: Routes = [
   {
     path : '',
     component : LoginComponent
+  },
+
+
+
+
+
+
+  {
+    path : 'banquier',
+    component : AppBanquierComponent,
+
+    children:[
+      { 
+        path: '', 
+        component: HomeBanquierComponent, 
+        outlet:'popup'
+      },
+      {
+        path :'profil',
+        component : ProfilBanquierComponent,
+        outlet:'popup',
+      },
+      {
+        path : 'listvire',
+        component : ListvireComponent,
+        outlet:'popup'
+      },
+      {
+        path : 'listordre',
+        component : ListordreComponent,
+        outlet:'popup'
+      }
+    ]
   }
+
+  
 ];
 
 @NgModule({

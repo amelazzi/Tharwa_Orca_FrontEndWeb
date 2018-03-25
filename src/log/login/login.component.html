@@ -4,34 +4,34 @@
                 <div class="card-avatar">
                         <img class="logo" src="../../assets/img/TharwaLogo.png">
                 </div>
-                <form> 
+                <form [formGroup] = "formLog"> 
                         <div class="form-group label-floating" id="mail">
                             <label class="control-label">Email address</label>
-                            <input type="text" class="form-control" name="mail" [(ngModel)]='mail'>
+                            <input type="text" class="form-control" name="mail" formControlName="mail" 
+                            [(ngModel)]='mail' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                         </div>
-                    
-    
+
                         <div class="form-group label-floating">
                             <label class="control-label">Mot de passe</label>
-                            <input type="password" class="form-control" name="mdp" [(ngModel)]='mdp'>
+                            <input type="password" class="form-control" name="mdp" formControlName="pass"
+                             [(ngModel)]='mdp' required>
                         </div>
                         
                         <div class="col-md-3 envoie">
-                            <input type="radio" value="0" name="mode" [(ngModel)]="mode" checked> Mail <br>
-                            <input type="radio" value="1" name="mode" [(ngModel)]="mode"> SMS
+                            <input type="radio" value="0" name="mode" [ngModelOptions]="{standalone: true}"
+                             [(ngModel)]="mode" checked> Mail <br>
+                            
+                             <input type="radio" value="1" name="mode" [ngModelOptions]="{standalone: true}"
+                             [(ngModel)]="mode"> SMS
                         </div>    
 
                         <button type="submit"  class="btn btn-info pull-center form-group" 
-                        id="submit-log" (click)="authentifier(mail,mdp)"> 
+                        id="submit-log" (click)="authentifier(mail,mdp)" [disabled]="formLog.invalid"> 
                         Continuer
                             <i class="material-icons">arrow_forward</i>
                         </button>
                         <div class="clearfix"></div>
                 </form>
-
-
         </div>
-
         <div class="fond"></div>
-
     </div>

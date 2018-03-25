@@ -1,11 +1,11 @@
-
 import { CommonModule} from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+
 
 import { ChartistModule } from 'ng-chartist';
 import { Injectable } from '@angular/core';
@@ -37,6 +37,7 @@ import { HomeComponent } from './home/home.component';
     ProfilComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     ChartistModule,
     CommonModule,
     AppRoutingModule,

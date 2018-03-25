@@ -1,0 +1,161 @@
+<!--Comosant contenant la liste des compte en cours de traitement ou bloqué des client de la banque -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<!--        <div class="content-fluid code" id="code" [ngStyle] ="{'display': 'none'}">
+                <i class="material-icons mail">mail_outline </i>
+                <p id="code-title">Vérifier votre mail</p>
+                <p>On a envoyé un code a quatre chiffres a <b>admin@tharwa.com</b></p>
+                <p>Entrez le ici pour pouvoir continuer</p>
+                <br>
+                <div>
+                    <input [(ngModel)]='code[0]' type="text" maxlength="1">
+                    <input [(ngModel)]='code[1]' type="text" maxlength="1">
+                    - 
+                    <input [(ngModel)]='code[2]' type="text" maxlength="1">
+                    <input [(ngModel)]='code[3]' type="text" maxlength="1">
+                </div>
+                <button class="code-valider" (click)="tryDeleteBlur()">Vérifier mon email</button>
+                <br>
+                <a>pas reçu ? <b>Renvoyer</b> </a>
+        </div> -->
+
+<!--modal contenant des infos sur le compte et le client choisit-->
+    <div id="info" class="modal fade info2" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <ul class="nav nav-tabs">
+                    <li class="nav-items" [ngClass] = "{'activTab':selectedTab===1}" 
+                    (click)="selectedTab=1">
+                        <a class="link header" data-toggle="tab" href="#client">Infos Client</a>
+                    </li>
+                    <li class="nav-items" [ngClass] = "{'activTab':selectedTab===2}" 
+                    (click)="selectedTab=2"> 
+                        <a class="link header" data-toggle="tab" href="#compte">Infos Compte</a>
+                    </li>
+                </ul>
+                <div class="modal-body">
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="client">
+                            <img [src]="photo">
+                            
+                            <p>{{nomClient}}</p>
+                            <div class="infoClient">
+                                <i class="material-icons icon-mail">email</i>
+                                <span>{{mail}}</span>
+                                <br>
+                                <i class="material-icons icon-phone">phone</i>{{numTel}}
+                                <br>
+                                <i class="material-icons icon-location">location_on</i>
+                                {{adresseClient}}
+                                <br>
+                                <i class="material-icons icon-work">work</i>{{fonction}}
+                            </div>
+                        </div>
+                        <div class="tab-pane container" id="compte">
+                            <div class="card">
+                                <div class="monnaie" [ngClass] = "{'monnaie-dz':monnaie === 'DZD'}"
+                                [ngClass] = "{'monnaie-euro':monnaie=== 'EUR'}"
+                                [ngClass] = "{'monnaie-dollar':monnaie=== 'USD'}">
+                                    {{monnaie}}
+                                </div>
+
+                                <div class="form-group label-floating">
+                                        <label class="control-label">Numéro de compte</label>
+                                        <input type="text" class="form-control" [(ngModel)]="numCompte" 
+                                        name="numCompte"readonly>
+                                </div>
+                            
+                             
+                                <div class="form-group label-floating">
+                                        <label class="control-label">Balance :</label>
+                                        <input type="text" class="form-control" [(ngModel)]="balance" 
+                                        name="balance" readonly>
+                                </div>
+
+                                <div class="form-group label-floating">
+                                        <label class="control-label">Bénéficiaire :</label>
+                                        <input type="text" class="form-control" [(ngModel)]="nomClient" 
+                                        name="nomClient" readonly>
+                                </div>
+                                
+
+                                
+                                
+                            </div>      
+                        </div>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <button type="button" class="btn btn-danger" id="bloquer"
+                    (click) = "bloquer()">
+                        Bloquer
+                    </button>
+
+                    <button type="button" class="btn btn-success" id="valider"
+                    (click) = "valider()" >
+                        Valider
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container-cards" [ngClass] = "{'body':getBlurState()=== true}">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-content ">
+                                <br>
+                                <br>
+                                <table class="table">
+                                    <thead class="table-header">
+                                        <li>Détenteur</li>
+                                        <li>Date de Création</li>
+                                        <li>Monnaie</li>
+                                        <li>Balance</li>
+                                        <li>Type</li>
+                                        <li>Etat</li>
+                                    </thead>
+                                            
+                                    <tbody id="tbody">
+                                        <tr *ngFor="let compte of comptes">
+                                            <td>{{compte.IdUser}}</td>
+                                            <td>{{compte.DateCreation}}</td>
+                                            <td>{{compte.CodeMonnaie}}</td>
+                                            <td>{{compte.Balance}}</td>
+                                            <td>{{compte.TypeCompte}}</td>
+                                            <td>
+                                                <i class="material-icons" data-toggle="modal" 
+                                                data-target="#info"
+                                                (click)="voirInfoCompte(compte.IdUser)">
+                                                {{compte.iconLock}}
+                                                </i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

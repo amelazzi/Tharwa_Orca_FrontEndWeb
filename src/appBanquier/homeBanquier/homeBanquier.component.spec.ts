@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import {Service} from './home.service';
+import {Service} from './homeBanquier.service';
 
 import { HttpHeaders, HttpClient , HttpClientModule } from '@angular/common/http';
 

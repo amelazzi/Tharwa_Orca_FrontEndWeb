@@ -1,17 +1,28 @@
 .content
 {
     margin-left: 20%;
+    overflow-x: scroll;
+    
+}
+
+
+
+.card
+{
+    overflow-y: visible;
+    width: 160%;
+    margin-right: 2%;
 }
 
 .table-header
 {
-    background-color: rgb(172, 39, 199);
-   
+    background-color: rgb(147, 24, 184);
+    margin-top: -1%;
     border-style: none;
-    position: absolute;
-    width: 98%;
-    top: -20px;
-    left: 10px;
+   
+    margin-left: 1%;
+    margin-right: 1%;
+    padding-left: 1%;
     color: white;
     border-radius: 3px;
     box-shadow: 0 2px 8px rgb(120,120,120);
@@ -25,37 +36,23 @@
     font-style: bold;
     font-size: 20px;
     padding-top: 20px;
-    padding-bottom: 30px;
-       border-style: none;
+    padding-bottom: 20px;
+    border-style: none;
     text-decoration: none;
     list-style: none;
+    width: 15%;  
 }
 
 
 
-.table-header li:nth-child(1)
+.table
 {
-    margin-left: -30px;
-}
-.table-header li:nth-child(2)
-{
-    margin-left: 15%;
-}
-.table-header li:nth-child(3)
-{
-    margin-left: 8%;
+    margin-top: -3%;
 }
 
-.table-header li:nth-child(4)
+
+#tbody td
 {
-    margin-left: 4%;
-}
-.table-header li:nth-child(5)
-{
-    margin-left: 9%;
+    width: 10%;
 }
 
-.table-header li:nth-child(6)
-{
-    margin-left: 22%;
-}

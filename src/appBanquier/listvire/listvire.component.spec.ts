@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddbanquierComponent } from './addbanquier.component';
+import { ListvireComponent } from './listvire.component';
 
-describe('AddbanquierComponent', () => {
-  let component: AddbanquierComponent;
-  let fixture: ComponentFixture<AddbanquierComponent>;
+describe('ListvirexterneComponent', () => {
+  let component: ListvireComponent;
+  let fixture: ComponentFixture<ListvireComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddbanquierComponent ]
+      declarations: [ ListvireComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddbanquierComponent);
+    fixture = TestBed.createComponent(ListvireComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

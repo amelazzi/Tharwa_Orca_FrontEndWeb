@@ -20,6 +20,17 @@ export class AppComponent {
   title = 'app';
   constructor(private httpClient:HttpClient, private router: Router){}
   
+
+  public route() 
+//la fonction vérifie si le code à été entré si ce n'est pas le cas l'utilisateur est renvoyé à la page du code
+  {
+    if (localStorage.getItem('blur') != 'false')
+    {
+      this.router.navigateByUrl('gestionnaire');
+    }
+  }
+
+
 //fonction retourne si oui ou non le token actuel est valide
   getTokenInfo(token_access:String)
   {

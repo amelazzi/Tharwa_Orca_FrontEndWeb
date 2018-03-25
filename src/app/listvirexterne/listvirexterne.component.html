@@ -9,65 +9,42 @@
 </head>
 <body>
     <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
 
-                        <div class="card-content table-responsive">
+        
+                    <div class="card">
+                            <thead class="table-header">
+                                    <li>Date</li>
+                                    <li>Emmetteur</li>
+                                    <li>Compte Emetteur</li>
+                                    <li>Destinataire</li>
+                                    <li>Compte Destinataire</li>
+                                    <li>Montant</li>
+                                    <li>Motif</li>
+                                    <li>Statut</li>
+                            </thead>
+                        <div class="card-content">
                             <br>
                             <br>
                             <table class="table">
                                 
-                                  <ul class="table-header">
-                                    <li>Date</li>
-                                    <li>Titulaire</li>
-                                    <li>Destinataire</li>
-                                    <li>Montant</li>
-                                    <li>Motif</li>
-                                    <li>Status</li>
-                                  </ul>
-                               
+
+                                               
                                 <tbody id="tbody">
-                                    <tr>
-                                        <td>14/02/2018</td>
-                                        <td>good Lotfi</td>
-                                        <td>bad Lotfi</td>
-                                        <td class="text-primary">36,738 Dz</td>
-                                        <td>destruction de l'INI</td>
-                                        <td>accepté</td>
-                                    </tr>
-                                    <tr>
-                                        <td>14/02/2018</td>
-                                        <td>good Lotfi</td>
-                                        <td>bad Lotfi</td>
-                                        <td class="text-primary">36,738 Dz</td>
-                                        <td>destruction de l'INI</td>
-                                        <td>accepté</td>
-                                    </tr>
-                                    <tr>
-                                        <td>14/02/2018</td>
-                                        <td>good Lotfi</td>
-                                        <td>bad Lotfi</td>
-                                        <td class="text-primary">36,738 Dz</td>
-                                        <td>destruction de l'INI</td>
-                                        <td>accepté</td>
-                                    </tr>
-                                    <tr>
-                                        <td>14/02/2018</td>
-                                        <td>good Lotfi</td>
-                                        <td>bad Lotfi</td>
-                                        <td class="text-primary">36,738 Dz</td>
-                                        <td>destruction de l'INI</td>
-                                        <td>accepté</td>
+                                    <tr *ngFor="let virement of virements" class="ligne">
+                                        <td>{{virement.Date}}</td>
+                                        <td>{{virement.NomEmetteur}}</td>
+                                        <td>{{virement.CompteEmmetteur}}</td>
+                                        <td>{{virement.NomDestinataire}}</td>
+                                        <td>{{virement.CompteDestinataire}}</td>
+                                        <td>{{virement.Montant}}</td>
+                                        <td>{{virement.Motif}}</td>
+                                        <td>{{virement.Statut}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 </body>
 </html>

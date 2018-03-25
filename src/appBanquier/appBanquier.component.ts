@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './appBanquier.component.html',
+  styleUrls: ['./appBanquier.component.scss']
 })
-export class AppComponent {
-  title = 'app';
+export class AppBanquierComponent {
+  title = 'banquier';
   constructor(private httpClient:HttpClient){}
   name : String ='';
   selectedItem : number;

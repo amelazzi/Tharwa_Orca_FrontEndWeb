@@ -18,11 +18,13 @@ export class HomeComponent implements OnInit {
   constructor(private httpClient:HttpClient, private router: Router) {}
   selectedTab : number;
   displayBlur : String;
+  
   ngOnInit() 
   {
     var appCompo=new AppComponent(this.httpClient, this.router);
     
-    
+    this.deleteBlur();
+    localStorage.setItem('selectedItem','1');
     if(localStorage.getItem('blur') === "false")
     {
       appCompo.verifToken();
@@ -39,7 +41,6 @@ export class HomeComponent implements OnInit {
     
 
     var codeEnvoi = this.code[0] + "" + this.code[1]+""+this.code[2]+""+this.code[3]+""; // code à envoyer
-    alert(codeEnvoi);
     var  body = "grant_type=password&username="+localStorage.getItem('mail')+"&password="+codeEnvoi+"";
 
     
@@ -64,7 +65,7 @@ export class HomeComponent implements OnInit {
           {
             // si le code est valide
             localStorage.setItem('mail',response["userId"]);
-            localStorage.setItem('userName',response["userName"]);
+            
             this.deleteBlur();
             
           }
@@ -79,18 +80,17 @@ export class HomeComponent implements OnInit {
       }
     ,err =>
     {
-      if(err['Status'] === 403){
+      if((err["status"] === 403) || (err["status"] === 409)){
         alert("le code entré est érroné");
+      }
+      else if (err["status"]>=  500)
+      {
+        alert("oups une erreur sur notre serveur est survenue ! veuillez réessayer dans un instant");
       }
     });
 
 
   }
-
-
-
-
-
 
   deleteBlur()
   {
