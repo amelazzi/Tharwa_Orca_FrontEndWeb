@@ -26,12 +26,8 @@ export class LoginComponent implements OnInit {
       mail: new FormControl(''),
       pass: new FormControl(''),
     });
-
+    localStorage.setItem('blur','true');
     this.mode = "0";
-    if(localStorage.getItem('blur')==="false")
-    {
-      this.router.navigateByUrl('/gestionnaire');
-    }
   }
 
 
@@ -56,7 +52,7 @@ export class LoginComponent implements OnInit {
         //blur sera utilisé pour savoir si on doit floudifier le fond ou pas
 
         localStorage.setItem('mail',""+this.mail);
-        localStorage.setItem('auth','true'); 
+        localStorage.setItem('auth','true');
         //auth sera utilisé pour savoir si l'utilisateur s'est authentifier avec succès
         
         if ( response["type"] === 0)

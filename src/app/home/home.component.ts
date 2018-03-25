@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   {
     var appCompo=new AppComponent(this.httpClient, this.router);
     
-    this.deleteBlur();
+  
     localStorage.setItem('selectedItem','1');
     if(localStorage.getItem('blur') === "false")
     {

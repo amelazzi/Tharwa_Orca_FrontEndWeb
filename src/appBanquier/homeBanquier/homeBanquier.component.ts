@@ -43,7 +43,7 @@ export class HomeBanquierComponent implements OnInit {
   {
     var headers = new HttpHeaders();
     headers = headers.append("token","1g1CMMMZydA4YT3GWHTiC9d5PjdxsD7Z8nL6jNdpBzOJYSOj6LC0ZWUslHxeuDXmPh6MPRDiSUxY2L9ZBay4JirDlTxwVZcGbmdwAftaKK6B5DbDZMCbLRATjCDTwxcRb1bXVzqLSCeWdpym0eJ61bgxNpI3FkFQZPVEwa7hOFCklxNgXoFR7F6X5GHSkA0bupdCo5hzji8khXIz4ly8fyC3mq3FgcOu8Ogfhw9nGxt1r72V2PGy4EI3Tt0SiQr");
-    this.httpClient.get('http://192.168.0.123:8080/accounts/compteNonValide',{headers:headers})
+    this.httpClient.get('http://api-tharwaa.cleverapps.io/accounts/compteNonValide',{headers:headers})
     .subscribe(
       (data:any[]) =>
       { 
@@ -118,7 +118,7 @@ export class HomeBanquierComponent implements OnInit {
     headers = headers.append("token","1g1CMMMZydA4YT3GWHTiC9d5PjdxsD7Z8nL6jNdpBzOJYSOj6LC0ZWUslHxeuDXmPh6MPRDiSUxY2L9ZBay4JirDlTxwVZcGbmdwAftaKK6B5DbDZMCbLRATjCDTwxcRb1bXVzqLSCeWdpym0eJ61bgxNpI3FkFQZPVEwa7hOFCklxNgXoFR7F6X5GHSkA0bupdCo5hzji8khXIz4ly8fyC3mq3FgcOu8Ogfhw9nGxt1r72V2PGy4EI3Tt0SiQr");
 
     var body = "num="+this.numCompte+"";
-    this.httpClient.put('http://192.168.0.123:8080/accounts/validate',body,{headers:headers})
+    this.httpClient.put('http://api-tharwaa.cleverapps.io/accounts/validate',body,{headers:headers})
     .subscribe(
     data =>
     {
@@ -160,7 +160,7 @@ export class HomeBanquierComponent implements OnInit {
             // si le code est valide
             localStorage.setItem('mail',response["userId"]);
             
-            this.deleteBlur();
+            this.deleteBlur(); 
             
           }
           ,err =>
