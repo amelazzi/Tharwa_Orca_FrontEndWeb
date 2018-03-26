@@ -8,27 +8,27 @@
     <title>Document</title>
 
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' 
+rel='stylesheet' type='text/css'>
 
 </head>
 <body>
-<!--        <div class="content-fluid code" id="code" [ngStyle] ="{'display': 'none'}">
-                <i class="material-icons mail">mail_outline </i>
-                <p id="code-title">Vérifier votre mail</p>
-                <p>On a envoyé un code a quatre chiffres a <b>admin@tharwa.com</b></p>
-                <p>Entrez le ici pour pouvoir continuer</p>
-                <br>
-                <div>
-                    <input [(ngModel)]='code[0]' type="text" maxlength="1">
-                    <input [(ngModel)]='code[1]' type="text" maxlength="1">
-                    - 
-                    <input [(ngModel)]='code[2]' type="text" maxlength="1">
-                    <input [(ngModel)]='code[3]' type="text" maxlength="1">
-                </div>
-                <button class="code-valider" (click)="tryDeleteBlur()">Vérifier mon email</button>
-                <br>
-                <a>pas reçu ? <b>Renvoyer</b> </a>
-        </div> -->
+    <div class="content-fluid code" id="code" [ngStyle] ="{'display': displayBlur}">
+        <i class="material-icons mail">mail_outline </i>
+        <p id="code-title">Vérifier votre mail</p>
+        <p>On a envoyé un code a quatre chiffres a <b>{{userId}}</b></p>
+        <p>Entrez le ici pour pouvoir continuer</p>
+        <br>
+        <div>
+            <input [(ngModel)]='code[0]' type="text" maxlength="1">
+            <input [(ngModel)]='code[1]' type="text" maxlength="1">
+            - 
+            <input [(ngModel)]='code[2]' type="text" maxlength="1">
+            <input [(ngModel)]='code[3]' type="text" maxlength="1">
+        </div>
+        <button class="code-valider" (click)="tryDeleteBlur()">Vérifier mon email</button>
+
+    </div> 
 
 <!--modal contenant des infos sur le compte et le client choisit-->
     <div id="info" class="modal fade info2" role="dialog">

@@ -18,7 +18,7 @@ export class ListbanqueComponent implements OnInit {
   
   ngOnInit() 
   {
-    alert(localStorage.getItem('blur'));
+    
     localStorage.setItem('selectedItem','6');
     var appCompo=new AppComponent(this.httpClient, this.router);
     appCompo.route();

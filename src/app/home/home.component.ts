@@ -18,16 +18,16 @@ export class HomeComponent implements OnInit {
   constructor(private httpClient:HttpClient, private router: Router) {}
   selectedTab : number;
   displayBlur : String;
-  
+  userId : String;
   ngOnInit() 
   {
     var appCompo=new AppComponent(this.httpClient, this.router);
+    this.userId = localStorage.getItem('mail');
     
-  
     localStorage.setItem('selectedItem','1');
     if(localStorage.getItem('blur') === "false")
     {
-      appCompo.verifToken();
+      //appCompo.verifToken();
       this.displayBlur = "none";
     }
 

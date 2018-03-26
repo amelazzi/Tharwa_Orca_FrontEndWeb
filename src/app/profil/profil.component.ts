@@ -51,6 +51,8 @@ export class ProfilComponent implements OnInit {
       mdpOld : new FormControl(''), // ancien mot de passe
     });
 
+    
+
     var headers = new HttpHeaders();
     headers = headers.append("token",localStorage.getItem('token_access'));
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded");

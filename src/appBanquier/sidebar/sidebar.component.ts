@@ -13,4 +13,16 @@ export class SidebarComponent implements OnInit {
   {
     this.selectedItem = 1 ;
   }
+
+  getBlurState()
+  {
+    if (localStorage.getItem('blur')==='true')
+    {
+      return true; 
+    }
+    else
+    {
+      return false;
+    }
+  }
 }

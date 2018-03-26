@@ -3,10 +3,15 @@
     margin-left: 20%;
 }
 
+.card-content
+{
+    height: 500px;
+    overflow-y: scroll;
+}
+
 .table-header
 {
     background-color: rgb(24, 184, 64);
-   
     border-style: none;
     position: absolute;
     width: 98%;

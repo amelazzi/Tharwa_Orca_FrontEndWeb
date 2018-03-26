@@ -18,13 +18,12 @@ export class HomeBanquierComponent implements OnInit {
   constructor(private httpClient:HttpClient, private router: Router) {}
   selectedTab : number = 1;
   displayBlur : String;
-
+  userId : String;
 
   ngOnInit() 
   {
     var appCompo=new AppComponent(this.httpClient, this.router);
-    
-
+    this.userId = localStorage.getItem('mail');
     localStorage.setItem('selectedItem','1');
     //si on est dans un etat ou le user a entré un bon code on vérifie l'access_token qu'on a
     if(localStorage.getItem('blur') === "false")
@@ -32,7 +31,7 @@ export class HomeBanquierComponent implements OnInit {
       appCompo.verifToken();
       this.displayBlur = "none";
     }
-    this.getCompte();
+    
   }
 
 
@@ -159,7 +158,7 @@ export class HomeBanquierComponent implements OnInit {
           {
             // si le code est valide
             localStorage.setItem('mail',response["userId"]);
-            
+            this.getCompte();
             this.deleteBlur(); 
             
           }

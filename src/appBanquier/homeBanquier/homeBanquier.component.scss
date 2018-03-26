@@ -276,3 +276,73 @@
 {
     margin-left: 55%;
 }
+
+
+
+.code 
+{
+    //display: none;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 45em;
+    overflow-y: hidden;
+    z-index: 999;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.90);
+    
+}
+ 
+.mail
+{
+    margin-top: 2%;
+}
+
+
+.code i
+{
+    font-size: 1200%;
+}
+
+
+.code p 
+{
+    font-weight: 500px;
+    font-size: 20px;
+}
+.code input 
+{
+    width: 2.5em;
+    height: 4em;
+    margin-right: 0.25%;
+    border-radius: 10px;
+    border: solid white 2px;
+    background-color: rgba(150,150,150,0.9);
+    color: white;
+    text-align: center;
+}
+#code-title
+{
+    margin-top: 2%;
+    margin-bottom: 5%;
+    font-size: 350%;
+}
+
+.code-valider
+{
+    margin-top: 2%;
+    background-color: transparent;
+    border-radius: 15px;
+    border : solid white 3px;
+    color: white;
+    padding: 5px 15px 5px 15px;
+    cursor: pointer;
+}
+#code a 
+{
+    color: rgb(60, 201, 206);
+}
