@@ -30,6 +30,7 @@ export class HomeBanquierComponent implements OnInit {
     if(localStorage.getItem('blur') === "false")
     {
       this.displayBlur = "none";
+      this.getCompte();
     }
     
     if(localStorage.getItem('') === '0' )
