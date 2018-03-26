@@ -40,14 +40,14 @@ export class AddbanquierComponent implements OnInit {
   addBanquier()
   {
     var headers = new HttpHeaders();
-    headers = headers.append("token","xiDtyQfvSDzw32G2LNpjqtagrygh1rK5cU3pH7qP1uyVtIwWTeCTbCIWkf4pY6scYSITNLhDgp56yFrUQbDZaN6FhhBO6kmOPIlj9qb4rSewUhaVr7vXFovwCcmE787kj8FOGAg5JiykDZwqIocLm9gbFkU29U3De2W9eeDvcGFgpHg1A1sCKIP9ascF974QZFRe1iyDeQwiUE2tFUcnCDt7xnRsVZwIlqdYv8a8552qZXRWHYS1doJkY2pHdDr");
+    headers = headers.append("token",""+localStorage.getItem('token_access')+"");
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
     var body="userId="+this.mail+"&Tel="+this.tel+"&UserName="+this.nom+" "+this.prenom+"+&Pwd="+this.pass+"";
-    //this.httpClient.post("http://127.0.0.1:8080/users/BankerInscription",body,{headers:headers})
-    this.httpClient.post("http://api-tharwaa.cleverapps.io/users/BankerInscription",body,{headers:headers})
+    this.httpClient.post("http://127.0.0.1:8080/users/BankerInscription",body,{headers:headers})
+    //this.httpClient.post("http://api-tharwaa.cleverapps.io/users/BankerInscription",body,{headers:headers})
     .subscribe(
       data => {
-        alert("banquier ajouté");
+        alert("Le Compte banquier a bien été ajouté");
       }
     );
   }

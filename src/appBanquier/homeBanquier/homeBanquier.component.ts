@@ -49,8 +49,10 @@ export class HomeBanquierComponent implements OnInit {
   getCompte()
   {
     var headers = new HttpHeaders();
-    headers = headers.append("token","1g1CMMMZydA4YT3GWHTiC9d5PjdxsD7Z8nL6jNdpBzOJYSOj6LC0ZWUslHxeuDXmPh6MPRDiSUxY2L9ZBay4JirDlTxwVZcGbmdwAftaKK6B5DbDZMCbLRATjCDTwxcRb1bXVzqLSCeWdpym0eJ61bgxNpI3FkFQZPVEwa7hOFCklxNgXoFR7F6X5GHSkA0bupdCo5hzji8khXIz4ly8fyC3mq3FgcOu8Ogfhw9nGxt1r72V2PGy4EI3Tt0SiQr");
-    this.httpClient.get('http://api-tharwaa.cleverapps.io/accounts/compteNonValide',{headers:headers})
+    headers = headers.append("token", localStorage.getItem('token_access'));
+    
+    //this.httpClient.get('http://api-tharwaa.cleverapps.io/accounts/compteNonValide',{headers:headers})
+    this.httpClient.get('http://127.0.0.1:8080/accounts/compteNonValide',{headers:headers})
     .subscribe(
       (data:any[]) =>
       { 
@@ -110,7 +112,9 @@ export class HomeBanquierComponent implements OnInit {
     this.adresseClient = this.client["Adresse"];
     this.numTel = "0549018080"; // en attendant d'avoir un num tel à partir du service back
     this.numCompte = this.comptes[i]["Num"];
-    this.photo = "../assets/img/avatars/" +this.client["Photo"];
+    this.photo = "../assets/img/" +this.client["Photo"];
+
+   
     this.fonction = this.client["Fonction"];
     this.balance = this.comptes[i]["Balance"];
     this.monnaie = this.comptes[i]["CodeMonnaie"];
@@ -122,14 +126,15 @@ export class HomeBanquierComponent implements OnInit {
   {
     var headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
-    headers = headers.append("token","1g1CMMMZydA4YT3GWHTiC9d5PjdxsD7Z8nL6jNdpBzOJYSOj6LC0ZWUslHxeuDXmPh6MPRDiSUxY2L9ZBay4JirDlTxwVZcGbmdwAftaKK6B5DbDZMCbLRATjCDTwxcRb1bXVzqLSCeWdpym0eJ61bgxNpI3FkFQZPVEwa7hOFCklxNgXoFR7F6X5GHSkA0bupdCo5hzji8khXIz4ly8fyC3mq3FgcOu8Ogfhw9nGxt1r72V2PGy4EI3Tt0SiQr");
-
+//    headers = headers.append("token","1g1CMMMZydA4YT3GWHTiC9d5PjdxsD7Z8nL6jNdpBzOJYSOj6LC0ZWUslHxeuDXmPh6MPRDiSUxY2L9ZBay4JirDlTxwVZcGbmdwAftaKK6B5DbDZMCbLRATjCDTwxcRb1bXVzqLSCeWdpym0eJ61bgxNpI3FkFQZPVEwa7hOFCklxNgXoFR7F6X5GHSkA0bupdCo5hzji8khXIz4ly8fyC3mq3FgcOu8Ogfhw9nGxt1r72V2PGy4EI3Tt0SiQr");
+    headers = headers.append("token", localStorage.getItem('token_access'));
     var body = "num="+this.numCompte+"";
-    this.httpClient.put('http://api-tharwaa.cleverapps.io/accounts/validate',body,{headers:headers})
+    //this.httpClient.put('http://api-tharwaa.cleverapps.io/accounts/validate',body,{headers:headers})
+    this.httpClient.put('http://127.0.0.1:8080/accounts/validate',body,{headers:headers})
     .subscribe(
     data =>
     {
-      alert();
+      alert("Compte validé avec succès");
       this.getCompte();
     }
     );
