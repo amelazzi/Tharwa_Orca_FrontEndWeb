@@ -15,11 +15,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   constructor(private httpClient:HttpClient,private router: Router) { }
-  formLog:FormGroup;
+  formLog:FormGroup; //formulaire de login
   mail:String;
-  mdp :String;
-  mode : String;
-  tel: String;
+  mdp :String; // mot de apsse
+  mode : String; //mode d'envoi du code de validation
+  tel: String; 
   ngOnInit() { 
 
     this.formLog = new FormGroup({
@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
         //blur sera utilisé pour savoir si on doit floudifier le fond ou pas
 
         localStorage.setItem('mail',""+this.mail);
+        localStorage.setItem('mode',""+this.mode+"");
         localStorage.setItem('auth','true');
         //auth sera utilisé pour savoir si l'utilisateur s'est authentifier avec succès
         

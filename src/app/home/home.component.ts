@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   selectedTab : number;
   displayBlur : String;
   userId : String;
+  mode : String;
   ngOnInit() 
   {
     var appCompo=new AppComponent(this.httpClient, this.router);
@@ -29,6 +30,16 @@ export class HomeComponent implements OnInit {
     {
       //appCompo.verifToken();
       this.displayBlur = "none";
+    }
+
+
+    if(localStorage.getItem('') === '0' )
+    {
+      this.mode = "email"
+    }
+    else if (localStorage.getItem('') === '1')
+    {
+      this.mode = "telephone"
     }
 
   }

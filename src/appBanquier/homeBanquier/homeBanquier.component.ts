@@ -19,6 +19,7 @@ export class HomeBanquierComponent implements OnInit {
   selectedTab : number = 1;
   displayBlur : String;
   userId : String;
+  mode : String ; // mode d'envoie du code de validation
 
   ngOnInit() 
   {
@@ -28,12 +29,18 @@ export class HomeBanquierComponent implements OnInit {
     //si on est dans un etat ou le user a entré un bon code on vérifie l'access_token qu'on a
     if(localStorage.getItem('blur') === "false")
     {
-      appCompo.verifToken();
       this.displayBlur = "none";
     }
     
+    if(localStorage.getItem('') === '0' )
+    {
+      this.mode = "email"
+    }
+    else if (localStorage.getItem('') === '1')
+    {
+      this.mode = "telephone"
+    }
   }
-
 
 
   comptes : any[];
