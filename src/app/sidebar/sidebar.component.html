@@ -1,5 +1,4 @@
-
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,67 +7,66 @@
     <title>Document</title>
 
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+    
 </head>
 <body [ngClass] = "{'body':getBlurState()===true}">
-        <div class="sidebar" data-color="red" bg-color="black"> 
-                <div class="logo">
-                    
+        <div class="sidebar" data-color="red" bg-color="black" [ngStyle] ="{'display': getDisplay()}"> 
+                
+                <div class="logo sidbarText">
                     <a href="" class="simple-text">
                         <img src="../../assets/img/TharwaLogo.png" class="logoTharwa">
-                        <i>Gestionnaire</i>
+                        <i >Gestionnaire</i>
                     </a>
                 </div>
     
                 <div class="sidebar-wrapper">
-                    <ul class="nav flex-column">
+                    <ul class="nav flex-column sideItem">
                         <li [ngClass] = "{'active': getSelectedItem() ===1}" >
                             <a [routerLink]="[{ outlets: { popup: ['dash'] } }]">
                                 <i class="material-icons">dashboard</i>
-                                <p>Accueil</p>
+                                <p >Accueil</p>
                             </a>
                         </li>
                         <li [ngClass] = "{'active':getSelectedItem()===2}" >
                             <a [routerLink]="[{ outlets: { popup: ['profil'] } }]">
                                 <i class="material-icons">person</i>
-                                <p>Profile</p>
+                                <p >Profile</p>
                             </a>
                         </li>
                         <li [ngClass] = "{'active':getSelectedItem()===3}">
                             <a [routerLink]="[{ outlets: { popup: ['listvirexterne'] } }]">
                                 <i class="material-icons">content_paste</i>
-                                <p>Virements externes</p>
+                                <p >Virements externes</p>
                             </a>
                         </li>
                         <li [ngClass] = "{'active':getSelectedItem()===4}">
                             <a [routerLink]="[{ outlets: { popup: ['listbanquier'] } } ]">
                                 <i class="material-icons">people</i>
-                                <p>Géstion des banquiers</p>
+                                <p >Géstion des banquiers</p>
                             </a>
                         </li>
                         <li [ngClass] = "{'active':getSelectedItem()===5}" >
                                 <a [routerLink]="[{ outlets: { popup: ['addbanquier'] } } ]">
                                     <i class="material-icons">add_circle_outline</i>
-                                    <p>Créer Compte Banquier</p>
+                                    <p >Créer Compte Banquier</p>
                                 </a>
                             </li>
                         <li [ngClass] = "{'active':getSelectedItem()===6}">
                             <a [routerLink]="[{ outlets: { popup: ['listbanque'] } } ]">
                                 <i class="material-icons">account_balance</i>
-                                <p>Liste des Banques</p>
+                                <p >Liste des Banques</p>
                             </a>
                         </li>
                         <li [ngClass] = "{'active':getSelectedItem()===7}" >
                                 <a [routerLink]="[{ outlets: { popup: ['addbanque'] } } ]">
                                     <i class="material-icons">add_circle_outline</i>
-                                    <p>Ajouter une Banque</p>
+                                    <p >Ajouter une Banque</p>
                                 </a>
                         </li>
                     </ul>
                 </div>
           </div>
+
 </body>
 </html>
   

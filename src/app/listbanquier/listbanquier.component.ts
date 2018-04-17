@@ -19,8 +19,6 @@ export class ListbanquierComponent implements OnInit {
   {
     
     localStorage.setItem('selectedItem','4');
-    var appCompo=new AppComponent(this.httpClient, this.router);
-    appCompo.route();
     
     
     this.getBanquier();
@@ -32,26 +30,37 @@ export class ListbanquierComponent implements OnInit {
   {
     var headers = new HttpHeaders();
     headers = headers.append("token",localStorage.getItem('token_access'));
-
-    this.httpClient.get('http://127.0.0.1:4400/banquier/liste',{headers:headers})
+    //headers = headers.append("token","Vk5sdkIaq5fAnhepbrXOndqFtRscTXrVQWPUKX5bjAKsZAI4UJSpEKItNEoBJdsgECrVCHTCOohIozlsuugwnD3wKnRtYOtnZBJ14NGwZH4Ya6TnOpfSWbo5Bxvh4ybjI1385jHklEDfsqoSwLstQv792W7E6ENA3klObi4QrMExjbEPOJUbmUX5j6uwT36MM87zNIjXqOW6c3GKaXGANvQ9HOCaX2eNaDQtySq5iJv5dvUJgnQodrN7GYXVpxq");
+    //this.httpClient.get('http://api-tharwaa.cleverapps.io/gestionnaire/listBanquiers',{headers:headers})
+    this.httpClient.get('http://192.168.0.164:8080/gestionnaire/listBanquiers',{headers:headers})
     .subscribe(
       (data:any[]) =>
-      { 
+      {
         var nomPrenom;
-        this.banquiers = data;
+        this.banquiers = data["Banquiers"];
+
         var i = 0;
-        while (data[i] != null )
+        while (this.banquiers[i] != null )
         {
-          nomPrenom = data[i]["username"].split(" ",2);
+          nomPrenom = this.banquiers[i]["username"].split(" ",2);
           this.banquiers[i]["nom"] = nomPrenom[0];
           this.banquiers[i]["prenom"] = nomPrenom[1]; 
           i=i+1;
         }
       }, err =>
       {
-        if (( err['Status']>= 400) && (err['Status']) < 500 )
+        switch (err['status'])
         {
-          alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+          case 401 :
+            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            this.router.navigateByUrl('/');
+          break;
+          case 500 :
+            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+          break;
+          case 0 :
+            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+          break; 
         }
       }
     )

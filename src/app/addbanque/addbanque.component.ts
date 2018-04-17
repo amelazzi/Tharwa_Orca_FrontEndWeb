@@ -16,8 +16,7 @@ export class AddbanqueComponent implements OnInit {
   ngOnInit() {
 
 
-    var appCompo=new AppComponent(this.httpClient, this.router);
-    appCompo.route();
+
 
     this.formBanque = new FormGroup({
       mail: new FormControl(''),

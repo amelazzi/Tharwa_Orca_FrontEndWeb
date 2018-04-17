@@ -15,8 +15,9 @@ export class ListvirexterneComponent implements OnInit {
 
   ngOnInit() {
     localStorage.setItem('selectedItem','3');
-    var appCompo=new AppComponent(this.httpClient, this.router);
-    appCompo.route();
+
+    
+
     this.getVireExterne();
 
   }
@@ -27,12 +28,13 @@ export class ListvirexterneComponent implements OnInit {
     var headers = new HttpHeaders();
     headers = headers.append("token",localStorage.getItem('token_access'));
 
-    this.httpClient.get('http://127.0.0.1:4400/virement/liste/externe',{headers:headers})
+    
+    this.httpClient.get('http://192.168.0.164:8080/gestionnaire/listVirementEx',{headers:headers})
     .subscribe(
       (data:any[]) =>
       { 
        
-        this.virements = data;
+        this.virements = data["Virements"];
         var i = 0 ;
         while (this.virements[i] != null)
         {
@@ -54,10 +56,18 @@ export class ListvirexterneComponent implements OnInit {
 
       }, err =>
       {
-      
-        if (( err['Status']>= 400) && (err['Status']) < 500 )
+        switch (err['status'])
         {
-          alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+          case 401 :
+            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            this.router.navigateByUrl('/');
+          break;
+          case 500 :
+            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+          break;
+          case 0 :
+            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+          break; 
         }
       }
       

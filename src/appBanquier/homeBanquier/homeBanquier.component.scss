@@ -48,18 +48,16 @@
 
 .table-header li:nth-child(3)
 {
-    margin-left: 5%;
+    margin-left: -1%;
 }
-
-
-
-
 
 .table-header li:nth-child(4)
 {
-    margin-left: 5%;
-    margin-left: 1%;
+    margin-left: -5%;
 }
+
+
+
 
 
 #tbody td
@@ -236,14 +234,14 @@
 }
 
 
-.monnaie-euro
+.monnaie-e
 {
     text-align: center;
     background-color: rgb(40, 123, 247);
 }
 
 
-.monnaie-dollar
+.monnaie-d
 {
     text-align: center;
     background-color: rgb(47, 247, 40);

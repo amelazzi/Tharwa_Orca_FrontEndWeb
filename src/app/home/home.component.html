@@ -10,7 +10,7 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 
 </head>
-<body>
+<body> 
         <div class="content-fluid code" id="code" [ngStyle] ="{'display': displayBlur}">
                 <i class="material-icons mail">mail_outline </i>
                 <p id="code-title">Vérifier votre {{mode}}</p>
@@ -25,7 +25,10 @@
                     <input [(ngModel)]='code[3]' type="text" maxlength="1">
                 </div>
                 <button class="code-valider" (click)="tryDeleteBlur()">Vérifier mon code</button>
-        </div>  
+        </div>
+        
+        
+        
             <div class="container-cards" [ngClass] = "{'body':getBlurState()=== true}">
                 <div class="row">
                     <div class="card-dash">
@@ -39,12 +42,7 @@
                                     <small>GB</small>
                                 </h3>
                             </div>
-                            <div class="card-footer card-footer--home">
-                                <div class="stats">
-                                    <i class="material-icons text-danger">warning</i>
-                                    <a href="#pablo">Get More Space...</a>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="card-dash">
@@ -56,11 +54,7 @@
                                         <p class="category">Followers</p>
                                         <h3 class="title">+245</h3>
                                     </div>
-                                    <div class="card-footer card-footer--home">
-                                        <div class="stats">
-                                            <i class="material-icons">update</i> Just Updated
-                                        </div>
-                                    </div>
+                                    
                             </div>
                     </div> 
                     
@@ -73,11 +67,7 @@
                                         <p class="category">Fixed Issues</p>
                                         <h3 class="title">75</h3>
                                     </div>
-                                    <div class="card-footer card-footer--home">
-                                        <div class="stats">
-                                            <i class="material-icons">local_offer</i> Tracked from Github
-                                        </div>
-                                    </div>
+                                    
                             </div>
                     </div> 
                     <div class="card-dash">
@@ -87,13 +77,9 @@
                                     </div>
                                     <div class="card-content">
                                         <p class="category">Revenue</p>
-                                        <h3 class="title">$34,245</h3>
+                                        <h3 class="title">$34,24</h3>
                                     </div>
-                                    <div class="card-footer card-footer--home">
-                                        <div class="stats">
-                                            <i class="material-icons">date_range</i> Last 24 Hours
-                                        </div>
-                                    </div>
+                                    
                             </div>
                     </div> 
                 </div>

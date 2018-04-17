@@ -24,17 +24,26 @@ export class ProfilComponent implements OnInit {
   saveUpdate(){
     var headers = new HttpHeaders();
 
-
     headers = headers.append("token",localStorage.getItem('token_access'));
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
-        
+    
+    var body = "";
+    this.httpClient.post('',body,{headers:headers})
+    .subscribe(
+      data =>
+      {
+         
+      }
+      ,err => 
+      {
+         
+      }
+    )
   }
 
 
   ngOnInit() {
 
-    var appCompo=new AppComponent(this.httpClient, this.router);
-    appCompo.route();
 
     this.formCtrl = new FormGroup({
       mail: new FormControl(''),
@@ -59,7 +68,7 @@ export class ProfilComponent implements OnInit {
 
     var body ="userId="+localStorage.getItem('mail')+"";
     
-    this.httpClient.post('http://127.0.0.1:4400/profil',body,{headers:headers})
+    this.httpClient.post('http://192.168.0.196:8080/profil',body,{headers:headers})
     .subscribe(
       data => 
       {
@@ -75,11 +84,24 @@ export class ProfilComponent implements OnInit {
       }
       ,err => 
       {
-
+        switch (err['status'])
+        {
+          case 401 :
+            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+          break;
+          case 404 :
+            alert("Utilisateur introuvable"); 
+          break;
+          case 500 :
+            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+          break;
+          case 0 :
+            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+          break; 
+        }
       }
     );
   localStorage.setItem('selectedItem','2');
-    
   }
 
 }

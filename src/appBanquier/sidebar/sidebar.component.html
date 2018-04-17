@@ -31,18 +31,14 @@
                         <p>Liste des Comptes</p>
                     </a>
                 </li>
-                <li [ngClass] = "{'active':selectedItem===5}" (click)="selectedItem = 5">
-                    <a >
-                        <i class="material-icons">lock</i>
-                        <p>Bloquer/Débloquer</p>
-                    </a>
-                </li>
+
                 <li [ngClass] = "{'active':selectedItem===2}" (click)="selectedItem = 2">
                     <a [routerLink]="[{ outlets: { popup: ['profil'] } }]">
                         <i class="material-icons">person</i>
                         <p>Profile</p>
                     </a>
                 </li>
+
                 <li [ngClass] = "{'active':selectedItem===3}" (click)="selectedItem = 3">
                     <a [routerLink]="[{ outlets: { popup: ['listvire'] } }]">
                         <i class="material-icons">attach_money</i>
@@ -56,6 +52,12 @@
                     </a>
                 </li>
 
+                <li [ngClass] = "{'active':selectedItem===5}" (click)="selectedItem = 5">
+                    <a [routerLink]="[{ outlets: { popup: ['client'] } }]" >
+                        <i class="material-icons">lock</i>
+                        <p>Bloquer/Débloquer</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

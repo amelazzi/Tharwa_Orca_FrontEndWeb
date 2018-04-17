@@ -34,7 +34,6 @@ export class Service{
       var blurState : Boolean = false;
       if (blurState===true)
       {
-        
         return true; 
       }
       else

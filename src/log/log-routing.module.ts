@@ -100,6 +100,11 @@ const routes: Routes = [
         component: HomeBanquierComponent, 
         outlet:'popup'
       },
+      { 
+        path: 'client', 
+        component: HomeBanquierComponent, 
+        outlet:'popup'
+      },
       {
         path :'profil',
         component : ProfilBanquierComponent,

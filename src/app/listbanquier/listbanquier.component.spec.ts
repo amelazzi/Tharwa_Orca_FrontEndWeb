@@ -1,25 +1,40 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { ListbanquierComponent } from './listbanquier.component';
+import {Service} from './listBanquier.service';
 
-describe('ListbanquierComponent', () => {
-  let component: ListbanquierComponent;
-  let fixture: ComponentFixture<ListbanquierComponent>;
+import { HttpHeaders, HttpClient , HttpClientModule } from '@angular/common/http';
 
-  beforeEach(async(() => {
+fdescribe ('Service ', () =>
+{
+  let httpMock : HttpTestingController;
+  let service : Service;
+
+  const endpoint = "http://api-tharwaa.cleverapps.io/gestionnaire/listBanquiers";
+
+  beforeEach(() =>
+  {
     TestBed.configureTestingModule({
-      declarations: [ ListbanquierComponent ]
-    })
-    .compileComponents();
-  }));
+      imports : [HttpClientTestingModule],
+      providers : [Service]
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ListbanquierComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    service = TestBed.get(Service);
+    httpMock = TestBed.get(HttpTestingController);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+
+  it('devrait envoyer une requete pour récupérer la liste des banquiers',()=>
+  {
+    service.tryDeleteBlur()
+    .subscribe( data =>
+    {
+      console.log(data);
+    }
+    );
+
+    const requete = httpMock.expectOne(endpoint);
+    expect(requete.request.method).toBe('GET');
   });
+
 });

@@ -25,10 +25,12 @@ export class HomeComponent implements OnInit {
     var appCompo=new AppComponent(this.httpClient, this.router);
     this.userId = localStorage.getItem('mail');
     
+
+    localStorage.setItem('blurGest','false');
+
     localStorage.setItem('selectedItem','1');
-    if(localStorage.getItem('blur') === "false")
+    if(localStorage.getItem('blurGest') === "false")
     {
-      //appCompo.verifToken();
       this.displayBlur = "none";
     }
 
@@ -56,8 +58,9 @@ export class HomeComponent implements OnInit {
 
     
 
-    //on envoie la requete au service pour vérifier le code
-    this.httpClient.post('https://auththarwa.cleverapps.io/oauth/login',body,{headers:headers})
+    //on envoie la requete au serveur d'authentification pour vérifier le code a 4 chiffres
+    //this.httpClient.post('https://auththarwa.cleverapps.io/oauth/login',body,{headers:headers})
+    this.httpClient.post('http://192.168.0.164:8081/oauth/login',body,{headers:headers})
     .subscribe(responseToken =>
       //reponse donné par le serveur après avoir valider le code, elle contient l'access token
       {
@@ -71,7 +74,9 @@ export class HomeComponent implements OnInit {
         headers = headers.append("token",localStorage.getItem('token_access'));
 
         //on envoie la requete pour vérifier le token reçu au service app
-        this.httpClient.get('http://api-tharwaa.cleverapps.io/users/dashBoard',{headers : headers})
+        
+        //this.httpClient.get('http://api-tharwaa.cleverapps.io/users/dashBoard',{headers : headers})
+        this.httpClient.get('http://192.168.0.164:8080/users/dashBoard',{headers : headers})
         .subscribe(response =>  
           {
             // si le code est valide
@@ -84,7 +89,7 @@ export class HomeComponent implements OnInit {
           {
             console.log(err);
             localStorage.clear();
-            alert("erreur :"+err['Status']+" la validation à échoué");
+            
           }
         );
 
@@ -105,15 +110,15 @@ export class HomeComponent implements OnInit {
 
   deleteBlur()
   {
-    localStorage.setItem('blur','false');
+    localStorage.setItem('blurGest','false');
     this.displayBlur = "none";
   }
 
 
   getBlurState()
   {
-    if (localStorage.getItem('blur')==='true'){
-      return true; 
+    if (localStorage.getItem('blurGest')==='true'){
+      return true;
     }
     else
     {

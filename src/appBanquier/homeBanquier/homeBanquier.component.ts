@@ -51,8 +51,8 @@ export class HomeBanquierComponent implements OnInit {
     var headers = new HttpHeaders();
     headers = headers.append("token", localStorage.getItem('token_access'));
     
-    //this.httpClient.get('http://api-tharwaa.cleverapps.io/accounts/compteNonValide',{headers:headers})
-    this.httpClient.get('http://127.0.0.1:8080/accounts/compteNonValide',{headers:headers})
+    this.httpClient.get('http://192.168.0.164:8080/accounts/compteNonValide',{headers:headers})
+    
     .subscribe(
       (data:any[]) =>
       { 
@@ -61,23 +61,24 @@ export class HomeBanquierComponent implements OnInit {
         var i = 0 ; 
         while (i < this.comptes.length) 
         {
-          if(this.comptes[i]["Etat"] === 0 )
-          {
-            this.comptes[i]["iconLock"] = "lock_outline";
-          }
-          else
-          {
-            this.comptes[i]["iconLock"] = "lock_open";
-          }
           
           this.comptes[i]["TypeCompte"] = typecompte[ this.comptes[i]["TypeCompte"] ];
           i=i+1;
         }
       }, err =>
       {
-        if (( err['Status']>= 400) && (err['Status']) < 500 )
+        switch (err['status'])
         {
-          alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+          case 401 :
+            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+          break;
+          case 500 :
+            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+          break;
+          case 0 :
+            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+          break;
+          
         }
       }
     )
@@ -116,29 +117,86 @@ export class HomeBanquierComponent implements OnInit {
 
    
     this.fonction = this.client["Fonction"];
-    this.balance = this.comptes[i]["Balance"];
+    
     this.monnaie = this.comptes[i]["CodeMonnaie"];
     this.typeCompte = this.comptes[i]["TypeCompte"];
   } 
 
-
+  //fonction pour valider un compte nouvellement créé
   valider()
   {
     var headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
-//    headers = headers.append("token","1g1CMMMZydA4YT3GWHTiC9d5PjdxsD7Z8nL6jNdpBzOJYSOj6LC0ZWUslHxeuDXmPh6MPRDiSUxY2L9ZBay4JirDlTxwVZcGbmdwAftaKK6B5DbDZMCbLRATjCDTwxcRb1bXVzqLSCeWdpym0eJ61bgxNpI3FkFQZPVEwa7hOFCklxNgXoFR7F6X5GHSkA0bupdCo5hzji8khXIz4ly8fyC3mq3FgcOu8Ogfhw9nGxt1r72V2PGy4EI3Tt0SiQr");
     headers = headers.append("token", localStorage.getItem('token_access'));
     var body = "num="+this.numCompte+"";
+
     //this.httpClient.put('http://api-tharwaa.cleverapps.io/accounts/validate',body,{headers:headers})
-    this.httpClient.put('http://127.0.0.1:8080/accounts/validate',body,{headers:headers})
+    this.httpClient.put('http://192.168.0.164:8080/accounts/validate',body,{headers:headers})
     .subscribe(
-    data =>
-    {
-      alert("Compte validé avec succès");
-      this.getCompte();
-    }
+      data =>
+      {
+        alert("Compte validé avec succès");
+        this.getCompte();
+      }
+      ,err => 
+      {
+        switch (err['status'])
+        {
+          case 401 :
+            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+          break;
+          case 404 :
+            alert("Compte introuvable vérifiez qu'il n'a pas déjà été traité"); 
+          break;
+          case 500 :
+            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+          break;
+          case 0 :
+            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+          break; 
+        }
+      }
     );
   }
+
+  //fonction pour rejeter un compte nouvellement créé
+  bloquer()
+  {
+    var headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
+    headers = headers.append("token", localStorage.getItem('token_access'));
+    var body = "num="+this.numCompte+"";
+
+    //this.httpClient.put('http://api-tharwaa.cleverapps.io/accounts/validate',body,{headers:headers})
+    this.httpClient.put('http://192.168.0.164:8080/accounts/reject',body,{headers:headers})
+    .subscribe(
+      data =>
+      {
+        alert("Compte rejeté avec succès");
+        this.getCompte();
+      }
+      ,err => 
+      {
+        switch (err['status'])
+        {
+          case 401 :
+            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+          break;
+          case 404 :
+            alert("Compte introuvable vérifiez qu'il n'a pas déjà été traité"); 
+          break;
+          case 500 :
+            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+          break;
+          case 0 :
+            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+          break; 
+        }
+      }
+    );
+  }
+
+
 
 // fonction qui envoie le code entré
   tryDeleteBlur()
@@ -152,8 +210,9 @@ export class HomeBanquierComponent implements OnInit {
 
     
 
-    //on envoie la requete au service pour vérifier le code
-    this.httpClient.post('https://auththarwa.cleverapps.io/oauth/login',body,{headers:headers})
+    //on envoie la requete au service pour vérifier le code a 4 chiffres
+    //this.httpClient.post('https://auththarwa.cleverapps.io/oauth/login',body,{headers:headers})
+    this.httpClient.post('http://192.168.0.164:8081/oauth/login',body,{headers:headers})
     .subscribe(responseToken =>
       //reponse donné par le serveur après avoir valider le code, elle contient l'access token
       {
@@ -166,14 +225,13 @@ export class HomeBanquierComponent implements OnInit {
         headers = headers.append("token",localStorage.getItem('token_access'));
 
         //on envoie la requete pour vérifier le token reçu au service app
-        this.httpClient.get('http://api-tharwaa.cleverapps.io/users/dashBoard',{headers : headers})
+        this.httpClient.get('http://192.168.0.164:8080/users/dashBoard',{headers : headers})
         .subscribe(response =>  
           {
             // si le code est valide
             localStorage.setItem('mail',response["userId"]);
             this.getCompte();
-            this.deleteBlur(); 
-            
+            this.deleteBlur();  
           }
           ,err =>
           {
@@ -186,12 +244,22 @@ export class HomeBanquierComponent implements OnInit {
       }
     ,err =>
     {
-      if((err["status"] === 403) || (err["status"] === 409)){
-        alert("le code entré est érroné");
-      }else if (err["status"]>=  500)
-      {
-        alert("oups une erreur sur notre serveur est survenue ! veuillez réessayer dans un instant");
-      }
+      switch (err['status'])
+        {
+          case 401 :
+            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            this.router.navigateByUrl('/');
+          break;
+          case 404 :
+            alert("Utilisateur non trouvé");
+          break;
+          case 500 :
+            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+          break;
+          case 0 :
+            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+          break; 
+        }
     });
   }
 
@@ -221,6 +289,7 @@ export class HomeBanquierComponent implements OnInit {
       return false;
     }
   }
+
 
 
 }

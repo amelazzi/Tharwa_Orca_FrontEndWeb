@@ -11,19 +11,36 @@ import { LogComponent} from '../../log/log.component';
 export class SidebarComponent implements OnInit {
 
   constructor() { }
+  static displaySide  : string;
   selectedItem : number = 1;
+
+
+  private test : string;
   ngOnInit() 
   {
     
   }
 
+
+  public setDisplay(on : string)
+  {
+    localStorage.setItem('displaySidebar',on);
+  }
+
+  getDisplay()
+  {
+    return localStorage.getItem('displaySidebar');
+  }
+
+
+
   getBlurState()
   {
-    if (localStorage.getItem('blur')==='true'){
-      
+    if (localStorage.getItem('blurGest')==='true')
+    {
       return true;
-
-    }else
+    }
+    else
     {
       return false;
     }
