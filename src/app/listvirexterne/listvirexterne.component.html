@@ -9,7 +9,6 @@
 </head>
 <body> 
     <div class="content">
-
         <div class="card">
             <thead class="table-header">
                 <li>Date</li>
@@ -24,7 +23,7 @@
             <div class="card-content">
                 <br>
                 <br>
-                <table class="table">
+                <table class="table"> 
                     <tbody id="tbody">
                         <tr *ngFor="let virement of virements" class="ligne">
                             <td>{{virement.Date}}</td>
@@ -34,8 +33,19 @@
                             <td>{{virement.CompteDestinataire}}</td>
                             <td>{{virement.Montant}}</td>
                             <td>{{virement.Motif}}</td>
-                            <td>{{virement.Statut}}</td>
+                            <td>{{virement.Statut}}</td> 
                         </tr>
+
+                        <tr class="ligne">
+                                <td>2018-02-12 T22:30:12Z</td>
+                                <td>Ikhadallem Lotfi</td>
+                                <td>THW00004EUR</td>
+                                <td>Ikhadallem Lotfi</td>
+                                <td>THW0005USD</td>
+                                <td>12 000.00</td>
+                                <td>envoie d'argent pour financer une campagne</td>
+                                <td>rejeté</td>
+                            </tr>
                     </tbody>
                 </table>
             </div>

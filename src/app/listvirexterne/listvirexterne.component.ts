@@ -16,7 +16,7 @@ export class ListvirexterneComponent implements OnInit {
   ngOnInit() {
     localStorage.setItem('selectedItem','3');
 
-    
+    localStorage.setItem('blurGest','false');
 
     this.getVireExterne();
 
@@ -66,7 +66,7 @@ export class ListvirexterneComponent implements OnInit {
             alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
           break;
           case 0 :
-            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+           // alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
           break; 
         }
       }
