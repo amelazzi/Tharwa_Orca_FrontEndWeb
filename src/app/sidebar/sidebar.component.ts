@@ -16,9 +16,9 @@ export class SidebarComponent implements OnInit {
 
 
   private test : string;
-  ngOnInit() 
+  ngOnInit()
   {
-    
+    localStorage.setItem('blurGest','false');
   }
 
 

@@ -15,7 +15,7 @@ export class ListvirexterneComponent implements OnInit {
 
   ngOnInit() {
     localStorage.setItem('selectedItem','3');
-
+    
     localStorage.setItem('blurGest','false');
 
     this.getVireExterne();
