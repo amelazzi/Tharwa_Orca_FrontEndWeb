@@ -47,15 +47,12 @@
 
     .table-header li
     {
-        
-        font-style: bold;
         font-size: 20px;
         padding-top: 20px;
         padding-bottom: 30px;
         border-style: none;
         text-decoration: none;
         list-style: none;
-        width:250px;
     }
 
 
@@ -78,12 +75,131 @@
         width: 33%;
     }
 
-
-    .table-header li:nth-child(4)
+    #tbody td:nth-child(1)
     {
-        
+        width: 1%;
+        margin-left: -1%;        
     }
 
+
+    #tbody td:nth-child(2)
+    {
+        width: 20%;
+    }
+
+    #tbody td:nth-child(3)
+    {
+        width:35%;
+    }
+
+    #tbody td:nth-child(4)
+    {
+        width:25%;
+    }
+
+    #tbody td:nth-child(5),
+    #tbody td:nth-child(6)
+    {
+        position: absolute;
+      
+    }
+
+    #tbody td:nth-child(6)
+    {
+        margin-left: 8%;
+    }
+
+
+
+
+    .add-banque
+    {
+        position: fixed;
+        left: 97%;
+        top: 95%;
+        text-decoration: bold;
+        
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 31px;
+        text-align: center;
+        background-color: rgb(42, 177, 211);
+    }
+
+
+    .add-banque a
+    {
+        margin-top: 50px;
+        color: white;
+    }
+
+}
+
+
+@media (max-width:1080px)
+{
+    .content
+    {
+        margin-left: 2%;
+        width: 96%;
+    }
+
+    .card
+    {
+        top: 8mm;
+    }
+
+    .card-content
+    {
+        height:476px;
+        overflow-y: scroll;
+    }
+
+    .table-header
+    {
+        background-color: rgb(42, 177, 211);
+        border-style: none;
+        position: absolute;
+        width: 98%;
+        top: -20px;
+        left: 10px;
+        color: white;
+        border-radius: 3px;
+        box-shadow: 0 2px 8px rgb(120,120,120);
+        display: flex;
+        flex-direction: row;
+    }
+
+    .table-header li
+    {
+        font-size: 20px;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        border-style: none;
+        text-decoration: none;
+        list-style: none;
+    }
+
+
+
+    .table-header li:nth-child(1)
+    {
+        width: 6.5%;
+        margin-left: 1%;
+    }
+
+
+    .table-header li:nth-child(2)
+    {
+        width: 19%;
+    }
+
+
+    .table-header li:nth-child(3)
+    {
+        width: 33%;
+    }
 
 
 
@@ -140,7 +256,6 @@
     }
 
 
-
     .add-banque a
     {
         margin-top: 50px;
@@ -150,14 +265,16 @@
 }
 
 
-@media (max-width:1080px)
+@media (max-width:915px)
 {
     .content
     {
         margin-left: 2%;
+        width: 96%;
     }
 
-    .card 
+
+    .card
     {
         top: 8mm;
     }
@@ -169,10 +286,10 @@
         overflow-y: scroll;
     }
 
+
     .table-header
     {
         background-color: rgb(42, 177, 211);
-    
         border-style: none;
         position: absolute;
         width: 98%;
@@ -185,56 +302,81 @@
         flex-direction: row;
     }
 
+
     .table-header li
     {
-        
-        font-style: bold;
-        font-size: 20px;
+        font-size: 16px;
         padding-top: 20px;
         padding-bottom: 30px;
         border-style: none;
         text-decoration: none;
         list-style: none;
-        width:250px;
     }
 
 
 
     .table-header li:nth-child(1)
     {
-        width: 100px;
+        width: 6.5%;
         margin-left: 1%;
     }
 
 
     .table-header li:nth-child(2)
     {
-        margin-left: 1%;
+        width: 20%;
     }
 
 
     .table-header li:nth-child(3)
     {
-        margin-left: 6%;
+        width: 33%;
     }
 
 
-    .table-header li:nth-child(4)
+    #tbody td 
     {
-        margin-left: 6%;
+        font-size: 15px;
     }
-
-
-    #tbody td
-    {
-        width:300px;
-    }
-
 
     #tbody td:nth-child(1)
     {
-        width:100px;
+        width: 1%;
+        margin-left: -1%;        
     }
+
+
+    #tbody td:nth-child(2)
+    {
+        width: 19%;
+    }
+
+
+    #tbody td:nth-child(3)
+    {
+        width:35%;
+    }
+
+
+    #tbody td:nth-child(4)
+    {
+        width:25%;
+    }
+
+
+    #tbody td:nth-child(5),
+    #tbody td:nth-child(6)
+    {
+        position: absolute;
+      
+    }
+
+    #tbody td:nth-child(6)
+    {
+        margin-left: 8%;
+    }
+
+
 
 
     .add-banque
@@ -251,7 +393,6 @@
         text-align: center;
         background-color: rgb(42, 177, 211);
     }
-
 
 
     .add-banque a
@@ -266,20 +407,28 @@
 
 @media (max-width:762px)
 {
-    .content
+    body 
     {
-        margin-left: 0%;
-        top: -2mm;
+        overflow-x: scroll;
     }
 
-    .card 
+    .content
     {
-        top: -2mm;
+        margin-left: 2%;
+        width: 179mm;
+    }
+
+
+    .card
+    {
+        top: -1mm;
+        overflow-y: visible;
     }
 
 
     .card-content
     {
+        width: 179mm;
         height:476px;
         overflow-y: scroll;
     }
@@ -287,12 +436,12 @@
 
     .table-header
     {
+        width: 165mm;
         background-color: rgb(42, 177, 211);
         border-style: none;
         position: absolute;
-        width: 98%;
-        top: -3mm;
-        left: 1%;
+        top: -20px;
+        left: 10px;
         color: white;
         border-radius: 3px;
         box-shadow: 0 2px 8px rgb(120,120,120);
@@ -300,56 +449,81 @@
         flex-direction: row;
     }
 
+
     .table-header li
     {
-        
-        font-style: bold;
-        font-size: 20px;
+        font-size: 16px;
         padding-top: 10px;
-        padding-bottom: 15px;
+        padding-bottom: 10px;
         border-style: none;
         text-decoration: none;
         list-style: none;
-        width:250px;
     }
 
 
 
     .table-header li:nth-child(1)
     {
-        width: 100px;
+        width: 8.5%;
         margin-left: 1%;
     }
 
 
     .table-header li:nth-child(2)
     {
-        margin-left: 1%;
+        width: 20%;
     }
 
 
     .table-header li:nth-child(3)
     {
-        margin-left: 6%;
+        width: 33%;
     }
 
 
-    .table-header li:nth-child(4)
+    #tbody td 
     {
-        margin-left: 6%;
+        font-size: 13px;
     }
-
-
-    #tbody td
-    {
-        width:300px;
-    }
-
 
     #tbody td:nth-child(1)
     {
-        width:100px;
+        width: 1%;
+        margin-left: -1%;        
     }
+
+
+    #tbody td:nth-child(2)
+    {
+        width: 19%;
+    }
+
+
+    #tbody td:nth-child(3)
+    {
+        width:35%;
+    }
+
+
+    #tbody td:nth-child(4)
+    {
+        width:25%;
+    }
+
+
+    #tbody td:nth-child(5),
+    #tbody td:nth-child(6)
+    {
+        position: absolute;
+      
+    }
+
+    #tbody td:nth-child(6)
+    {
+        margin-left: 8%;
+    }
+
+
 
 
     .add-banque
@@ -368,11 +542,9 @@
     }
 
 
-
     .add-banque a
     {
         margin-top: 50px;
         color: white;
     }
-
 }
