@@ -409,7 +409,7 @@
 {
     body 
     {
-        overflow-x: scroll;
+        overflow-x: scroll
     }
 
     .content
@@ -524,18 +524,15 @@
     }
 
 
-
-
     .add-banque
     {
         position: fixed;
-        left: 97%;
+        left: 90%;
         top: 95%;
-        text-decoration: bold;
-        
+        font-weight: bold;
         border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        width: 8mm;
+        height: 8mm;
         font-size: 31px;
         text-align: center;
         background-color: rgb(42, 177, 211);
@@ -547,4 +544,6 @@
         margin-top: 50px;
         color: white;
     }
+
+
 }
