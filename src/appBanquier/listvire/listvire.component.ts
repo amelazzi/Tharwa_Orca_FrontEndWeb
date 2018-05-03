@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {Service} from './listvire.service';
+
 
 @Component({
   selector: 'app-listvirexterne',
@@ -13,6 +15,7 @@ export class ListvireComponent implements OnInit {
   virements : any[];
   ngOnInit() {
     this.getVirement();
+    localStorage.setItem('blur','false');
   }
 
   Virement = 
@@ -37,9 +40,8 @@ export class ListvireComponent implements OnInit {
   {
     var headers = new  HttpHeaders();
 
-    headers = headers.append("token", "EWVkyX9tlGFag9uqkMuW7JWiz9UGRfWnHtPQd3EL7cbfopJTKt15xEZc5ul0VkPyycMx3JGgDLT988tQNp1LwkBS0LuZpmSyWcqQpdsYU6W05OcfITrHHoqVLpIxeRWWOcYkcKYcHKdfI7uo0DtAEtrV5Z16Zn8BDf2Qfbxpog7ptRdJWk3tVZqPveYTYYSXzDQdRyb6j2kN9FPXN00wl12vqX9JewEDk7ZXiNCGxffKqhc4ytjsUHUa0TI944p");
-    
-    this.httpClient.get('http://192.168.0.39:8088/virement/ListVirementNonTraites',{headers:headers})
+    let service : Service    
+    service.getVirement()
     .subscribe(
       (data:any[]) =>
       { 
@@ -85,16 +87,11 @@ export class ListvireComponent implements OnInit {
     var headers = new HttpHeaders();
 
   
-    headers = headers.append("token", "EWVkyX9tlGFag9uqkMuW7JWiz9UGRfWnHtPQd3EL7cbfopJTKt15xEZc5ul0VkPyycMx3JGgDLT988tQNp1LwkBS0LuZpmSyWcqQpdsYU6W05OcfITrHHoqVLpIxeRWWOcYkcKYcHKdfI7uo0DtAEtrV5Z16Zn8BDf2Qfbxpog7ptRdJWk3tVZqPveYTYYSXzDQdRyb6j2kN9FPXN00wl12vqX9JewEDk7ZXiNCGxffKqhc4ytjsUHUa0TI944p");
-    var body = 
-    {
-      'code' : "String",
-      'statut' : "String"
-    };
 
-    body.code = codeVire;
-    body.statut = status;
-    this.httpClient.post('http://192.168.0.39:8088/virement/validRejetVir',body,{headers:headers})
+
+
+    let service:Service 
+    service.valider(codeVire,status)
     .subscribe(
     data =>
     {

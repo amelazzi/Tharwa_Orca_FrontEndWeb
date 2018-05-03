@@ -26,6 +26,11 @@ export class HomeBanquierComponent implements OnInit {
     var appCompo=new AppComponent(this.httpClient, this.router);
     this.userId = localStorage.getItem('mail');
     localStorage.setItem('selectedItem','1');
+
+
+    localStorage.setItem('blur','false');
+
+
     //si on est dans un etat ou le user a entré un bon code on vérifie l'access_token qu'on a
     if(localStorage.getItem('blur') === "false")
     {
@@ -51,7 +56,7 @@ export class HomeBanquierComponent implements OnInit {
     var headers = new HttpHeaders();
     headers = headers.append("token", localStorage.getItem('token_access'));
     
-    this.httpClient.get('http://192.168.0.164:8080/accounts/compteNonValide',{headers:headers})
+    this.httpClient.get('http://192.168.101.1:8080/accounts/compteNonValide',{headers:headers})
     
     .subscribe(
       (data:any[]) =>
@@ -61,7 +66,6 @@ export class HomeBanquierComponent implements OnInit {
         var i = 0 ; 
         while (i < this.comptes.length) 
         {
-          
           this.comptes[i]["TypeCompte"] = typecompte[ this.comptes[i]["TypeCompte"] ];
           i=i+1;
         }

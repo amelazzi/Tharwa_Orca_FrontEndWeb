@@ -19,8 +19,6 @@ export class Service{
         headers = headers.append("Authorization","Basic Y2xpZW50d2ViOm9yY2FAMjAxOA==");
         
     
-        
-    
         var  body = "grant_type=password&username="+userMail+"&password="+code+"";
         
     
