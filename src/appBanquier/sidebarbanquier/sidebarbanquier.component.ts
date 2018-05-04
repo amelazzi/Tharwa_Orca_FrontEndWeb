@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent} from '../../app/app.component';
+import { AppBanquierComponent} from '../../appBanquier/appBanquier.component';
 
 import { LogComponent} from '../../log/log.component';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  selector: 'app-sidebarbanquier',
+  templateUrl: './sidebarbanquier.component.html',
+  styleUrls: ['./sidebarbanquier.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarbanquierComponent implements OnInit {
 
   constructor() { }
   static displaySide  : string;
   selectedItem : number = 1;
 
-  ngOnInit() 
+  ngOnInit()
   {
     localStorage.setItem('blurGest','false');
   }
@@ -29,7 +29,6 @@ export class SidebarComponent implements OnInit {
   {
     return localStorage.getItem('displaySidebar');
   }
-
 
 
   getBlurState()

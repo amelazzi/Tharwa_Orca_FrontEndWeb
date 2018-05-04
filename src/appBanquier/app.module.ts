@@ -8,24 +8,24 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { ChartistModule } from 'ng-chartist';
 import { ListordreComponent } from './listordre/listordre.component';
-import { ProfilBanquierComponent } from './profil/profil.component';
 import { ListvireComponent } from './listvire/listvire.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeBanquierComponent} from './homeBanquier/homeBanquier.component';
-import { FormsModule,ReactiveFormsModule  } from '@angular/forms'; 
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { SidebarbanquierComponent } from './sidebarbanquier/sidebarbanquier.component'; 
+import { NavbarbanquierComponent } from './navbarbanquier/navbarbanquier.component';
+import { ProfileBanquierComponent } from './profilebanquier/profilebanquier.component';
 
 
 
 @NgModule({
   declarations: [
   AppBanquierComponent,
-  ProfilBanquierComponent,
   ListvireComponent,
-  NavBarComponent,
-  SidebarComponent,
   HomeBanquierComponent,
-  ListordreComponent
+  ListordreComponent,
+  NavbarbanquierComponent,
+  SidebarbanquierComponent,
+  ProfileBanquierComponent
 ],
   imports: [
     ChartistModule,

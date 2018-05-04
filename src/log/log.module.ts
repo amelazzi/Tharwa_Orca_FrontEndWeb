@@ -14,8 +14,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ChartistModule } from 'ng-chartist';
 
 import { AppModule } from '../app/app.module';
-import { HomeComponent } from '../app/home/home.component'
-import { SidebarComponent } from '../app/sidebar/sidebar.component'
+import { HomeComponent } from '../app/home/home.component';
+import { SidebarComponent } from '../app/sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
 import { AppBanquierModule } from '../appBanquier/app.module';
 

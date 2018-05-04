@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('blurGest','true');
         if ( response["type"] === 0)
         {
-          
           this.router.navigateByUrl('/gestionnaire');
         }
         else if (response["type"] === 1)

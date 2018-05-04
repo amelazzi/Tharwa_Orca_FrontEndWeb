@@ -1,0 +1,68 @@
+.sidebar p,i
+{
+    color: white;
+}
+.sidebar
+{
+    position: fixed;
+    z-index: 25;
+    overflow-y: scroll;
+}
+
+.logoTharwa
+{ 
+    width: 30px;
+    border-radius: 50%;
+}
+@media (min-width:1081px) {
+    /* For PC: */
+    .sidebar
+    {
+        display: table;
+        width: 24%;
+        font-size: 16px;
+    }
+
+    .sidebar i 
+    {
+        margin-right: 5%;
+        font-size: 24px;
+    }
+
+
+ 
+}
+
+@media (max-width:1080px) {
+    /* For tablets: */
+    .sidebar
+    {
+        display: none;
+        top: 13.5mm;
+        width: 40%;
+        font-size: 15px;
+    }
+
+    .sidebar i 
+    {
+        margin-right: 5%;
+        font-size: 24px;
+    }
+   
+}
+
+
+@media (max-width:762px) {
+    /* For mobile phones: */
+    .sidebar 
+    {
+        display: none;
+        top: 10mm;
+        font-size: 12px;
+        width: 40%;
+    }
+    .sidebar i 
+    {
+        margin-right: 5%;
+    }
+}

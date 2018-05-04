@@ -16,10 +16,6 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <ul class="nav nav-tabs">
-                    <li class="nav-items" [ngClass] = "{'activTab':selectedTab===1}" 
-                    (click)="selectedTab=1">
-                        <a class="link header" data-toggle="tab" href="#justif">Justificatif</a>
-                    </li>
                     <li class="nav-items" [ngClass] = "{'activTab':selectedTab===2}" 
                     (click)="selectedTab=2"> 
                         <a class="link header" data-toggle="tab" href="#virement">Infos Virement</a>
@@ -27,10 +23,8 @@
                 </ul>
                 <div class="modal-body">
                     <div class="tab-content">
-                        <div class="tab-pane container active" id="justif">
-                            <img [src]="Virement['Justificatif']">
-                        </div>
                         <div class="tab-pane container" id="virement">
+                            <img [src]="Virement['Justificatif']">
 
                             <div class="form-group label-floating">
                                     <label class="control-label">Code du Virement</label>
@@ -116,7 +110,7 @@
         </div>
     </div>
 
-
+ 
 <!--Table des virements non traitement -->
     <div class="container-cards">
             <div class="content">
@@ -129,8 +123,8 @@
                                     <br>
                                     <table class="table">
                                         <thead class="table-header">
-                                            <li>Code</li>
-                                            <li>Date de virement</li>
+                                        
+                                            <li>Date</li>
                                             <li>Montant</li>
                                             <li>Motif</li>
                                             <li>Emetteur</li>
@@ -139,7 +133,7 @@
                                                 
                                         <tbody id="tbody">
                                             <tr *ngFor="let virement of virements">
-                                                <td>{{virement.Code}}</td>
+                                                
                                                 <td>{{virement.Date}}</td>
                                                 <td>{{virement.Montant}}</td>
                                                 <td>{{virement.Motif}}</td>
@@ -153,6 +147,52 @@
                                                     </i>
                                                 </td>
                                             </tr>
+
+
+                                            <tr>
+                                                <td>201802041053</td>
+                                                <td>1 120 000.00</td>
+                                                <td>Envoie d'agent pour financer une campagne</td>
+                                                <td>Ikhadallem Lotfi</td>
+                                                <td>Ait ali yahia dahbia</td>
+                                                <td>
+                                                    <i class="material-icons" data-toggle="modal" 
+                                                    data-target="#info"
+                                                    (click)="getVirementInfo(virement.Code)">
+                                                        visibility
+                                                    </i>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>201802041053</td>
+                                                <td>1 120 000.00</td>
+                                                <td>Envoie d'agent pour financer une campagne</td>
+                                                <td>Ikhadallem Lotfi</td>
+                                                <td>Ait ali yahia dahbia</td>
+                                                <td>
+                                                    <i class="material-icons" data-toggle="modal" 
+                                                    data-target="#info"
+                                                    (click)="getVirementInfo(virement.Code)">
+                                                        visibility
+                                                    </i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>201802041053</td>
+                                                <td>1 120 000.00</td>
+                                                <td>Envoiuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu</td>
+                                                <td>Ikhadallem Lotfi</td>
+                                                <td>Ait ali yahia dahbia</td>
+                                                <td>
+                                                    <i class="material-icons" data-toggle="modal" 
+                                                    data-target="#info"
+                                                    (click)="getVirementInfo(virement.Code)">
+                                                        visibility
+                                                    </i>
+                                                </td>
+                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

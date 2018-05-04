@@ -1,23 +1,17 @@
-.content
+#tbody td 
 {
-    margin-left: 20%;
+    text-align: left;
+    font-weight: bolder;
 }
-
-.card-content
-{
-    overflow-y: scroll;
-    height: 476px;
-}
-
 
 .table-header
 {
-    background-color: rgb(24, 184, 64);  
+    background-color: rgb(207, 61, 16);
+
     border-style: none;
     position: absolute;
-    width: 98%;
-    top: -3%;
-    left: 1%;
+    top: -20px;
+    left: 10px;
     color: white;
     border-radius: 3px;
     box-shadow: 0 2px 8px rgb(120,120,120);
@@ -25,197 +19,410 @@
     flex-direction: row;
 }
 
-.table-header li
+
+.table-header li 
 {
-    font-style: bold;
-    font-size: 20px;
-    padding-top: 20px;
-    padding-bottom: 30px;
-    border-style: none;
-    text-decoration: none;
-    list-style: none;
-    width:250px;
-}
-
-
-
-.table-header li:nth-child(1)
-{
-    width: 100px;
-    margin-left: 1%;
-}
-
-
-.table-header li:nth-child(2)
-{
-    margin-left: 12%;
-}
-
-.table-header li:nth-child(3)
-{
-    margin-left: 1%;
+    font-weight: bolder;
 }
 
 
 
 
+@media (min-width:1081px)
+{
+    .content
+    {
+        margin-left: 25%;
+        width: 73%;
+    }
 
-.table-header li:nth-child(4)
-{
-    margin-left: -6%;
-}
-.table-header li:nth-child(5)
-{
-    margin-left: 0%;
-}
-.table-header li:nth-child(6)
-{
-    margin-left: 0%;
-}
+    .card
+    {
+        top: 8mm;
+    }
 
-#tbody td 
-{
-    width: 18%;
-}
+    .card-content
+    {
+        height:476px;
+        overflow-y: scroll;
+    }
 
-#tbody td:nth-child(1)
-{
-    word-break: break-all;
-}
+    .table-header
+    {
+        width: 98%;
+     }
 
-#tbody td:nth-child(2)
-{
-    width: 22%;
-}
-
-#tbody td:nth-child(3)
-{
-    
-    width: 12%;
-}
-
-#tbody td:nth-child(4)
-{
-    word-break: break-all;
-    width: 20%;
-}
-
-#tbody td:nth-child(5)
-{
-    width: 15%;
-}
-
-#tbody td:nth-child(6)
-{
-    margin-left: 5%;
-}
-
-#tbody td:last-child i
-{
-    cursor: pointer;
-}
-
-.Motif
-{
-    font-size: 24px;
-}
- 
-///////////////
-.nav-header
-{
-    color:black;
-}
-.nav-items
-{
-    text-align: center;
-    color: black;
-    width: 50%;
-}
-.nav-tabs
-{
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    width: 100%;
-}
+    .table-header li
+    {
+        font-size: 20px;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        border-style: none;
+        text-decoration: none;
+        list-style: none;
+    }
 
 
-.link {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: black;
-  }
-  
-  .link:hover, .link:focus {
-    text-decoration: none;
-    color: red;
-  }
-  
-  .link.disabled {
-    color: #6c757d;
-  }
-  
-  .nav-tabs .link {
-    border: 1px solid transparent;
-  }
-  
-  .nav-tabs .link.disabled {
-    color: #6c757d;
-    background-color: transparent;
-    border-color: transparent;
-  }
-  
-  .nav-tabs .link.active,
-  .nav-tabs .nav-item.show .link {
-    color:red;
-  }
 
-.link:visited
-{
-    color: black;
+    .table-header li:nth-child(1)
+    {
+        width: 15%;
+        margin-left: 1%;
+    }
+
+
+    .table-header li:nth-child(2)
+    {
+        width: 16%;
+    }
+
+
+    .table-header li:nth-child(3)
+    {
+        width: 21%;
+    }
+
+    .table-header li:nth-child(4)
+    {
+        width: 21%;
+    }
+
+
+    #tbody td:nth-child(1)
+    {
+        width: 15%;
+        
+        margin-left: -1%;        
+    }
+
+
+    #tbody td:nth-child(2)
+    {
+        width: 16%;
+    }
+
+    #tbody td:nth-child(3)
+    {
+        width:22%;
+        word-break: break-all;
+    }
+
+    #tbody td:nth-child(4)
+    {
+        width:22%;
+    }
+
+    #tbody td:nth-child(5)
+    {
+       width: 22%;
+    }
+    #tbody td:nth-child(6)
+    {
+       
+       width: 5%;
+    }
+
 }
 
 
-
-.activTab
+@media (max-width:1080px)
 {
-    background-color: rgba(250, 206, 206,0.2);
-    border-bottom-color: red;
-    border-bottom-style: solid;
-    border-top-style: none;
-    border-left-style: none;
-    border-right-style: none;
-    color: red;
+    .content
+    {
+        margin-left: 2%;
+        width: 96%;
+    }
+
+    .card
+    {
+        top: 8mm;
+    }
+
+    .card-content
+    {
+        height:476px;
+        overflow-y: scroll;
+    }
+
+    .table-header
+    {
+        width: 98%;
+    }
+
+    .table-header li
+    {
+        font-size: 20px;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        border-style: none;
+        text-decoration: none;
+        list-style: none;
+    }
+
+    .table-header li:nth-child(1)
+    {
+        width: 15%;
+        margin-left: 1%;
+    }
+
+
+    .table-header li:nth-child(2)
+    {
+        width: 16%;
+    }
+
+
+    .table-header li:nth-child(3)
+    {
+        width: 21%;
+    }
+
+    .table-header li:nth-child(4)
+    {
+        width: 21%;
+    }
+
+
+    #tbody td:nth-child(1)
+    {
+        width: 15%;
+        
+        margin-left: -1%;        
+    }
+
+
+    #tbody td:nth-child(2)
+    {
+        width: 16%;
+    }
+
+    #tbody td:nth-child(3)
+    {
+        word-break: break-all;
+        width:22%;
+    }
+
+    #tbody td:nth-child(4)
+    {
+        width:22%;
+    }
+
+    #tbody td:nth-child(5)
+    {
+       width: 22%;
+    }
+    #tbody td:nth-child(6)
+    {
+       
+       width: 5%;
+    }
+
+}
+
+
+@media (max-width:915px)
+{
+    .content
+    {
+        margin-left: 2%;
+        width: 96%;
+    }
+
+
+    .card
+    {
+        top: 8mm;
+    }
+
+
+    .card-content
+    {
+        height:476px;
+        overflow-y: scroll;
+    }
+
+
+    .table-header
+    {
+        width: 98%;
+    }
+
+
+    .table-header li
+    {
+        font-size: 16px;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        border-style: none;
+        text-decoration: none;
+        list-style: none;
+    }
+
+    .table-header li:nth-child(1)
+    {
+        width: 17%;
+        margin-left: 1%;
+    }
+
+
+    .table-header li:nth-child(2)
+    {
+        width: 16%;
+    }
+
+
+    .table-header li:nth-child(3)
+    {
+        width: 20%;
+    }
+
+    .table-header li:nth-child(4)
+    {
+        width: 20%;
+    }
+
+
+    #tbody td:nth-child(1)
+    {
+        width: 15%;
+        
+        margin-left: -1%;        
+    }
+
+
+    #tbody td:nth-child(2)
+    {
+        width: 16%;
+    }
+
+    #tbody td:nth-child(3)
+    {
+        word-break: break-all;
+        width:22%;
+    }
+
+    #tbody td:nth-child(4)
+    {
+        width:22%;
+    }
+
+    #tbody td:nth-child(5)
+    {
+       width: 22%;
+    }
+    #tbody td:nth-child(6)
+    {
+       width: 5%;
+    }
+
 }
 
 
 
-
-
-.header
+@media (max-width:762px)
 {
-    width: 100%;
-    border-style: none;    
-}
+    body 
+    {
+        overflow-x: scroll
+    }
 
-.header:hover
-{
-    border-style: none;
-}
-
-
-.modal-content
-{
-    width: 125%;
-}
+    .content
+    {
+        margin-left: 2%;
+        width: 190mm;
+    }
 
 
-#bloquer
-{
-    margin-left: 5%;
-}
+    .card
+    {
+        top: -1mm;
+        overflow-y: visible;
+    }
 
 
-#valider
-{
-    margin-left: 55%;
+    .card-content
+    {
+        width: 195mm;
+        height:476px;
+        overflow-y: scroll;
+    }
+
+
+    .table-header
+    {
+        width: 175mm;
+    }
+
+
+    .table-header li
+    {
+        font-size: 16px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-style: none;
+        text-decoration: none;
+        list-style: none;
+    }
+
+
+
+    .table-header li:nth-child(1)
+    {
+        width: 20%;
+    }
+
+
+    .table-header li:nth-child(2)
+    {
+        width: 18%;
+    }
+
+
+    .table-header li:nth-child(3)
+    {
+        width: 24%;
+    }
+    .table-header li:nth-child(4)
+    {
+        width: 19%;
+    }
+
+
+    #tbody td 
+    {
+        font-size: 13px;
+    }
+
+    #tbody td:nth-child(1)
+    {
+        width: 15%;  
+    }
+
+
+    #tbody td:nth-child(2)
+    {
+        width: 14%;
+    }
+
+
+    #tbody td:nth-child(3)
+    {
+        width:20%;
+        word-break: break-all;
+    }
+
+
+    #tbody td:nth-child(4)
+    {
+        width:15%;
+    }
+
+    #tbody td:nth-child(5)
+    {
+       width: 13%;
+    }
+    #tbody td:nth-child(6)
+    {
+       width: 5%;
+    }
 }

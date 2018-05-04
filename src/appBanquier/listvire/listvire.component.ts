@@ -15,6 +15,7 @@ export class ListvireComponent implements OnInit {
   virements : any[];
   ngOnInit() {
     this.getVirement();
+    localStorage.setItem('selectedItem','3');
     localStorage.setItem('blur','false');
   }
 
@@ -40,7 +41,7 @@ export class ListvireComponent implements OnInit {
   {
     var headers = new  HttpHeaders();
 
-    let service : Service    
+    let service = new Service(this.httpClient)    
     service.getVirement()
     .subscribe(
       (data:any[]) =>
@@ -86,18 +87,14 @@ export class ListvireComponent implements OnInit {
     console.log(codeVire,status);
     var headers = new HttpHeaders();
 
-  
-
-
-
     let service:Service 
     service.valider(codeVire,status)
     .subscribe(
-    data =>
-    {
+      data =>
+      {
         alert("Virement validé avec succès");
         this.getVirement();
-    }
+      }
     ,err => 
     {
       switch (err['status'])

@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 
 import {AppBanquierModule} from '../appBanquier/app.module';
 import {AppBanquierComponent} from '../appBanquier/appBanquier.component';
-import { ProfilBanquierComponent } from '../appBanquier/profil/profil.component';
+import { ProfileBanquierComponent } from '../appBanquier/profilebanquier/profilebanquier.component';
 import {HomeBanquierComponent} from '../appBanquier/homeBanquier/homeBanquier.component'
 import { ListvireComponent } from '../appBanquier/listvire/listvire.component';
 import { ListordreComponent } from '../appBanquier/listordre/listordre.component';
@@ -107,7 +107,7 @@ const routes: Routes = [
       },
       {
         path :'profil',
-        component : ProfilBanquierComponent,
+        component : ProfileBanquierComponent,
         outlet:'popup',
       },
       {

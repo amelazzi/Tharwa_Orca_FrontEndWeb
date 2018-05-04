@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
+    
+</head>
+<body [ngClass] = "{'body':getBlurState()===true}">
+    <div class="sidebar" data-color="red" bg-color="black" [ngStyle] ="{'display': getDisplay()}"> 
+            
+        <div class="logo sidbarText">
+            <a href="" class="simple-text">
+                <img src="../../assets/img/TharwaLogo.png" class="logoTharwa">
+                <i >Banquier</i>
+            </a>
+        </div>
+
+        <div class="sidebar-wrapper">
+            <ul class="nav flex-column sideItem">
+                <li [ngClass] = "{'active': getSelectedItem() ===1}" >
+                    <a [routerLink]="[{ outlets: { popup: ['client'] } }]">
+                        <i class="material-icons">dashboard</i>
+                        <p >Comptes</p>
+                    </a>
+                </li>
+                <li [ngClass] = "{'active':getSelectedItem()===2}" >
+                    <a [routerLink]="[{ outlets: { popup: ['profil'] } }]">
+                        <i class="material-icons">person</i>
+                        <p >Profile</p>
+                    </a>
+                </li>
+                <li [ngClass] = "{'active':getSelectedItem()===3}">
+                    <a [routerLink]="[{ outlets: { popup: ['listvire'] } }]">
+                        <i class="material-icons">content_paste</i>
+                        <p >Virements</p>
+                    </a>
+                </li>
+                <li [ngClass] = "{'active':getSelectedItem()===4}">
+                    <a [routerLink]="[{ outlets: { popup: ['listordre'] } } ]">
+                        <i class="material-icons">people</i>
+                        <p >Ordres de virements</p>
+                    </a>
+                </li>
+                <li [ngClass] = "{'active':getSelectedItem()===5}" >
+                        <a [routerLink]="[{ outlets: { popup: ['client'] } } ]">
+                            <i class="material-icons">lock</i>
+                            <p >Bloquer/Débloquer</p>
+                        </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
+  
