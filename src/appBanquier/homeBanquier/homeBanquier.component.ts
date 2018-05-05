@@ -48,7 +48,8 @@ export class HomeBanquierComponent implements OnInit {
     }
   }
 
-
+  successGet : boolean;
+  textFailed:String = "";
   comptes : any[];
   // récupère la liste des comptes avec etat = 0 ( en attente de validation)
   getCompte()
@@ -60,7 +61,8 @@ export class HomeBanquierComponent implements OnInit {
     
     .subscribe(
       (data:any[]) =>
-      { 
+      {
+        this.successGet = true;
         var typecompte = ["Courant", "Epargne","Devise Euro", "Devise Dollar"];
         this.comptes = data["Comptes"];
         var i = 0 ; 
@@ -71,16 +73,17 @@ export class HomeBanquierComponent implements OnInit {
         }
       }, err =>
       {
+        this.successGet = false;
         switch (err['status'])
         {
           case 401 :
-            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            this.textFailed ="cette session a expiré vous allez être redirigé vers la page de connexion";
           break;
           case 500 :
-            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+            this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
           break;
           case 0 :
-            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+            this.textFailed="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";
           break;
           
         }
@@ -117,8 +120,6 @@ export class HomeBanquierComponent implements OnInit {
     this.adresseClient = this.client["Adresse"];
     this.numTel = "0549018080"; // en attendant d'avoir un num tel à partir du service back
     this.numCompte = this.comptes[i]["Num"];
-    this.photo = "../assets/img/" +this.client["Photo"];
-
    
     this.fonction = this.client["Fonction"];
     
@@ -126,6 +127,9 @@ export class HomeBanquierComponent implements OnInit {
     this.typeCompte = this.comptes[i]["TypeCompte"];
   } 
 
+
+  textSuccess : String = "";
+  success : boolean;
   //fonction pour valider un compte nouvellement créé
   valider()
   {
@@ -139,24 +143,26 @@ export class HomeBanquierComponent implements OnInit {
     .subscribe(
       data =>
       {
-        alert("Compte validé avec succès");
+        this.textSuccess="Compte validé avec succès";
+        this.success = true;
         this.getCompte();
       }
       ,err => 
       {
+        this.success = false;
         switch (err['status'])
         {
           case 401 :
-            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            this.textSuccess="Cette session a expiré vous allez être redirigé vers la page de connexion";
           break;
           case 404 :
-            alert("Compte introuvable vérifiez qu'il n'a pas déjà été traité"); 
+            this.textSuccess="Compte introuvable vérifiez qu'il n'a pas déjà été traité"; 
           break;
           case 500 :
-            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+            this.textSuccess="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
           break;
           case 0 :
-            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+            this.textSuccess="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";
           break; 
         }
       }
@@ -176,24 +182,26 @@ export class HomeBanquierComponent implements OnInit {
     .subscribe(
       data =>
       {
-        alert("Compte rejeté avec succès");
+        this.success = true;
+        this.textSuccess="Compte rejeté avec succès";
         this.getCompte();
       }
       ,err => 
       {
+        this.success = false;
         switch (err['status'])
         {
           case 401 :
-            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            this.textSuccess="cette session a expiré vous allez être redirigé vers la page de connexion";
           break;
           case 404 :
-            alert("Compte introuvable vérifiez qu'il n'a pas déjà été traité"); 
+            this.textSuccess="Compte introuvable vérifiez qu'il n'a pas déjà été traité"; 
           break;
           case 500 :
-            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+            this.textSuccess="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
           break;
           case 0 :
-            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+            this.textSuccess="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";
           break; 
         }
       }

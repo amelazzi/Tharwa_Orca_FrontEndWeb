@@ -50,7 +50,6 @@ export class ListvireComponent implements OnInit {
   //fonction qui récupère la liste des virement non-traites
   getVirement()
   {
-    var headers = new  HttpHeaders();
     let service = new Service(this.httpClient)    
     service.getVirement()
     .subscribe(
@@ -98,21 +97,13 @@ export class ListvireComponent implements OnInit {
   //fonction qui valide ou rejette un virement
   valider(codeVire:string,status : string)
   {
-
-    if(status === '0'){
-      
-      this.success = true;
-      this.textSuccess = "Virement validé avec succès";
-    }else {
-      this.textSuccess = "Virement rejeté avec succès";
-    }
     let service=new Service(this.httpClient); 
     service.valider(codeVire,status)
     .subscribe(
       data =>
       {
+        this.success = true;
         if(status === '0'){
-          this.success = true;
           this.textSuccess = "Virement validé avec succès";
         }else {
           this.textSuccess = "Virement rejeté avec succès";
