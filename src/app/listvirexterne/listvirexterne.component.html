@@ -21,8 +21,13 @@
                 <li>Statut</li>
             </thead>
             <div class="card-content">
+                    <div class="alert" 
+                    [ngClass]="{'alert-danger':successGet===false}">
+                        {{textFailed}}
+                    </div>
                 <br>
                 <br>
+                
                 <table class="table"> 
                     <tbody id="tbody">
                         <tr *ngFor="let virement of virements" class="ligne">

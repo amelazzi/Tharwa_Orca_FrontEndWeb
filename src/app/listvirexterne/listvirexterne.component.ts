@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
-
+import { Service } from './listvireexterne.service';
 
 @Component({
   selector: 'app-listvirexterne',
@@ -23,17 +23,16 @@ export class ListvirexterneComponent implements OnInit {
   }
 
   virements :any[];
+  textFailed : String = "";
+  successGet : boolean;
   getVireExterne()
   {
-    var headers = new HttpHeaders();
-    headers = headers.append("token",localStorage.getItem('token_access'));
-
-    
-    this.httpClient.get('http://192.168.0.164:8080/gestionnaire/listVirementEx',{headers:headers})
+    var service = new Service(this.httpClient);
+    service.getVirementEx()
     .subscribe(
       (data:any[]) =>
       { 
-       
+        this.successGet = true;
         this.virements = data["Virements"];
         var i = 0 ;
         while (this.virements[i] != null)
@@ -56,21 +55,21 @@ export class ListvirexterneComponent implements OnInit {
 
       }, err =>
       {
+        this.successGet = false;
         switch (err['status'])
         {
           case 401 :
-            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
             this.router.navigateByUrl('/');
           break;
           case 500 :
-            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+            this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
           break;
           case 0 :
-           // alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
-          break; 
+            this.textFailed="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";
+          break;
         }
       }
-      
     );
   }
 }

@@ -59,10 +59,16 @@
         display: none;
         top: 10mm;
         font-size: 12px;
-        width: 40%;
+        width: 5mm;
     }
-    .sidebar i 
+
+    .sidebar li 
     {
-        margin-right: 5%;
+        margin-bottom: 2%;
+    }
+
+    .sidebar li i 
+    {
+        display: none;
     }
 }

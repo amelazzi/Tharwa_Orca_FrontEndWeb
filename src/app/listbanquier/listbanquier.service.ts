@@ -8,18 +8,14 @@ export class Service{
 
     constructor(private httpClient : HttpClient){}
 
-    tryDeleteBlur( )
+    getBanquier( )
     {
-        var userMail : String;
-        var code :number;
+        var headers = new HttpHeaders();
+        headers = headers.append("token",localStorage.getItem('token_access'));
+
+        //this.httpClient.get('http://api-tharwaa.cleverapps.io/gestionnaire/listBanquiers',{headers:headers})
+        return this.httpClient.get('http://192.168.0.164:8080/gestionnaire/listBanquiers',{headers:headers})
         
-        
-        let headers = new HttpHeaders();
-        
-        
-    
-        
-        return this.httpClient.get('http://api-tharwaa.cleverapps.io/gestionnaire/listBanquiers',{headers:headers})
     }
 
 

@@ -8,18 +8,12 @@ export class Service{
 
     constructor(private httpClient : HttpClient){}
 
-    tryDeleteBlur( )
+    getVirementEx( )
     {
-        var userMail : String;
-        var code :number;
-        
-        
-        let headers = new HttpHeaders();
-        
-        
+        var headers = new HttpHeaders();
+        headers = headers.append("token",localStorage.getItem('token_access'));
     
-        
-        return this.httpClient.get('http://api-tharwaa.cleverapps.io/gestionnaire/listVirementEx',{headers:headers})
+        return this.httpClient.get('http://192.168.0.164:8080/gestionnaire/listVirementEx',{headers:headers})
     }
 
 }

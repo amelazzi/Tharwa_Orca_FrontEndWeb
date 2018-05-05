@@ -15,8 +15,12 @@
                     <div class="card">
 
                         <div class="card-content ">
+                            <br> 
                             <br>
-                            <br>
+                            <div class="alert" 
+                            [ngClass]="{'alert-danger':successGet===false}">
+                                {{textFailed}}
+                            </div>
                             <table class="table">
                                 <thead class="table-header">
                                     <li>Mail</li>
