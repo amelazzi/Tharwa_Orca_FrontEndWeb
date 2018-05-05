@@ -4,9 +4,12 @@
     font-weight: bolder;
 }
 
+
+
+
 .table-header
 {
-    background-color: rgb(207, 61, 16);
+    background-color: rgb(18, 22, 247);
 
     border-style: none;
     position: absolute;
@@ -25,11 +28,28 @@
     font-weight: bolder;
 }
 
+#tbody td:nth-child(6)
+{
+    cursor: pointer;
+}
+
 
 
 
 @media (min-width:1081px)
 {
+    #info
+    {
+        margin-top: -80px;
+        margin-left: -20%;
+    }
+    
+    .modal-virement
+    {
+        width: 160%;
+    }
+
+
     .content
     {
         margin-left: 25%;
@@ -127,6 +147,17 @@
 
 @media (max-width:1080px)
 {
+
+    #info
+    {
+        margin-top: -80px;
+    }
+    
+    .modal-virement
+    {
+        width: 100%;
+    }
+
     .content
     {
         margin-left: 2%;
@@ -222,6 +253,17 @@
 
 @media (max-width:915px)
 {
+
+    #info
+    {
+        margin-top: -80px;
+    }
+    
+    .modal-virement
+    {
+        width: 100%;
+    }
+
     .content
     {
         margin-left: 2%;
@@ -321,6 +363,15 @@
 
 @media (max-width:762px)
 {
+    #info
+    {
+        margin-top: -80px;
+    }
+    
+    .modal-virement
+    {
+        width: 100%;
+    }
     body 
     {
         overflow-x: scroll
@@ -342,6 +393,7 @@
 
     .card-content
     {
+        margin-top: -40px;
         width: 195mm;
         height:476px;
         overflow-y: scroll;

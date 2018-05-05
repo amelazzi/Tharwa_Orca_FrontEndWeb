@@ -13,6 +13,17 @@ export class ListvireComponent implements OnInit {
 
   constructor(private httpClient:HttpClient, private router:Router) { }
   virements : any[];
+  successGet : boolean; 
+  // boolean pour savoir si la requete qui récupère la liste des virement c'est bien passé
+  
+  success : boolean;
+  // boolean pour savoir si la requete qui traite un virement c'est bien passé
+
+  textFailed :String =""
+  //txte qui affiche si un problème est survenu lors de la requête de récupèration des virements
+
+  textSuccess : String="";
+  //texte qui affiche le résultat de la requete qui traite un virement
   ngOnInit() {
     this.getVirement();
     localStorage.setItem('selectedItem','3');
@@ -40,7 +51,6 @@ export class ListvireComponent implements OnInit {
   getVirement()
   {
     var headers = new  HttpHeaders();
-
     let service = new Service(this.httpClient)    
     service.getVirement()
     .subscribe(
@@ -51,17 +61,21 @@ export class ListvireComponent implements OnInit {
       }
       ,err =>
       {
+        this.successGet = false;
         console.log(err);
         switch (err['status'])
         {
           case 401 :
-            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            this.textFailed ="cette session a expiré vous allez être redirigé vers la page de connexion";
+          break;
+          case 404 :
+            this.textFailed ="Impossible de trouver la ressource demandé";
           break;
           case 500 :
-            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+            this.textFailed ="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
           break;
           case 0 :
-            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+            this.textFailed ="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";
           break; 
         }   
       }
@@ -84,34 +98,47 @@ export class ListvireComponent implements OnInit {
   //fonction qui valide ou rejette un virement
   valider(codeVire:string,status : string)
   {
-    console.log(codeVire,status);
-    var headers = new HttpHeaders();
 
-    let service:Service 
+    if(status === '0'){
+      
+      this.success = true;
+      this.textSuccess = "Virement validé avec succès";
+    }else {
+      this.textSuccess = "Virement rejeté avec succès";
+    }
+    let service=new Service(this.httpClient); 
     service.valider(codeVire,status)
     .subscribe(
       data =>
       {
-        alert("Virement validé avec succès");
+        if(status === '0'){
+          this.success = true;
+          this.textSuccess = "Virement validé avec succès";
+        }else {
+          this.textSuccess = "Virement rejeté avec succès";
+        }
         this.getVirement();
       }
     ,err => 
     {
+      this.success = false;
       switch (err['status'])
         {
+          
           case 401 :
-            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            this.textSuccess = "cette session a expiré vous allez être redirigé vers la page de connexion";
             this.router.navigateByUrl('/');
           break;
           case 404 :
-            alert("virement introuvable vérifiez qu'il n'a pas déjà été traité"); 
+            this.textSuccess = "Virement introuvable vérifiez qu'il n'a pas déjà été traité"; 
           break;
           case 500 :
-            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+            this.textSuccess ="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
           break;
           case 0 :
-            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
-          break; 
+            this.textSuccess ="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";
+          break;
+          
         }
     }
     );

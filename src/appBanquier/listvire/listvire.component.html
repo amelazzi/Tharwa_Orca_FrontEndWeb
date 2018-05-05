@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,104 +13,101 @@
 <!--modal contenant des infos sur le compte et le client choisit-->
 <div id="info" class="modal fade info2" role="dialog">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <ul class="nav nav-tabs">
-                    <li class="nav-items" [ngClass] = "{'activTab':selectedTab===2}" 
-                    (click)="selectedTab=2"> 
-                        <a class="link header" data-toggle="tab" href="#virement">Infos Virement</a>
-                    </li>
-                </ul>
+            <div class="modal-content modal-virement">
+                <div class="modal-header">
+                    <p>Infomations sur le virement</p>
+                </div>
                 <div class="modal-body">
-                    <div class="tab-content">
-                        <div class="tab-pane container" id="virement">
-                            <img [src]="Virement['Justificatif']">
+                    <img [src]="Virement['Justificatif']">
+                    <div class="row">
+                        <div class="form-group label-floating col-md-4">
+                                <label class="control-label">Code du Virement</label>
+                                <input type="text" class="form-control" [(ngModel)]="Virement['Code']" 
+                                readonly>
+                        </div>
 
-                            <div class="form-group label-floating">
-                                    <label class="control-label">Code du Virement</label>
-                                    <input type="text" class="form-control" [(ngModel)]="Virement['Code']" 
-                                    readonly>
-                            </div>
+                        <div class="form-group label-floating col-md-4">
+                                <label class="control-label">Date</label>
+                                <input type="text" class="form-control" [(ngModel)]="Virement['Date']" 
+                                readonly>
+                        </div>
 
-                            <div class="form-group label-floating">
-                                    <label class="control-label">Date</label>
-                                    <input type="text" class="form-control" [(ngModel)]="Virement['Date']" 
-                                    readonly>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="form-group label-floating col-md-6">
-                                    <label class="control-label">Emetteur</label>
-                                    <input type="text" class="form-control" [(ngModel)]="Virement['NomEmetteur']" 
-                                    readonly>
-                                </div>
-
-                                <div class="form-group label-floating col-md-6">
-                                        <label class="control-label">Destinataire</label>
-                                        <input type="text" class="form-control" [(ngModel)]="Virement['NomDestinataire']" 
-                                        readonly>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="form-group label-floating col-md-6">
-                                        <label class="control-label">Banque de l'emeteur</label>
-                                        <input type="text" class="form-control" [(ngModel)]="Virement['BanqueEmmeteur']" 
-                                        readonly>
-                                </div>
-                                
-                                <div class="form-group label-floating col-md-6">
-                                        <label class="control-label">Banque du destinataire</label>
-                                        <input type="text" class="form-control" [(ngModel)]="Virement['BanqueDestinataire']" 
-                                        readonly>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group label-floating col-md-6">
-                                        <label class="control-label">Compte emeteur</label>
-                                        <input type="text" class="form-control" [(ngModel)]="Virement['CompteEmmetteur']" 
-                                        readonly>
-                                </div>
-                                
-                                <div class="form-group label-floating col-md-6">
-                                        <label class="control-label">Compte destinataire</label>
-                                        <input type="text" class="form-control" [(ngModel)]="Virement['CompteDestinataire']" 
-                                        readonly>
-                                </div>
-                            </div>
-
-                            <div class="form-group label-floating col-md-6">
-                                    <label class="control-label">Montant du virement</label>
-                                    <input type="text" class="form-control" [(ngModel)]="Virement['Montant']" 
-                                    readonly>
-                            </div>
-
-                                <div class="row">    
-                                    <label class="control-label Motif">Motif</label>
-                                </div>    
-                                    <textarea rows="6" cols="50" 
-                                    [(ngModel)]="Virement['Motif']" readonly></textarea>
-
+                        <div class="form-group label-floating col-md-4">
+                                <label class="control-label">Montant du virement</label>
+                                <input type="text" class="form-control" [(ngModel)]="Virement['Montant']" 
+                                readonly>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group label-floating col-md-4">
+                            <label class="control-label">Emetteur</label>
+                            <input type="text" class="form-control" [(ngModel)]="Virement['NomEmetteur']" 
+                            readonly>
+                        </div>
+
+                        <div class="form-group label-floating col-md-4">
+                                <label class="control-label">Banque de l'emeteur</label>
+                                <input type="text" class="form-control" [(ngModel)]="Virement['BanqueEmmeteur']" 
+                                readonly>
+                        </div>
+
+                        <div class="form-group label-floating col-md-4">
+                                <label class="control-label">Compte emeteur</label>
+                                <input type="text" class="form-control" [(ngModel)]="Virement['CompteEmmetteur']" 
+                                readonly>
+                        </div>
+
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group label-floating col-md-4">
+                                <label class="control-label">Destinataire</label>
+                                <input type="text" class="form-control" [(ngModel)]="Virement['NomDestinataire']" 
+                                readonly>
+                        </div>
+                        
+                        <div class="form-group label-floating col-md-4">
+                                <label class="control-label">Banque du destinataire</label>
+                                <input type="text" class="form-control" [(ngModel)]="Virement['BanqueDestinataire']" 
+                                readonly>
+                        </div>
+
+                        <div class="form-group label-floating col-md-4">
+                                <label class="control-label">Compte destinataire</label>
+                                <input type="text" class="form-control" [(ngModel)]="Virement['CompteDestinataire']" 
+                                readonly>
+                        </div>
+                    </div>
+
+                        <div class="row">    
+                            <label class="control-label Motif">Motif</label>
+                        </div>    
+                            <textarea rows="6" cols="50" class="col-md-12"
+                            [(ngModel)]="Virement['Motif']" readonly></textarea>
                 </div>
                 <div class="form-footer">
-                    <button type="button" class="btn btn-danger" id="bloquer"
+                    <div class="alert" [ngClass]="{'alert-success': success===true, 'alert-danger':success===false}">
+                        {{textSuccess}}
+                    </div>
+
+                    <button type="button" class="btn btn-danger pull-left"
                     (click) = "valider(Virement['Code'],0)">
                         Bloquer
                     </button>
 
-                    <button type="button" class="btn btn-success" id="valider"
-                    (click) = "valider(Virement['Code'],1)" >
+                    <button type="button" class="btn btn-success pull-right" id="valider"
+                    (click) = "valider(Virement['Code'],1)">
                         Valider
                     </button>
+
                 </div>
             </div>
         </div>
     </div>
 
  
-<!--Table des virements non traitement -->
+<!--Table des virements non traités -->
     <div class="container-cards">
             <div class="content">
                 <div class="container-fluid">
@@ -121,6 +117,10 @@
                                 <div class="card-content ">
                                     <br>
                                     <br>
+                                    <div class="alert"
+                                    [ngClass]="{'alert-danger':successGet===false}">
+                                        {{textFailed}}
+                                    </div>
                                     <table class="table">
                                         <thead class="table-header">
                                         
@@ -147,7 +147,6 @@
                                                     </i>
                                                 </td>
                                             </tr>
-
 
                                             <tr>
                                                 <td>201802041053</td>
