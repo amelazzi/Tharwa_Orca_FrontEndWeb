@@ -35,6 +35,11 @@
                 <input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
                     formControlName ="mail" name="mail" class="form-control" [(ngModel)]='mail'>
             </div>
+
+            <div class="alert" 
+            [ngClass]="{'alert-danger':success===false, 'invisible': success!=false}">
+                {{textFailed}}
+            </div>
           <input class="btn pull-right" type="submit" (submit)="addBanque()" [disabled]="formBanque.invalid" 
           data-background-color="orange">
             

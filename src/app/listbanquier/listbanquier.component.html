@@ -18,7 +18,7 @@
                             <br> 
                             <br>
                             <div class="alert" 
-                            [ngClass]="{'alert-danger':successGet===false}">
+                            [ngClass]="{'alert-danger':successGet===false,'invisible': successGet!=false }">
                                 {{textFailed}}
                             </div>
                             <table class="table">

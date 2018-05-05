@@ -68,7 +68,8 @@ rel='stylesheet' type='text/css'>
                 </div>
                 <div class="form-footer">
                     <div class="alert" 
-                    [ngClass]="{'alert-success': success===true, 'alert-danger':success===false}">
+                    [ngClass]="{'alert-success': success===true, 'alert-danger':success===false,
+                    'invisible': success === null}">
                         {{textSuccess}}
                     </div>
                     <button type="button" class="btn btn-danger pull-left" id="bloquer"
@@ -98,7 +99,7 @@ rel='stylesheet' type='text/css'>
                                 <br>
                                 <br>
                                 <div class="alert" 
-                                [ngClass]="{'alert-danger':successGet===false}">
+                                [ngClass]="{'alert-danger':successGet===false, 'invisible':successGet!=false}">
                                     {{textFailed}}
                                 </div>
                                 <table class="table">
@@ -119,22 +120,6 @@ rel='stylesheet' type='text/css'>
                                             <td>{{compte.CodeMonnaie}}</td>
                                             
                                             <td>{{compte.TypeCompte}}</td>
-                                            <td>
-                                                <i class="material-icons" data-toggle="modal" 
-                                                data-target="#info"
-                                                (click)="voirInfoCompte(compte.IdUser)">
-                                                visibility
-                                                </i>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>THW0004</td>
-                                            <td>ikhadallem Lotfi</td>
-                                            <td>02:22:20 02022018</td>
-                                            <td>DZ</td>
-
-                                            <td>Epargne</td>
                                             <td>
                                                 <i class="material-icons" data-toggle="modal" 
                                                 data-target="#info"

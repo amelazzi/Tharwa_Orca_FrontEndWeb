@@ -22,7 +22,7 @@
             </thead>
             <div class="card-content">
                     <div class="alert" 
-                    [ngClass]="{'alert-danger':successGet===false}">
+                    [ngClass]="{'alert-danger':successGet===false, 'invisible':successGet!=false}">
                         {{textFailed}}
                     </div>
                 <br>
@@ -40,17 +40,6 @@
                             <td>{{virement.Motif}}</td>
                             <td>{{virement.Statut}}</td> 
                         </tr>
-
-                        <tr class="ligne">
-                                <td>2018-02-12 T22:30:12Z</td>
-                                <td>Ikhadallem Lotfi</td>
-                                <td>THW00004EUR</td>
-                                <td>Ikhadallem Lotfi</td>
-                                <td>THW0005USD</td>
-                                <td>12 000.00</td>
-                                <td>envoie d'argent pour financer une campagne</td>
-                                <td>rejeté</td>
-                            </tr>
                     </tbody>
                 </table>
             </div>

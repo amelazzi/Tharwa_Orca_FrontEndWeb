@@ -3,6 +3,12 @@
     background-image: url("./assets/img/fond.jpg");
 }
 
+.invisible
+{
+    display : none;
+}
+
+
 .sidebar-wrapper li
 {
     margin-bottom : -30px;
@@ -3046,6 +3052,7 @@ select.form-control[multiple],
 .alert-danger,
 .alert-warning,
 .alert-success {
+    display: block;
     color: #ffffff;
 }
 

@@ -3,6 +3,8 @@ import {AppComponent} from '../../app/app.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+
+import {Service} from './addbanquier.service';
 @Component({
   selector: 'app-addbanquier',
   templateUrl: './addbanquier.component.html',
@@ -32,35 +34,32 @@ export class AddbanquierComponent implements OnInit {
     });
   }
 
-
+  success : boolean;
+  textFailed:String ="";
   addBanquier()
   {
-    var headers = new HttpHeaders();
+    var service = new Service (this.httpClient);
     
-    headers = headers.append("token",""+localStorage.getItem('token_access')+"");
-    
-    headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
-    
-    var body="userId="+this.mail+"&Tel="+this.tel+"&UserName="+this.nom+" "+this.prenom+"+&Pwd="+this.pass+"";
-    this.httpClient.post("http://192.168.0.164:8080/users/BankerInscription",body,{headers:headers})
-    //this.httpClient.post("http://api-tharwaa.cleverapps.io/users/BankerInscription",body,{headers:headers})
+    service.addBanquier(this.mail,this.tel,this.nom,this.prenom,this.pass)
     .subscribe(
       data => 
       {
         alert("Le Compte banquier a bien été ajouté");
+        this.router.navigateByUrl('/gestionnaire/listbanquier');
       }
       ,err => 
       {
+        this.success = false;
         switch (err['status'])
         {
           case 401 :
-            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
           break;
           case 500 :
-            alert("Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement");
+            this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
           break;
           case 0 :
-            alert("Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet");
+            this.textFailed="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";
           break; 
         }
       }

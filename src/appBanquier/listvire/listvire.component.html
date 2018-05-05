@@ -87,7 +87,8 @@
                             [(ngModel)]="Virement['Motif']" readonly></textarea>
                 </div>
                 <div class="form-footer">
-                    <div class="alert" [ngClass]="{'alert-success': success===true, 'alert-danger':success===false}">
+                    <div class="alert" [ngClass]="{'alert-success': success===true, 'alert-danger':success===false,
+                        'invisible' : success ===null}">
                         {{textSuccess}}
                     </div>
 
@@ -118,7 +119,7 @@
                                     <br>
                                     <br>
                                     <div class="alert"
-                                    [ngClass]="{'alert-danger':successGet===false}">
+                                    [ngClass]="{'alert-danger':successGet===false, 'invisible':successGet!=false}">
                                         {{textFailed}}
                                     </div>
                                     <table class="table">
@@ -148,49 +149,7 @@
                                                 </td>
                                             </tr>
 
-                                            <tr>
-                                                <td>201802041053</td>
-                                                <td>1 120 000.00</td>
-                                                <td>Envoie d'agent pour financer une campagne</td>
-                                                <td>Ikhadallem Lotfi</td>
-                                                <td>Ait ali yahia dahbia</td>
-                                                <td>
-                                                    <i class="material-icons" data-toggle="modal" 
-                                                    data-target="#info"
-                                                    (click)="getVirementInfo(virement.Code)">
-                                                        visibility
-                                                    </i>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>201802041053</td>
-                                                <td>1 120 000.00</td>
-                                                <td>Envoie d'agent pour financer une campagne</td>
-                                                <td>Ikhadallem Lotfi</td>
-                                                <td>Ait ali yahia dahbia</td>
-                                                <td>
-                                                    <i class="material-icons" data-toggle="modal" 
-                                                    data-target="#info"
-                                                    (click)="getVirementInfo(virement.Code)">
-                                                        visibility
-                                                    </i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>201802041053</td>
-                                                <td>1 120 000.00</td>
-                                                <td>Envoiuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu</td>
-                                                <td>Ikhadallem Lotfi</td>
-                                                <td>Ait ali yahia dahbia</td>
-                                                <td>
-                                                    <i class="material-icons" data-toggle="modal" 
-                                                    data-target="#info"
-                                                    (click)="getVirementInfo(virement.Code)">
-                                                        visibility
-                                                    </i>
-                                                </td>
-                                            </tr>
+                                
                                             
                                         </tbody>
                                     </table>

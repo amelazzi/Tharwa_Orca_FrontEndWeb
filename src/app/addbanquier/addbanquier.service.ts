@@ -8,18 +8,18 @@ export class Service{
 
     constructor(private httpClient : HttpClient){}
 
-    tryDeleteBlur( )
+    addBanquier(mail:String,tel:String,nom:String,prenom:String,pass:String)
     {
-        var userMail : String;
-        var code :number;
-        
-        
-        let headers = new HttpHeaders();
-        
-        
+        var headers = new HttpHeaders();
     
+        headers = headers.append("token",""+localStorage.getItem('token_access')+"");
         
-        return this.httpClient.get('http://api-tharwaa.cleverapps.io/users/BankerInscription',{headers:headers})
+        headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
+        
+        var body="userId="+mail+"&Tel="+tel+"&UserName="+nom+" "+prenom+"+&Pwd="+pass+"";
+        return this.httpClient.post("http://192.168.0.164:8080/users/BankerInscription",body,{headers:headers})
+        //this.httpClient.post("http://api-tharwaa.cleverapps.io/users/BankerInscription",body,{headers:headers})
+    
     }
 
 }

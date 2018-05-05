@@ -67,7 +67,10 @@
               </div>
             </div>
           </div>
-
+          <div class="alert" 
+          [ngClass]="{'alert-danger':success===false, 'invisible': success!=false}">
+              {{textFailed}}
+          </div>
           <button [disabled]="formAddBanquier.invalid" class="btn pull-right" 
           data-background-color="red" (click)="addBanquier()">
             Ajouter
