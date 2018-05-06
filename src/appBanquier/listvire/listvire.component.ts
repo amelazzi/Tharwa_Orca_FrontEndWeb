@@ -55,7 +55,7 @@ export class ListvireComponent implements OnInit {
     .subscribe(
       (data:any[]) =>
       { 
-        this.virements = data;
+        this.virements = data["virements"];
         console.log(this.virements);
       }
       ,err =>
@@ -104,9 +104,9 @@ export class ListvireComponent implements OnInit {
       {
         this.success = true;
         if(status === '0'){
-          this.textSuccess = "Virement validé avec succès";
-        }else {
           this.textSuccess = "Virement rejeté avec succès";
+        }else {
+          this.textSuccess = "Virement validé avec succès";
         }
         this.getVirement();
       }

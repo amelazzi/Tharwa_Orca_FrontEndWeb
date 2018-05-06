@@ -8,36 +8,13 @@ export class Service{
 
     constructor(private httpClient : HttpClient){}
 
-    tryDeleteBlur( )
+    getComptes()
     {
-        var userMail : String;
-        var code :number;
-        
-        
-        let headers = new HttpHeaders();
-        headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
-        headers = headers.append("Authorization","Basic Y2xpZW50d2ViOm9yY2FAMjAxOA==");
-        
-    
-        var  body = "grant_type=password&username="+userMail+"&password="+code+"";
-        
-    
-        //on envoie la requete au service pour vérifier le code
-        return this.httpClient.post('https://auththarwa.cleverapps.io/oauth/login',body,{headers:headers})
+      var headers = new HttpHeaders();
+      headers = headers.append("token", localStorage.getItem('token_access'));
+      
+      return this.httpClient.get('http://192.168.101.1:8080/accounts/compteNonValide',{headers:headers})    
     }
 
-
-    getBlurState()
-    {
-      var blurState : Boolean = false;
-      if (blurState===true)
-      {
-        return true; 
-      }
-      else
-      {
-        return false;
-      }
-    }
 
 }

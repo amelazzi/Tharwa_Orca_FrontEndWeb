@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import {NgStyle} from '@angular/common';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Service } from './homeBanquier.service';
 
 @Component({
   selector: 'app-home',
@@ -54,11 +55,8 @@ export class HomeBanquierComponent implements OnInit {
   // récupère la liste des comptes avec etat = 0 ( en attente de validation)
   getCompte()
   {
-    var headers = new HttpHeaders();
-    headers = headers.append("token", localStorage.getItem('token_access'));
-    
-    this.httpClient.get('http://192.168.101.1:8080/accounts/compteNonValide',{headers:headers})
-    
+    var service = new Service(this.httpClient);
+    service.getComptes()
     .subscribe(
       (data:any[]) =>
       {
