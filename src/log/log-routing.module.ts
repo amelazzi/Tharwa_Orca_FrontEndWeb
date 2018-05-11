@@ -15,7 +15,7 @@ import { ProfileBanquierComponent } from '../appBanquier/profilebanquier/profile
 import {HomeBanquierComponent} from '../appBanquier/homeBanquier/homeBanquier.component'
 import { ListvireComponent } from '../appBanquier/listvire/listvire.component';
 import { ListordreComponent } from '../appBanquier/listordre/listordre.component';
-
+import {BloquerdebloquerComponent} from '../appBanquier/bloquerdebloquer/bloquerdebloquer.component';
 
 
 
@@ -118,6 +118,11 @@ const routes: Routes = [
       {
         path : 'listordre',
         component : ListordreComponent,
+        outlet:'popup'
+      },
+      {
+        path : 'bloquer',
+        component : BloquerdebloquerComponent,
         outlet:'popup'
       }
     ]

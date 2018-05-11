@@ -28,7 +28,7 @@ export class HomeBanquierComponent implements OnInit {
     this.userId = localStorage.getItem('mail');
     localStorage.setItem('selectedItem','1');
 
-
+      
     localStorage.setItem('blur','false');
 
 

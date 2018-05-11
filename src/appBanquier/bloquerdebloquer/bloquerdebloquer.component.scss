@@ -1,0 +1,77 @@
+
+.monnaie
+{
+    color: #FFF;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-weight: bold;
+}
+
+.search {
+    margin-top: 8mm;
+
+}
+
+#searchInput {
+    padding: 6px;
+    font-size: 17px;
+    border: none;
+    border-radius:50px;
+    margin-left: 25%;
+    width: 35%;
+}
+
+.search button {
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 3px 3px 8px rgb(115,115,115);
+}
+
+.search button:hover {
+    background: #EEE;
+}
+
+
+@media (min-width: 1081px)
+{
+    .content
+    {
+        margin-left: 25%;
+        width: 75%;
+    }
+    #searchInput {
+        margin-left: 10%;
+        width: 45%;
+    }
+}
+@media (max-width: 1081px)
+{
+    .content
+    {
+        margin-left: 3%;
+        width: 90%;
+    }
+
+    #searchInput {
+        margin-left: 15%;
+        width: 55%;
+    }
+}
+
+@media (max-width: 792px)
+{
+    .content
+    {
+        margin-left: 3%;
+        width: 90%;
+    }
+
+    #searchInput {
+        margin-left: 5%;
+        width: 70%;
+    }
+}

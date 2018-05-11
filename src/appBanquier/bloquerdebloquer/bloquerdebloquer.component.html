@@ -1,3 +1,106 @@
-<p>
-  bloquerdebloquer works!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="content">
+    <div class="search">
+        <form>
+          <input type="text" placeholder="Entrez un numéro de compte" name="search" id="searchInput">
+          <button type="submit" (click)="rechercherCompte()">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+    </div>
+
+    <div class="alert" 
+    [ngClass]="{'alert-danger':successRecherche===false, 'invisible': successRecherche!=false}">
+        {{textFailed}}
+    </div>
+    <div class="card"
+    [ngClass]="{'invisible': successRecherche!=true}">
+        <div class="card-header" data-background-color="green">
+          <h4>Informations sur le compte et bénéficiaire</h4>
+        </div>
+        <div class="card-content">
+
+          <div class="row">
+              <div class="monnaie col-md-12"
+              [ngClass] = "{'monnaiedz':monnaie === 'DZD', 'monnaiee':monnaie === 'EUR'
+              , 'monnaieus':monnaie === 'USD' }">
+                  {{monnaie}}
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group label-floating ">
+                  <label class="control-label">Numéro de compte</label>
+                  <input type="text" name="numCompte"
+                    class="form-control" [(ngModel)]='numCompte' readonly>
+              </div>
+            </div> 
+
+            <div class="col-md-5">
+                <div class="form-group label-floating">
+                    <label class="control-label">Bénéficiaire</label>
+                    <input type="text" name="nom" 
+                        class="form-control"[(ngModel)]='nom' readonly>
+                </div>
+              </div>
+
+            <div class="col-md-2">
+              
+            </div> 
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-md-6"> 
+                <div class="form-group label-floating ">
+                    <label class="control-label">Adresse</label>
+                    <input type="text"  name="adr" 
+                    class="form-control"[(ngModel)]='adr' readonly>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group label-floating ">
+                    <label class="control-label">Téléphone</label>
+                    <input type="text"  name="tel" 
+                        class="form-control"[(ngModel)]='tel' readonly>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group label-floating ">
+                    <label class="control-label">Fonction</label>
+                    <input type="text" name="fonction" 
+                      class="form-control"[(ngModel)]='fonction' readonly>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group label-floating ">
+                    <label class="control-label">E-mail</label>
+                    <input type="text"  name="mail" 
+                      class="form-control"[(ngModel)]='mail' readonly>
+                </div>
+              </div>
+          </div>
+
+          <div class="alert" 
+          [ngClass]="{'alert-danger':success===false,'alert-success': success ===true,
+           'invisible': success===NULL}">
+              {{textSuccess}}
+          </div>
+          <button  class="btn pull-center" 
+          data-background-color="red" (click)="changerStatutCompte()">
+            {{action}} <i class="material-icons">{{lock}}</i>
+          </button>
+        </div>
+      </div>
+
+
+  </div>
+</body>
+</html>
