@@ -17,7 +17,6 @@ export class ListbanqueComponent implements OnInit {
   {
     
   }
-  
   ngOnInit() 
   {
     
@@ -34,6 +33,16 @@ export class ListbanqueComponent implements OnInit {
   textFailed : String = "";
 
   textSuccess : String = "";
+
+  
+  banque = 
+    {
+      'code' : 'String',
+      'raisonSociale' : 'String',
+      'adresse' : 'String',
+      'mail' : 'String'
+    };
+  
   getBanque()
   {
     var service = new Service(this.httpClient)

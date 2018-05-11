@@ -14,6 +14,7 @@ import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { SidebarbanquierComponent } from './sidebarbanquier/sidebarbanquier.component'; 
 import { NavbarbanquierComponent } from './navbarbanquier/navbarbanquier.component';
 import { ProfileBanquierComponent } from './profilebanquier/profilebanquier.component';
+import { BloquerdebloquerComponent } from './bloquerdebloquer/bloquerdebloquer.component';
 
 
 
@@ -25,7 +26,8 @@ import { ProfileBanquierComponent } from './profilebanquier/profilebanquier.comp
   ListordreComponent,
   NavbarbanquierComponent,
   SidebarbanquierComponent,
-  ProfileBanquierComponent
+  ProfileBanquierComponent,
+  BloquerdebloquerComponent
 ],
   imports: [
     ChartistModule,

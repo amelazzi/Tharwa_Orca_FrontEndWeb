@@ -16,6 +16,8 @@
             <div class="modal-content modal-virement">
                 <div class="modal-header">
                     <p>Infomations sur le virement</p>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
                 </div>
                 <div class="modal-body">
                     <img [src]="Virement['Justificatif']">
@@ -148,7 +150,21 @@
                                                     </i>
                                                 </td>
                                             </tr>
-
+                                            <tr>
+                                                
+                                                <td>05052018</td>
+                                                <td>120 000.00</td>
+                                                <td>zefzefzef</td>
+                                                <td>zefzefzefzef</td>
+                                                <td>zefzefzefzefzefzef</td>
+                                                <td>
+                                                    <i class="material-icons" data-toggle="modal" 
+                                                    data-target="#info"
+                                                    (click)="getVirementInfo(virement.Code)">
+                                                        visibility
+                                                    </i>
+                                                </td>
+                                            </tr>
                                 
                                             
                                         </tbody>

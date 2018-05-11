@@ -1,15 +1,9 @@
-.content
-{
-    margin-left: 20%;
-    
-    width: 80%;
-}
-
 .card
 {
     width:95%; 
-    
+    top: 5mm;
 }
+
 form
 {
     width: 100%;
@@ -17,7 +11,40 @@ form
     align-content: center;
     align-items: center;
 }
-form .form-group
+
+@media(min-width:1081px)
 {
-    width: 50%;
+    .content
+    {
+        margin-left: 25%;
+        width: 75%;
+    }
+
+    form .form-group
+    {
+        width: 50%;
+    }
+
+    form .form-group:nth-child(1)
+    {
+        width: 20%;
+    }
+}
+
+@media(max-width:1080px)
+{
+    .content
+    {
+        margin-left: 5%;
+        width: 90%;
+    }
+}
+
+@media(max-width:762px)
+{
+    .content
+    {
+        margin-left: 5%;
+        width: 90%;
+    }
 }

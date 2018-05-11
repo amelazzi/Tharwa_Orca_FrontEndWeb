@@ -1,10 +1,49 @@
-.content
-{
-    margin-left : 20%;
-}
+
 .card-profile .content-profile
 {
     text-align: center;
     align-content: center;
     align-items: center;
+}
+
+    .card 
+    {
+        top: 15mm;
+    }
+
+@media(min-width:1081px)
+{
+    .content
+    {
+        margin-left : 25%;
+    }   
+
+    .card 
+    {
+        top: 8mm;
+    }
+}
+
+@media(max-width:1080px)
+{
+    .content
+    {
+        margin-left : 3%;
+    }   
+    .card 
+    {
+        top: 8mm;
+    }
+}
+
+@media(max-width:762px)
+{
+    .content
+    {
+        margin-left : 3%;
+    }
+    .card 
+    {
+        top: 0mm;
+    }   
 }

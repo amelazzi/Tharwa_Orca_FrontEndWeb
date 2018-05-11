@@ -19,6 +19,7 @@ import { AddbanqueComponent } from './addbanque/addbanque.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
+import { BloquerdebloquerComponent } from './bloquerdebloquer/bloquerdebloquer.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { HomeComponent } from './home/home.component';
     ListbanquierComponent,
     ListbanqueComponent,
     ProfilComponent,
+    BloquerdebloquerComponent,
   ],
   imports: [
     ReactiveFormsModule,
