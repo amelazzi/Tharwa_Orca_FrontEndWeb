@@ -85,9 +85,9 @@ export class HomeComponent implements OnInit {
     this.grapheJThw = this.drawGraphe(this.nbTransacJourThw,this.grapheJThw,1);
     this.grapheJExt = this.drawGraphe(this.nbTransacJourExt,this.grapheJExt,1);
 
-    this.nbTransacAnneCac = [18000,140,110,50,23,14,0];
-    this.nbTransacAnneThw = [95,78,20,45,145,0,0];
-    this.nbTransacAnneExt = [38,42,85,101,100,10,166];
+    this.nbTransacAnneCac = [18000,15214,14254,12147,2300,6000,8541];
+    this.nbTransacAnneThw = [9500,7800,2000,4500,10045,17103,14563];
+    this.nbTransacAnneExt = [3800,4200,8500,10001,10000,1000,16006];
 
     this.grapheACac = this.drawGraphe(this.nbTransacAnneCac,this.grapheACac,2);
     this.grapheAThw = this.drawGraphe(this.nbTransacAnneThw,this.grapheAThw,2);
