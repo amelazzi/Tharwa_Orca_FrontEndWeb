@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpClientModule} from "@angular/common/http";
-import { ChartistModule } from 'ng-chartist';
 import { AppComponent} from '../../app/app.component';
 import { Router } from '@angular/router';
 
@@ -14,17 +13,87 @@ import {NgStyle} from '@angular/common';
 })
 export class HomeComponent implements OnInit {
 
+  baseY = 185; // 100 opération --> 15px
+            // 1 opération --> ?
+  baseX = 60;
+
   code=[];
+  
+  
+  // tableau contenant les labels à afficher sur l'arc des Y
+  nbVirsMois = ['600','500','400','300','200','100','0']; 
+  // tableau contenant les labels à afficher sur l'arc des X
+  months = ['Jan','Fev','Mar','Avr','Mai','Juin','Jul','Aou','Sep','Oct','Nov','Dec'];
+
+  nbVirsJour = ['120','100','80','60','40','20','0'];
+  days = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+
+  nbVirsAnnee = ['18000','15000','12000','9000','6000','3000','0'];
+  years = [];
+
   constructor(private httpClient:HttpClient, private router: Router) {}
   selectedTab : number;
   displayBlur : String;
   userId : String;
   mode : String;
+
+  
+  nbTransacMoisCac:any[];
+  nbTransacMoisThw:any[];
+  nbTransacMoisExt:any[];
+
+  grapheMCac: String ;
+  grapheMThw: String ;
+  grapheMExt: String ;
+
+
+  nbTransacJourCac:any[];
+  nbTransacJourThw:any[];
+  nbTransacJourExt:any[];
+
+  grapheJCac: String ;
+  grapheJThw: String ;
+  grapheJExt: String ;
+
+  nbTransacAnneCac:any[];
+  nbTransacAnneThw:any[];
+  nbTransacAnneExt:any[];
+
+  grapheACac: String ;
+  grapheAThw: String ;
+  grapheAExt: String ;
+
+
   ngOnInit() 
   {
-    var appCompo=new AppComponent(this.httpClient, this.router);
     this.userId = localStorage.getItem('mail');
-    
+
+    this.nbTransacMoisCac = [58,42,80,91,140,120,126,90,135,200,250,342];
+    this.nbTransacMoisThw = [100,110,111,111,130,127,150,95,178,100,87,65];
+    this.nbTransacMoisExt = [38,42,85,101,100,10,166,190,145,247,250,201];
+
+    this.grapheMCac = this.drawGraphe(this.nbTransacMoisCac,this.grapheMCac,0);
+    this.grapheMThw = this.drawGraphe(this.nbTransacMoisThw,this.grapheMThw,0);
+    this.grapheMExt = this.drawGraphe(this.nbTransacMoisExt,this.grapheMExt,0);
+
+
+    this.nbTransacJourCac = [100,55,41,12,50,32,5];
+    this.nbTransacJourThw = [55,140,110,50,23,14,0];
+    this.nbTransacJourExt = [95,78,20,45,145,0,0];
+
+    this.grapheJCac = this.drawGraphe(this.nbTransacJourCac,this.grapheJCac,1);
+    this.grapheJThw = this.drawGraphe(this.nbTransacJourThw,this.grapheJThw,1);
+    this.grapheJExt = this.drawGraphe(this.nbTransacJourExt,this.grapheJExt,1);
+
+    this.nbTransacAnneCac = [18000,140,110,50,23,14,0];
+    this.nbTransacAnneThw = [95,78,20,45,145,0,0];
+    this.nbTransacAnneExt = [38,42,85,101,100,10,166];
+
+    this.grapheACac = this.drawGraphe(this.nbTransacAnneCac,this.grapheACac,2);
+    this.grapheAThw = this.drawGraphe(this.nbTransacAnneThw,this.grapheAThw,2);
+    this.grapheAExt = this.drawGraphe(this.nbTransacAnneExt,this.grapheAExt,2);
+
+
 
     localStorage.setItem('blurGest','false');
 
@@ -45,6 +114,47 @@ export class HomeComponent implements OnInit {
     }
 
   }
+
+  drawGraphe(table:any[],graphe:String, type:number)
+  {
+    var x = this.baseX;
+    var y = this.baseY;
+    var pasY, pasX;
+    // 32 ---> maring-right 10px
+   
+    switch (type)
+    {
+      case 0 :   // graphe par mois
+        pasX = 62;
+        pasY = 0.25; 
+      break;
+      case 1 :   // graphe par jour    
+        pasX = 90;
+        pasY = 1.25; //0.25* 30
+      break;
+      case 2 :   // graphe par année
+        pasX = 92;
+        pasY = 0.0083; //0.25 / 30
+      break;
+    }
+      
+    for (let index = 0; index < table.length; index++)
+    {
+      var y = table[index] * pasY;
+      y = 185 - y;
+      if(index === 0)
+      {
+        graphe = "M"+x+","+y+"";
+      }
+      
+      graphe = graphe +" L"+x+","+y+"";
+      x=x+pasX;
+    }
+    return graphe;
+  }
+
+
+
   
   tryDeleteBlur()
   {

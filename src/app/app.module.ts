@@ -6,9 +6,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-
-import { ChartistModule } from 'ng-chartist';
 import { Injectable } from '@angular/core';
+
 
 import { ProfilComponent } from './profil/profil.component';
 import { ListbanqueComponent } from './listbanque/listbanque.component';
@@ -38,7 +37,6 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     ReactiveFormsModule,
-    ChartistModule,
     CommonModule,
     AppRoutingModule,
     FormsModule,

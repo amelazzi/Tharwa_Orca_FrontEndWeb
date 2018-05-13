@@ -1,15 +1,18 @@
+
+
+.container-dash
+{
+    box-shadow: 1px 1px 8px rgb(190,190,190);
+    background-color: white;
+    border-radius: 3px;
+}
+
+
+
 @media (min-width:1081px) {
     /* For PC */
-    .nav-items
+    .ct-chart
     {
-        text-align: center;
-        color: black;
-        width: 50%;
-    }
-    .nav-tabs
-    {
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
         width: 100%;
     }
 
@@ -48,35 +51,22 @@
 
     .container-dash
     {
-        box-shadow: 1px 1px 8px rgb(190,190,190);
-        background-color: white;
         width: 97%;
-        border-radius: 3px;
     }
 
-
-    .container-graphe
+    .container-dash .card
     {
-        border-radius: 5px;
-        box-shadow:  1px 1px 8px rgb(190,190,190);
-        margin-right: 25px;
-        width: 48%;
-        margin-top: 30px;
-
-    }
-
-    .container-graphe .card-header
-    {
-        height: 60px;
-    }
-    .container-graphe .card-header h4
-    {
-        margin-top: -10px;
+        width: 100%;
     }
 }
 
 @media (max-width:1080px) {
     /* For tablets: */
+    .ct-chart
+    {
+        width: 100%;
+    }
+
     .card-dash
     {       
         width: 47%;
@@ -85,6 +75,46 @@
         margin-top: 2%;
         margin-bottom: 2%;
     } 
+
+    .container-dash
+    {
+        width: 97%;
+    }
+
+    .container-dash .card
+    {
+        width: 100%;
+    }
+
+}
+
+@media (max-width:991px) {
+    /* For tablets: */
+    .ct-chart
+    {
+        width: 120%;
+    }
+
+    .card-dash
+    {       
+        width: 47%;
+        font-size: 14px;
+        margin-left: 2.5%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    } 
+
+    .container-dash
+    {
+        width: 97%;
+    }
+
+    .container-dash .card
+    {
+        width: 100%;
+        overflow-x: scroll;
+        overflow-y: visible;
+    }
 }
 
 
@@ -99,16 +129,71 @@
         margin-bottom: 2mm;
     }
 
+    .container-dash
+    {
+        width: 90%;
+        
+    }
+
+    .container-dash .card
+    {
+        width: 100%;
+        overflow-x: scroll;
+        overflow-y: visible;
+    }
+
+    .ct-chart
+    {
+        width:200mm;
+    }
+
+    .header
+    {
+        width: 500mm;
+        border-style: none;    
+    }
+    #operation .card-header
+    {
+        width: 200mm;
+    }
+
+
+}
+
+
+.xlabels .mois
+{
+    margin-right: 43px;
+}
+
+.xlabels .jour
+{
+    margin-right: 70px;
+}
+
+.xlabels .annee
+{
+    margin-right: 72px;
 }
 
 
 
 
 
-
-
-
 ////////////////////////colors 
+
+.nav-items
+{
+    text-align: center;
+    color: black;
+    width: 50%;
+}
+.nav-tabs
+{
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    width: 100%;
+}
 
 .nav-header
 {
@@ -173,19 +258,20 @@ svg
 .xlabels
 {
     position: absolute;
-    top: 250px;
+    top: 270px;
     left: 50px;
 }
 .xlabels .ct-label
 {
-    margin-right: 10px;
+    
     font-size: 12px;
 }
+
 
 .ylabels
 {
     position: absolute;
-    top: 40px;
+    top: 23mm;
     left: 20px;
     display: flex;
     flex-direction: column;
@@ -193,7 +279,7 @@ svg
 
 .ylabels .ct-label
 {
-    margin-bottom: 10px;
+    margin-bottom: 1.2mm;
     font-size: 13px;
 }
 
