@@ -1,5 +1,3 @@
-
-
 .container-dash
 {
     box-shadow: 1px 1px 8px rgb(190,190,190);
@@ -7,185 +5,16 @@
     border-radius: 3px;
 }
 
-
-
-@media (min-width:1081px) {
-    /* For PC */
-    .ct-chart
-    {
-        width: 100%;
-    }
-
-    .container-cards
-    {
-        align-items: center;
-        margin-left: 24%;   
-        margin-top: 2%;
-    }
-
-    .card-dash
-    {   
-        width: 22%;
-        font-size: 10px;
-        margin-left: 2%;
-        margin-top: 2%;
-        margin-bottom: 2%;
-    }
-
-    .card-footer--home
-    {
-        background-color:transparent;
-        height: 30px;
-    }
-
-    .header
-    {
-        width: 100%;
-        border-style: none;    
-    }
-
-    .header:hover
-    {
-        border-style: none;
-    }
-
-    .container-dash
-    {
-        width: 97%;
-    }
-
-    .container-dash .card
-    {
-        width: 100%;
-    }
-}
-
-@media (max-width:1080px) {
-    /* For tablets: */
-    .ct-chart
-    {
-        width: 100%;
-    }
-
-    .card-dash
-    {       
-        width: 47%;
-        font-size: 14px;
-        margin-left: 2.5%;
-        margin-top: 2%;
-        margin-bottom: 2%;
-    } 
-
-    .container-dash
-    {
-        width: 97%;
-    }
-
-    .container-dash .card
-    {
-        width: 100%;
-    }
-
-}
-
-@media (max-width:991px) {
-    /* For tablets: */
-    .ct-chart
-    {
-        width: 120%;
-    }
-
-    .card-dash
-    {       
-        width: 47%;
-        font-size: 14px;
-        margin-left: 2.5%;
-        margin-top: 2%;
-        margin-bottom: 2%;
-    } 
-
-    .container-dash
-    {
-        width: 97%;
-    }
-
-    .container-dash .card:nth-child(1)
-    {
-        width: 100%;
-        overflow-x: scroll;
-        overflow-y: visible;
-    }
-}
-
-
-@media (max-width:762px) {
-    /* For mobile phones: */
-    .card-dash
-    {
-        width: 90%;
-        margin-left: 5%;
-        font-size: 10px;
-        margin-top: 10mm;
-        margin-bottom: 2mm;
-    }
-
-    .container-dash
-    {
-        width: 90%;
-        
-    }
-
-    .container-dash .card
-    {
-        width: 100%;
-        overflow-x: scroll;
-        overflow-y: visible;
-    }
-
-    .ct-chart
-    {
-        width:200mm;
-    }
-
-    .header
-    {
-        width: 500mm;
-        border-style: none;    
-    }
-    #operation .card-header
-    {
-        width: 200mm;
-    }
-
-
-}
-
-
-.xlabels .mois
+.container-graphe 
 {
-    margin-right: 43px;
+    overflow-x: auto;
 }
-
-.xlabels .jour
-{
-    margin-right: 70px;
-}
-
-.xlabels .annee
-{
-    margin-right: 72px;
-}
-
-
-
-
-
-////////////////////////colors 
 
 .nav-items
 {
-    text-align: center;
+    text-align: left;
     color: black;
+    font-weight: bolder;
     width: 50%;
 }
 .nav-tabs
@@ -249,7 +78,11 @@
 .footer .legend i
 {
     margin-left: 20px;
+    font-size: 15px;
+    cursor: pointer;
 }
+
+
 svg
 {
     width: 100%; height: 245px;
@@ -263,7 +96,6 @@ svg
 }
 .xlabels .ct-label
 {
-    
     font-size: 12px;
 }
 
@@ -285,7 +117,7 @@ svg
 
 
 
-
+//code de validation
 .code 
 {
     //display: none;
@@ -358,3 +190,221 @@ body
 {
     overflow-x: hidden;
 }
+
+
+
+.ct-chart-line 
+{
+    width: 100%;  
+}
+
+@media (min-width:1081px) {
+    /* For PC */
+
+
+    .nav-items 
+    {
+        font-size: 15px;
+    }
+
+    .container-cards
+    {
+        align-items: center;
+        margin-left: 24%;   
+        margin-top: 2%;
+    }
+
+    .card-dash
+    {   
+        width: 22%;
+        font-size: 10px;
+        margin-left: 2%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .card-footer--home
+    {
+        background-color:transparent;
+        height: 30px;
+    }
+
+    .header
+    {
+        width: 100%;
+        border-style: none;    
+    }
+
+    #operation 
+    {
+        width: 100%;
+        margin-left: 2%;
+    }
+
+    .container-graphe 
+    {
+        width: 97%;
+    }
+
+    .header:hover
+    {
+        border-style: none;
+    }
+
+    .container-dash
+    {
+        width: 97%;
+    }
+
+    .container-dash .card // concerne les card qui conteinnent des graphes
+    {
+        width: 100%;
+    }
+
+    .container-cards .card-stats:nth-child(1)
+    {
+        margin-left: 3.5%;
+    }
+}
+
+@media (max-width:1080px) {
+    /* For tablets: */
+    .card-dash
+    {       
+        width: 47%;
+        font-size: 14px;
+        margin-left: 2.5%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    } 
+
+    .container-dash
+    {
+        width: 95%;
+        margin-left: 2%;
+    }
+
+    #operation 
+    {
+        margin-left: 5%;
+    }
+    .container-graphe
+    {
+        margin-left: -2%;
+        width: 100%;        
+    }
+
+    .container-dash .card
+    {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width:890px) {
+    /* For tablets: */
+    .card-dash
+    {       
+        width: 47%;
+        font-size: 14px;
+        margin-left: 2.5%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .container-dash
+    {
+        width: 95%;
+        margin-left: 2%;
+    }
+
+    #operation 
+    {
+        margin-left: 5%;
+    }
+
+    .container-graphe
+    {
+        margin-left: -2%;
+        width: 100%;        
+    }
+
+    .container-dash .card
+    {
+        width: 115%;
+    }
+
+}
+
+
+
+@media (max-width:762px){
+    /* For mobile phones: */
+    .card-dash
+    {
+        width: 95%;
+        margin-left: 2.5%;
+        font-size: 10px;
+        margin-top: 5mm;
+        margin-bottom: 2mm;
+    }
+
+    .container-dash
+    {
+        width: 97%;
+        margin-left: 2%;
+    }
+
+    #operation 
+    {
+        width: 95%;
+        margin-left: 5%;
+    }
+
+    #operation .card-header
+    {
+        width: 200mm;
+    }
+
+    .container-graphe
+    {
+        width: 99%;        
+    }
+
+
+    .container-dash .card
+    {
+        width: 225mm;
+    }
+
+    .header
+    {
+        width: 500mm;
+        border-style: none;    
+    }
+
+}
+
+
+
+
+.xlabels .mois
+{
+    margin-right: 43px;
+}
+
+.xlabels .jour
+{
+    margin-right: 70px;
+}
+
+.xlabels .annee
+{
+    margin-right: 72px;
+}
+
+
+
+
+

@@ -25,6 +25,11 @@ export class HomeComponent implements OnInit {
   // tableau contenant les labels à afficher sur l'arc des X
   months = ['Jan','Fev','Mar','Avr','Mai','Juin','Jul','Aou','Sep','Oct','Nov','Dec'];
 
+
+  nbVirsTrim = ['600','500','400','300','200','100','0']
+
+  terms = ['1er Trimestre','2ème Trimestre','3ème Trimestre'];
+
   nbVirsJour = ['120','100','80','60','40','20','0'];
   days = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
 
@@ -47,13 +52,13 @@ export class HomeComponent implements OnInit {
   grapheMExt: String ;
 
 
-  nbTransacJourCac:any[];
-  nbTransacJourThw:any[];
-  nbTransacJourExt:any[];
+  nbTransacTCac:any[];
+  nbTransacTThw:any[];
+  nbTransacTExt:any[];
 
-  grapheJCac: String ;
-  grapheJThw: String ;
-  grapheJExt: String ;
+  grapheTCac: String ;
+  grapheTThw: String ;
+  grapheTExt: String ;
 
   nbTransacAnneCac:any[];
   nbTransacAnneThw:any[];
@@ -63,6 +68,8 @@ export class HomeComponent implements OnInit {
   grapheAThw: String ;
   grapheAExt: String ;
 
+  tabGraphes= [];
+  tabGraphesSav=[];
 
   ngOnInit() 
   {
@@ -77,13 +84,13 @@ export class HomeComponent implements OnInit {
     this.grapheMExt = this.drawGraphe(this.nbTransacMoisExt,this.grapheMExt,0);
 
 
-    this.nbTransacJourCac = [100,55,41,12,50,32,5];
-    this.nbTransacJourThw = [55,140,110,50,23,14,0];
-    this.nbTransacJourExt = [95,78,20,45,145,0,0];
+    this.nbTransacTCac = [100,55,41];
+    this.nbTransacTThw = [55,140,110];
+    this.nbTransacTExt = [95,78,20];
 
-    this.grapheJCac = this.drawGraphe(this.nbTransacJourCac,this.grapheJCac,1);
-    this.grapheJThw = this.drawGraphe(this.nbTransacJourThw,this.grapheJThw,1);
-    this.grapheJExt = this.drawGraphe(this.nbTransacJourExt,this.grapheJExt,1);
+    this.grapheTCac = this.drawGraphe(this.nbTransacTCac,this.grapheTCac,1);
+    this.grapheTThw = this.drawGraphe(this.nbTransacTThw,this.grapheTThw,1);
+    this.grapheTExt = this.drawGraphe(this.nbTransacTExt,this.grapheTExt,1);
 
     this.nbTransacAnneCac = [18000,15214,14254,12147,2300,6000,8541];
     this.nbTransacAnneThw = [9500,7800,2000,4500,10045,17103,14563];
@@ -93,8 +100,25 @@ export class HomeComponent implements OnInit {
     this.grapheAThw = this.drawGraphe(this.nbTransacAnneThw,this.grapheAThw,2);
     this.grapheAExt = this.drawGraphe(this.nbTransacAnneExt,this.grapheAExt,2);
 
+    this.tabGraphes[0] = this.grapheMCac
+    this.tabGraphes[2] = this.grapheMThw
+    this.tabGraphes[1] = this.grapheMExt
+
+    this.tabGraphes[3] = this.grapheTCac
+    this.tabGraphes[4] = this.grapheTThw
+    this.tabGraphes[5] = this.grapheTExt
+
+    this.tabGraphes[6] = this.grapheACac
+    this.tabGraphes[7] = this.grapheAThw
+    this.tabGraphes[8] = this.grapheAExt
+
+    for (let index = 0; index < this.tabGraphes.length; index++) {
+      this.tabGraphesSav[index] = this.tabGraphes[index];
+    }
 
 
+
+    ///test a enlever plus tard 
     localStorage.setItem('blurGest','false');
 
     localStorage.setItem('selectedItem','1');
@@ -128,8 +152,8 @@ export class HomeComponent implements OnInit {
         pasX = 62;
         pasY = 0.25; 
       break;
-      case 1 :   // graphe par jour    
-        pasX = 90;
+      case 1 :   // graphe par trimestre   
+        pasX = 150;
         pasY = 1.25; //0.25* 30
       break;
       case 2 :   // graphe par année
@@ -218,11 +242,25 @@ export class HomeComponent implements OnInit {
 
   }
 
+  showGraphe(idGraphe : number)
+  {
+    if (this.tabGraphes[idGraphe] === "") 
+    {
+
+      this.tabGraphes[idGraphe] = this.tabGraphesSav[idGraphe];
+    } else 
+    {
+      this.tabGraphes[idGraphe] = "";
+    }
+  }
+
   deleteBlur()
   {
     localStorage.setItem('blurGest','false');
     this.displayBlur = "none";
   }
+
+
 
 
   getBlurState()

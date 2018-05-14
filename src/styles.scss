@@ -5681,10 +5681,6 @@ footer .btn {
         -webkit-box-shadow: none;
         box-shadow: none;
     }
-    html,
-    body {
-        overflow-x: hidden;
-    }
     .nav-open .menu-on-left .main-panel,
     .nav-open .menu-on-left .wrapper-full-page,
     .nav-open .menu-on-left .navbar-fixed>div {
@@ -6028,11 +6024,7 @@ footer .btn {
     }
 }
 
-@media (min-width: 768px) {
-    .navbar>.container-fluid .navbar-brand {
-        margin-left: 0;
-    }
-}
+
 
 @media (max-width: 480px),
 (max-width: 767px) {
