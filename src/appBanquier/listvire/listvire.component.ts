@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {Service} from './listvire.service';
-
+import { CustomHttpClient } from '../../CustomHttpClient';
 
 @Component({
   selector: 'app-listvirexterne',
@@ -12,6 +12,7 @@ import {Service} from './listvire.service';
 export class ListvireComponent implements OnInit {
 
   constructor(private httpClient:HttpClient, private router:Router) { }
+  
   virements : any[];
   successGet : boolean; 
   // boolean pour savoir si la requete qui récupère la liste des virement c'est bien passé
@@ -25,7 +26,9 @@ export class ListvireComponent implements OnInit {
   textSuccess : String="";
   //texte qui affiche le résultat de la requete qui traite un virement
   ngOnInit() {
+    
     this.getVirement();
+    //this.getImageFromService('2');
     localStorage.setItem('selectedItem','3');
     localStorage.setItem('blur','false');
   }
@@ -81,7 +84,6 @@ export class ListvireComponent implements OnInit {
     );
   }
 
-
   //fonction qui renvoie les informations d'un virement
   getVirementInfo(codeVire : String)
   {
@@ -91,6 +93,34 @@ export class ListvireComponent implements OnInit {
       i=i+1;
     }
     this.Virement = this.virements[i];
+    this.getImageFromService(this.Virement["Code"]);
+  }
+
+  
+  imageToShow: any;
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+        this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+        reader.readAsDataURL(image);
+    }
+  }
+
+  getImageFromService(id:string) {
+    let imageService = new Service(this.httpClient);
+
+    imageService.getImage(id)
+    .subscribe(
+      (data:Blob) => 
+      {
+      this.createImageFromBlob(data);
+    }, error => {
+      console.log(error);
+    });
   }
 
 

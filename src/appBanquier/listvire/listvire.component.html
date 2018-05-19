@@ -9,7 +9,6 @@
   
 </head>
 <body> 
-
 <!--modal contenant des infos sur le compte et le client choisit-->
 <div id="info" class="modal fade info2" role="dialog">
         <div class="modal-dialog">
@@ -17,10 +16,12 @@
                 <div class="modal-header">
                     <p>Infomations sur le virement</p>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-
                 </div>
                 <div class="modal-body">
-                    <img [src]="Virement['Justificatif']">
+                    
+                    <div class="form-group label-floating col-md-12">
+                        Justificatif :<img class="justificatif" [src]="imageToShow">
+                    </div>
                     <div class="row">
                         <div class="form-group label-floating col-md-4">
                                 <label class="control-label">Code du Virement</label>
@@ -124,7 +125,8 @@
                                     [ngClass]="{'alert-danger':successGet===false, 'invisible':successGet!=false}">
                                         {{textFailed}}
                                     </div>
-                                    <table class="table">
+                                    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                                    <table class="table" id="myTable">
                                         <thead class="table-header">
                                         
                                             <li>Date</li>
@@ -160,7 +162,7 @@
                                                 <td>
                                                     <i class="material-icons" data-toggle="modal" 
                                                     data-target="#info"
-                                                    (click)="getVirementInfo(virement.Code)">
+                                                    (click)="getVirementInfo('561')">
                                                         visibility
                                                     </i>
                                                 </td>

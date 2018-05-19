@@ -12,7 +12,8 @@ export class AppBanquierComponent {
   selectedItem : number;
 
   ngOnInit(){
-    localStorage.setItem('token_access',"wcaQrkW4bFANSiwFKtEJDffx6g0wzsmHRJbUfb1Vzlowg2oRi6yMa9MMvuMvMa2pPIDnbSHDU8esYNVOjP2wxehAAxjn8dJXASKtPzcJPAx9PW6tGy3oOWhdwb6WAaOMWiRQ0xRN8QIiDJLd68orYthsYCdtWSDRHSWTz7MYyE44qo9aeP84qGmfdfTUZ2ZbJZ8BCvqEfmb41wRw4mwJqdvSPTaxa7m5o4HjQodLVqSLfgDnPqkU1wB7js5EvXE");
+    localStorage.setItem('token_access',"Vk5sdkIaq5fAnhepbrXOndqFtRscTXrVQWPUKX5bjAKsZAI4UJSpEKItNEoBJdsgECrVCHTCOohIozlsuugwnD3wKnRtYOtnZBJ14NGwZH4Ya6TnOpfSWbo5Bxvh4ybjI1385jHklEDfsqoSwLstQv792W7E6ENA3klObi4QrMExjbEPOJUbmUX5j6uwT36MM87zNIjXqOW6c3GKaXGANvQ9HOCaX2eNaDQtySq5iJv5dvUJgnQodrN7GYXVpxq");
+ //   alert(localStorage.getItem('token_access'));
   }
 
 
