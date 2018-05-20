@@ -1,10 +1,10 @@
-//import { BrowserModule } from '@angular/platform-browser';
+
 import { CommonModule} from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppBanquierComponent } from './appBanquier.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+
 
 import { ChartistModule } from 'ng-chartist';
 import { ListordreComponent } from './listordre/listordre.component';
@@ -30,13 +30,13 @@ import { BloquerdebloquerComponent } from './bloquerdebloquer/bloquerdebloquer.c
   BloquerdebloquerComponent
 ],
   imports: [
+    
     ChartistModule,
     CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
-    NgbModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppBanquierComponent]

@@ -96,12 +96,12 @@
                     </div>
 
                     <button type="button" class="btn btn-danger pull-left"
-                    (click) = "valider(Virement['Code'],0)">
+                    (click) = "valider(Virement['Code'],0)" data-dismiss="modal">
                         Bloquer
                     </button>
 
                     <button type="button" class="btn btn-success pull-right" id="valider"
-                    (click) = "valider(Virement['Code'],1)">
+                    (click) = "valider(Virement['Code'],1)" data-dismiss="modal">
                         Valider
                     </button>
 
@@ -125,10 +125,9 @@
                                     [ngClass]="{'alert-danger':successGet===false, 'invisible':successGet!=false}">
                                         {{textFailed}}
                                     </div>
-                                    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                                    <input class="form-control" id="myInput" type="text" placeholder="Rechercher dans la table ...">
                                     <table class="table" id="myTable">
-                                        <thead class="table-header">
-                                        
+                                        <thead class="table-header" sortable>
                                             <li>Date</li>
                                             <li>Montant</li>
                                             <li>Motif</li>
@@ -138,7 +137,6 @@
                                                 
                                         <tbody id="tbody">
                                             <tr *ngFor="let virement of virements">
-                                                
                                                 <td>{{virement.Date}}</td>
                                                 <td>{{virement.Montant}}</td>
                                                 <td>{{virement.Motif}}</td>
@@ -152,23 +150,23 @@
                                                     </i>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                
-                                                <td>05052018</td>
-                                                <td>120 000.00</td>
-                                                <td>zefzefzef</td>
-                                                <td>zefzefzefzef</td>
-                                                <td>zefzefzefzefzefzef</td>
+
+
+                                            
+                                            <tr >    
+                                                <td>0505454</td>
+                                                <td>5454545454</td>
+                                                <td>virement.Motif</td>
+                                                <td>virement.NomEmetteur</td>
+                                                <td>virement.NomDestinataire</td>
                                                 <td>
                                                     <i class="material-icons" data-toggle="modal" 
                                                     data-target="#info"
-                                                    (click)="getVirementInfo('561')">
+                                                    (click)="getVirementInfo(2)">
                                                         visibility
                                                     </i>
                                                 </td>
                                             </tr>
-                                
-                                            
                                         </tbody>
                                     </table>
                                 </div>

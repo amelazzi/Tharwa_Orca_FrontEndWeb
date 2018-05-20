@@ -107,7 +107,9 @@ rel='stylesheet' type='text/css'>
                                 [ngClass]="{'alert-danger':successGet===false, 'invisible':successGet!=false}">
                                     {{textFailed}}
                                 </div>
-                                <table class="table">
+                                <input class="form-control" id="myInput" type="text" placeholder="Rechercher dans la table ...">
+
+                                <table class="table" id="myTable">
                                     <thead class="table-header">
                                         <li>Numéro</li>
                                         <li>Détenteur</li>

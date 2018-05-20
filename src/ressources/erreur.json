@@ -1,0 +1,8 @@
+{
+    "0" : "Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet",
+    "500" : "Oups Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement",
+    "401" : "cette session a expiré vous allez être redirigé vers la page de connexion",
+   "404" : "La ressource demandée est introuvable",
+   "virementValide" : "Virement validé avec succés",
+   "virementNonValide" : "Virement rejeté avec succés"
+}

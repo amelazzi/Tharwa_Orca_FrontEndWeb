@@ -4,7 +4,10 @@
     font-weight: bolder;
 }
 
-
+.card-content
+{
+    overflow-y: auto;   
+}
 
 
 .table-header
@@ -70,7 +73,7 @@
     .card-content
     {
         height:476px;
-        overflow-y: scroll;
+        
     }
 
     .table-header
@@ -178,7 +181,7 @@
     .card-content
     {
         height:476px;
-        overflow-y: scroll;
+        
     }
 
     .table-header
@@ -286,7 +289,7 @@
     .card-content
     {
         height:476px;
-        overflow-y: scroll;
+        
     }
 
 

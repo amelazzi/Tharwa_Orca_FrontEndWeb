@@ -3,6 +3,10 @@ import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/htt
 import { Router } from '@angular/router';
 import {Service} from './listvire.service';
 import { CustomHttpClient } from '../../CustomHttpClient';
+import { CONST_UNAUTHORIZED, CONST_NOT_FOUND, CONST_SERVEUR_ERROR, CONST_DELAIDEPASSE, CONST_RESSOURCE } from '../../constante';
+
+
+
 
 @Component({
   selector: 'app-listvirexterne',
@@ -28,7 +32,7 @@ export class ListvireComponent implements OnInit {
   ngOnInit() {
     
     this.getVirement();
-    //this.getImageFromService('2');
+    
     localStorage.setItem('selectedItem','3');
     localStorage.setItem('blur','false');
   }
@@ -67,17 +71,18 @@ export class ListvireComponent implements OnInit {
         console.log(err);
         switch (err['status'])
         {
-          case 401 :
-            this.textFailed ="cette session a expiré vous allez être redirigé vers la page de connexion";
+          case CONST_UNAUTHORIZED :
+            this.textFailed = CONST_RESSOURCE["401"];
+            this.router.navigateByUrl('/');
           break;
-          case 404 :
-            this.textFailed ="Impossible de trouver la ressource demandé";
+          case CONST_NOT_FOUND :
+            this.textFailed =CONST_RESSOURCE["404"];
           break;
-          case 500 :
-            this.textFailed ="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
+          case CONST_SERVEUR_ERROR :
+            this.textFailed = CONST_RESSOURCE["500"];
           break;
-          case 0 :
-            this.textFailed ="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";
+          case CONST_DELAIDEPASSE :
+            this.textFailed =CONST_RESSOURCE["0"];
           break; 
         }   
       }
@@ -99,6 +104,7 @@ export class ListvireComponent implements OnInit {
   
   imageToShow: any;
 
+  //fonction qui constuire une structure blob ou sera accueillie une image
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -110,6 +116,8 @@ export class ListvireComponent implements OnInit {
     }
   }
 
+
+  //fonction qui lance le service qui récupère l'image de justificatif du backend
   getImageFromService(id:string) {
     let imageService = new Service(this.httpClient);
 
@@ -117,11 +125,27 @@ export class ListvireComponent implements OnInit {
     .subscribe(
       (data:Blob) => 
       {
-      this.createImageFromBlob(data);
+        this.createImageFromBlob(data);
     }, error => {
-      console.log(error);
+      switch (error['status'])
+      {
+        case CONST_UNAUTHORIZED :
+          alert(CONST_RESSOURCE["401"]);
+          this.router.navigateByUrl('/');
+        break;
+        case CONST_NOT_FOUND :
+          alert(CONST_RESSOURCE["404"]); 
+        break;
+        case CONST_SERVEUR_ERROR :
+          alert(CONST_RESSOURCE["500"]);
+        break;
+        case CONST_DELAIDEPASSE :
+          alert(CONST_RESSOURCE["0"]);
+        break;
+      }      
     });
   }
+
 
 
   //fonction qui valide ou rejette un virement
@@ -132,34 +156,34 @@ export class ListvireComponent implements OnInit {
     .subscribe(
       data =>
       {
+        ////////////////////////a chercher : comment lire un ficheir json , close a modal programmaticaly
         this.success = true;
         if(status === '0'){
-          this.textSuccess = "Virement rejeté avec succès";
+          this.textSuccess = CONST_RESSOURCE["virementValide"];
         }else {
-          this.textSuccess = "Virement validé avec succès";
+          this.textSuccess = CONST_RESSOURCE["virementNonValide"];
         }
         this.getVirement();
       }
     ,err => 
     {
       this.success = false;
+      
       switch (err['status'])
         {
-          
-          case 401 :
-            this.textSuccess = "cette session a expiré vous allez être redirigé vers la page de connexion";
+          case CONST_UNAUTHORIZED :
+            this.textSuccess = CONST_RESSOURCE["401"];
             this.router.navigateByUrl('/');
           break;
-          case 404 :
-            this.textSuccess = "Virement introuvable vérifiez qu'il n'a pas déjà été traité"; 
+          case CONST_NOT_FOUND :
+            this.textSuccess = CONST_RESSOURCE["404"]; 
           break;
-          case 500 :
-            this.textSuccess ="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
+          case CONST_SERVEUR_ERROR :
+            this.textSuccess =CONST_RESSOURCE["500"];
           break;
-          case 0 :
-            this.textSuccess ="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";
+          case CONST_DELAIDEPASSE :
+            this.textSuccess =CONST_RESSOURCE["0"];
           break;
-          
         }
     }
     );

@@ -7,22 +7,22 @@ export class CustomHttpClient{
 
     constructor(private httpClient : HttpClient){}
 
-    get(url:string)
+    get(url:string, headers:HttpHeaders)
     {
         var userMail : String;
         var code :number;
         
-        let headers = new HttpHeaders();
-        
-        headers = headers.append("token", "localStorage.getItem('token_access')");
+        headers = headers.append("token", localStorage.getItem('token_access'));
 
-        return this.httpClient.get(url,{headers:headers})
+        return this.httpClient.get(url,{headers:headers});
     }
 
-    post(url:string,body:any)
+
+
+
+    post(url:string,body:any,headers:HttpHeaders)
     {
-        let headers = new HttpHeaders();
-        headers = headers.append("token", "localStorage.getItem('token_access')");
+        headers = headers.append("token", localStorage.getItem('token_access'));
 
         return this.httpClient.post(url,body,{headers:headers});
     }
