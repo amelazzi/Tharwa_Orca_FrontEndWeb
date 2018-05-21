@@ -5,7 +5,7 @@ import {Service} from './home.service';
 
 import { HttpHeaders, HttpClient , HttpClientModule } from '@angular/common/http';
 
-fdescribe ('Service ', () =>
+describe ('Service ', () =>
 {
   let httpMock : HttpTestingController;
   let service : Service;

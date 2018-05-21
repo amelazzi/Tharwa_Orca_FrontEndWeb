@@ -11,6 +11,14 @@
     background-color: rgb(62, 233, 10);
 }
 
+#myInput
+{
+    font-weight: bolder;
+    background-color: white;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+}
 
 .sidebar
 {
@@ -2220,6 +2228,7 @@ legend {
     margin-bottom: 20px;
     font-size: 21px;
 }
+
 
 output {
     padding-top: 8px;

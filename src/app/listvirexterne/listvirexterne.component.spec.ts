@@ -5,7 +5,7 @@ import {Service} from './listvireexterne.service';
 
 import { HttpHeaders, HttpClient , HttpClientModule } from '@angular/common/http';
 
-fdescribe ('Service ', () =>
+describe ('Service ', () =>
 {
   let httpMock : HttpTestingController;
   let service : Service;
@@ -24,16 +24,5 @@ fdescribe ('Service ', () =>
   });
 
 
-  it('devrait envoyer une requete pour récupérer la liste des virements externes',()=>
-  {
-    service.tryDeleteBlur()
-    .subscribe( data =>
-    {
-      console.log(data);
-    }
-    );
 
-    const requete = httpMock.expectOne(endpoint);
-    expect(requete.request.method).toBe('GET');
-  });
 });

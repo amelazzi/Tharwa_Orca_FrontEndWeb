@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {Service} from './listvire.service';
 import { CustomHttpClient } from '../../CustomHttpClient';
 import { CONST_UNAUTHORIZED, CONST_NOT_FOUND, CONST_SERVEUR_ERROR, CONST_DELAIDEPASSE, CONST_RESSOURCE } from '../../constante';
 
+import 'bootstrap';
 
-
+import * as $ from 'jquery'; // sera utilisé pour fermer le modal qui s'ouvre facilement
 
 @Component({
   selector: 'app-listvirexterne',
@@ -15,7 +16,7 @@ import { CONST_UNAUTHORIZED, CONST_NOT_FOUND, CONST_SERVEUR_ERROR, CONST_DELAIDE
 })
 export class ListvireComponent implements OnInit {
 
-  constructor(private httpClient:HttpClient, private router:Router) { }
+  constructor(private httpClient:HttpClient, private router:Router) {}
   
   virements : any[];
   successGet : boolean; 
@@ -30,7 +31,13 @@ export class ListvireComponent implements OnInit {
   textSuccess : String="";
   //texte qui affiche le résultat de la requete qui traite un virement
   ngOnInit() {
+
+
+  
+    this.success = null;
+
     
+
     this.getVirement();
     
     localStorage.setItem('selectedItem','3');
@@ -89,6 +96,7 @@ export class ListvireComponent implements OnInit {
     );
   }
 
+  noJustif: string;
   //fonction qui renvoie les informations d'un virement
   getVirementInfo(codeVire : String)
   {
@@ -98,7 +106,16 @@ export class ListvireComponent implements OnInit {
       i=i+1;
     }
     this.Virement = this.virements[i];
-    this.getImageFromService(this.Virement["Code"]);
+    var montant = +this.Virement["Montant"];
+    if(montant >= 200000){
+      this.noJustif = 'table';
+      
+      this.getImageFromService(this.Virement["Code"]);
+      //this.getImageFromService('THW000003DZDTHW000004DZD201805150916');
+    }else{
+      this.noJustif = 'none';      
+    }
+   
   }
 
   
@@ -127,6 +144,8 @@ export class ListvireComponent implements OnInit {
       {
         this.createImageFromBlob(data);
     }, error => {
+      console.log(error);
+      this.imageToShow = "";
       switch (error['status'])
       {
         case CONST_UNAUTHORIZED :
@@ -149,21 +168,31 @@ export class ListvireComponent implements OnInit {
 
 
   //fonction qui valide ou rejette un virement
-  valider(codeVire:string,status : string)
+  valider(codeVire:string,codeE:string,codeR:string,status : string)
   {
     let service=new Service(this.httpClient); 
-    service.valider(codeVire,status)
+    service.valider(codeVire,codeE,codeR,status)
     .subscribe(
       data =>
       {
         ////////////////////////a chercher : comment lire un ficheir json , close a modal programmaticaly
         this.success = true;
-        if(status === '0'){
+
+        if(status === '1'){
           this.textSuccess = CONST_RESSOURCE["virementValide"];
-        }else {
+          alert(this.textSuccess);
+        }else if (status === '2'){
+          
           this.textSuccess = CONST_RESSOURCE["virementNonValide"];
+          alert(this.textSuccess);
         }
+       
         this.getVirement();
+            
+        $("#info .close").click();
+        $("#infoBack .close").click();
+        this.success = null;
+        this.textSuccess = "";
       }
     ,err => 
     {

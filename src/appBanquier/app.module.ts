@@ -30,7 +30,6 @@ import { BloquerdebloquerComponent } from './bloquerdebloquer/bloquerdebloquer.c
   BloquerdebloquerComponent
 ],
   imports: [
-    
     ChartistModule,
     CommonModule,
     AppRoutingModule,

@@ -14,7 +14,7 @@ export class Service{
         var userMail : String;
         var code :number;
         var customHttpClient = new CustomHttpClient(this.httpClient);    
-        return customHttpClient.get('http://192.168.43.64:8088/Virement/ListVirementNonTraites',headers);
+        return customHttpClient.get('http://192.168.0.39:8080/Virement/ListVirementNonTraites',headers);
     }
 
 
@@ -23,21 +23,26 @@ export class Service{
         let headers = new HttpHeaders();
         headers = headers.append('codevirement',id);
         headers = headers.append('responseType', 'blob');
+
+        headers = headers.append("token", localStorage.getItem('token_access'));
+
         var customHttpClient = new CustomHttpClient(this.httpClient); 
-        return customHttpClient
-        .get("http://192.168.43.64:8088/virement/justificatif", headers);
+        return this.httpClient
+        .get("http://192.168.0.39:8080/virement/justificatif", {responseType:'blob',headers:headers});
     }
 
     
-    valider(codeVire:string,status : string)
+    valider(codeVire:string,codeEmmeteur:string,codeRecepteur:string,status : string)
     {   
         var body = 
         {
           'code' : codeVire,
+          'comptemetteur' : codeEmmeteur,
+          'comtpedestinataire':codeRecepteur,
           'statut' : status
         };
         var headers = new HttpHeaders();
         var customHttpClient = new CustomHttpClient(this.httpClient);
-        return customHttpClient.post('http://192.168.43.64:8088/Virement/validRejetVir',body,headers);
+        return customHttpClient.post('http://192.168.0.39:8080/virement/validRejetVirement',body,headers);
     }
 }

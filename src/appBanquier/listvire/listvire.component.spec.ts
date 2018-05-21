@@ -10,8 +10,8 @@ fdescribe ('Service ', () =>
   let httpMock : HttpTestingController;
   let service : Service;
 
-  const endpoint1 = "http://api-tharwaa.cleverapps.io/virement/validRejetVir";
-  const endpoint = "http://api-tharwaa.cleverapps.io/virement/ListVirementNonTraites";
+  const endpoint1 = "http://192.168.43.64/virement/validRejetVir";
+  const endpoint = "http://192.168.43.64/virement/ListVirementNonTraites";
 
   beforeEach(() =>
   {
@@ -38,6 +38,9 @@ fdescribe ('Service ', () =>
     expect(requete.request.method).toBe('GET');
   });
 
+
+
+
   it('devrait envoyer une requete pour valider ou rejeter un compte',()=>
   {
     let status : string;
@@ -59,7 +62,7 @@ fdescribe ('Service ', () =>
     );
 
     const requete = httpMock.expectOne(endpoint1);
-    expect(requete.request.method).toBe('PUT');
+    expect(requete.request.method).toBe('POST');
     
   });
 

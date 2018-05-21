@@ -63,7 +63,7 @@
   ],
   "test": {
     "karma": {
-      "config": "./karma.conf.js"
+      "config": "./karmaa.conf.js"
     }
   },
   "defaults": {

@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-
   
 </head>
 <body> 
 <!--modal contenant des infos sur le compte et le client choisit-->
 <div id="info" class="modal fade info2" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog" id="infoBack">
             <div class="modal-content modal-virement">
                 <div class="modal-header">
                     <p>Infomations sur le virement</p>
@@ -19,7 +18,7 @@
                 </div>
                 <div class="modal-body">
                     
-                    <div class="form-group label-floating col-md-12">
+                    <div class="form-group label-floating col-md-12" [ngStyle] ="{'display': noJustif}">
                         Justificatif :<img class="justificatif" [src]="imageToShow">
                     </div>
                     <div class="row">
@@ -91,17 +90,17 @@
                 </div>
                 <div class="form-footer">
                     <div class="alert" [ngClass]="{'alert-success': success===true, 'alert-danger':success===false,
-                        'invisible' : success ===NULL}">
+                        'invisible' : success ===null}">
                         {{textSuccess}}
                     </div>
 
                     <button type="button" class="btn btn-danger pull-left"
-                    (click) = "valider(Virement['Code'],0)" data-dismiss="modal">
+                    (click) = "valider(Virement['Code'],Virement['CompteEmmetteur'],Virement['CompteDestinataire'],'2')" >
                         Bloquer
-                    </button>
+                    </button> 
 
                     <button type="button" class="btn btn-success pull-right" id="valider"
-                    (click) = "valider(Virement['Code'],1)" data-dismiss="modal">
+                    (click) = "valider(Virement['Code'],Virement['CompteEmmetteur'],Virement['CompteDestinataire'],'1')" >
                         Valider
                     </button>
 
@@ -117,6 +116,8 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
+                            <input class="form-control" id="myInput" type="text" placeholder="Rechercher dans la table ...">
+                            
                             <div class="card">
                                 <div class="card-content ">
                                     <br>
@@ -125,10 +126,9 @@
                                     [ngClass]="{'alert-danger':successGet===false, 'invisible':successGet!=false}">
                                         {{textFailed}}
                                     </div>
-                                    <input class="form-control" id="myInput" type="text" placeholder="Rechercher dans la table ...">
                                     <table class="table" id="myTable">
                                         <thead class="table-header" sortable>
-                                            <li>Date</li>
+                                            <li>Code</li>
                                             <li>Montant</li>
                                             <li>Motif</li>
                                             <li>Emetteur</li>
@@ -137,7 +137,7 @@
                                                 
                                         <tbody id="tbody">
                                             <tr *ngFor="let virement of virements">
-                                                <td>{{virement.Date}}</td>
+                                                <td>{{virement.Code}}</td>
                                                 <td>{{virement.Montant}}</td>
                                                 <td>{{virement.Motif}}</td>
                                                 <td>{{virement.NomEmetteur}}</td>
@@ -146,23 +146,6 @@
                                                     <i class="material-icons" data-toggle="modal" 
                                                     data-target="#info"
                                                     (click)="getVirementInfo(virement.Code)">
-                                                        visibility
-                                                    </i>
-                                                </td>
-                                            </tr>
-
-
-                                            
-                                            <tr >    
-                                                <td>0505454</td>
-                                                <td>5454545454</td>
-                                                <td>virement.Motif</td>
-                                                <td>virement.NomEmetteur</td>
-                                                <td>virement.NomDestinataire</td>
-                                                <td>
-                                                    <i class="material-icons" data-toggle="modal" 
-                                                    data-target="#info"
-                                                    (click)="getVirementInfo(2)">
                                                         visibility
                                                     </i>
                                                 </td>
