@@ -5,7 +5,7 @@ import {Service} from './listvire.service';
 import { CustomHttpClient } from '../../CustomHttpClient';
 import { CONST_UNAUTHORIZED, CONST_NOT_FOUND, CONST_SERVEUR_ERROR, CONST_DELAIDEPASSE, CONST_RESSOURCE } from '../../constante';
 
-import 'bootstrap';
+import 'bootstrap'; 
 
 import * as $ from 'jquery'; // sera utilisé pour fermer le modal qui s'ouvre facilement
 
@@ -197,7 +197,6 @@ export class ListvireComponent implements OnInit {
     ,err => 
     {
       this.success = false;
-      
       switch (err['status'])
         {
           case CONST_UNAUTHORIZED :

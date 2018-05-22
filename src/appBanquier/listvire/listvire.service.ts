@@ -18,7 +18,7 @@ export class Service{
     }
 
 
-    getImage(id: string) 
+    getImage(id: string)  
     {
         let headers = new HttpHeaders();
         headers = headers.append('codevirement',id);

@@ -10,7 +10,7 @@ export class CustomHttpClient{
     get(url:string, headers:HttpHeaders)
     {
         var userMail : String;
-        var code :number;
+        var code :number; 
         
         headers = headers.append("token", localStorage.getItem('token_access'));
 
