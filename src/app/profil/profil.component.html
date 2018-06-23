@@ -7,6 +7,10 @@
                         <h4 class="title">Editer le Profil</h4>
                     </div>
                     <div class="card-content">
+                            <div class="alert" 
+                            [ngClass]="{'alert-danger':successGet===false, 'invisible':successGet!=false}">
+                                {{textFailed}}
+                            </div>
                         <form [formGroup] = "formCtrl" (ngSubmit) ="saveUpdate()">
                             <div class="row">
                                 <div class="col-md-4">
@@ -47,12 +51,14 @@
                                 </div>
                             </div>
                             <button type="submit" [disabled]="formCtrl.invalid" 
-                            class="btn btn-primary pull-right">Confirmer</button>
+                            class="btn btn-primary pull-right" (click)="updateProfile()">Confirmer</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>
             </div>
+
+
 
 
 
@@ -81,12 +87,16 @@
                       
                     </div>
                     <div class="modal-body" [formGroup] ="formMdp">
+                            <div class="alert" 
+                            [ngClass]="{'alert-danger':successMdp===false, 'invisible':successMdp!=false, 'alert-success': successMdp===true}">
+                                {{textMDP}}
+                            </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Mot de passe actuel</label>
-                                    <input type="password" formControlName ="mpdOld" name="mdpOld" 
-                                    required
+                                    <input type="password" formControlName ="mdpOld" name="mdpOld" 
+                                    required [(ngModel)] = 'mdpOld'
                                     class="form-control">
                                 </div>
                             </div>
@@ -113,7 +123,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" [disabled] = "formMdp.invalid">
+                        <button type="button" (click)="changerMdp(mdpNewRep)" 
+                        class="btn btn-primary" [disabled] = "formMdp.invalid">
                           Changer
                         </button>
                     </div>

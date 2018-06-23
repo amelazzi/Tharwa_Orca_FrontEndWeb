@@ -1,3 +1,132 @@
-<p>
-  profilebanquier works!
-</p>
+<div class="content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-header" data-background-color="purple">
+                      <h4 class="title">Editer le Profil</h4>
+                  </div>
+                  <div class="card-content">
+                      <div class="alert" 
+                      [ngClass]="{'alert-danger':successGet===false, 'invisible':successGet!=false}">
+                          {{textFailed}}
+                      </div>
+                      <form [formGroup] = "formCtrl" (ngSubmit) ="saveUpdate()">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <div class="form-group label-floating" >
+                                      <label class="control-label">Adresse Email</label>
+                                      <input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
+                                      formControlName ="mail" name="mail"
+                                      class="form-control" [(ngModel)]='mail' readonly >
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group label-floating">
+                                      <label class="control-label">Nom</label>
+                                      <input type="text" formControlName ="nom" name="nom" 
+                                      required pattern="[A-Za-z]+"
+                                      class="form-control"[(ngModel)]='nom'>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group label-floating">
+                                      <label class="control-label">Prenom</label>
+                                      <input type="text" formControlName ="prenom" name="prenom" 
+                                      pattern="[A-Za-z]+"
+                                      required class="form-control"[(ngModel)]='prenom'>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <div class="form-group label-floating">
+                                      <label class="control-label">Télephone</label>
+                                      <input type="text" formControlName ="tel" name="tel" 
+                                      pattern="[0-9]{10}"
+                                      required class="form-control"[(ngModel)]='tel'>
+                                  </div>
+                              </div>
+                          </div>
+                          <button type="submit" [disabled]="formCtrl.invalid" 
+                          class="btn btn-primary pull-right" (click)="updateProfile()">Confirmer</button>
+                          <div class="clearfix"></div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+
+
+          <div class="col-md-4">
+
+              <div class="card card-profile">
+                  <div class="content-profile">
+                      <h4 class="card-title">Sécurité de Compte</h4>
+                      <button class="btn btn-primary btn-round" 
+                      data-toggle="modal" data-target="#changeMDP">Changer de Mot de Passe</button>
+
+                  </div>
+              </div>
+          </div>
+
+          <div id="changeMDP" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <h4 class="modal-title">Changer de Mot de Passe</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    
+                  </div>
+                  <div class="modal-body" [formGroup] ="formMdp">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Mot de passe actuel</label>
+                                  <input type="password" formControlName ="mpdOld" name="mdpOld" 
+                                  required
+                                  class="form-control">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Nouveau mot de passe</label>
+                                  <input type="password" formControlName ="mdpNew" name="mdpNew" 
+                                  required [(ngModel)] = 'mpdNew' 
+                                  class="form-control">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Répéter le nouveau mot de passe</label>
+                                  <input type="password" formControlName ="mdpNewRep" name="mdpNewRep" 
+                                  required  [(ngModel)] = 'mdpNewRep'
+                                  class="form-control">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" [disabled] = "formMdp.invalid">
+                        Changer
+                      </button>
+                  </div>
+                </div>
+            
+              </div>
+         </div>
+
+
+      </div>
+  </div>
+</div>

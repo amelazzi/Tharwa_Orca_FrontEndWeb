@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 import {NgStyle} from '@angular/common';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Service } from './homeBanquier.service';
+import 'bootstrap'; 
+
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-home',
@@ -28,9 +32,8 @@ export class HomeBanquierComponent implements OnInit {
     this.userId = localStorage.getItem('mail');
     localStorage.setItem('selectedItem','1');
 
-      
-    localStorage.setItem('blur','false');
-
+    //test a enlever plus tard  
+    localStorage.setItem('blur','false'); 
 
     //si on est dans un etat ou le user a entré un bon code on vérifie l'access_token qu'on a
     if(localStorage.getItem('blur') === "false")
@@ -76,6 +79,7 @@ export class HomeBanquierComponent implements OnInit {
         {
           case 401 :
             this.textFailed ="cette session a expiré vous allez être redirigé vers la page de connexion";
+            this.router.navigateByUrl('/');
           break;
           case 500 :
             this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
@@ -152,6 +156,7 @@ export class HomeBanquierComponent implements OnInit {
         {
           case 401 :
             this.textSuccess="Cette session a expiré vous allez être redirigé vers la page de connexion";
+            this.router.navigateByUrl('/');
           break;
           case 404 :
             this.textSuccess="Compte introuvable vérifiez qu'il n'a pas déjà été traité"; 
@@ -191,6 +196,7 @@ export class HomeBanquierComponent implements OnInit {
         {
           case 401 :
             this.textSuccess="cette session a expiré vous allez être redirigé vers la page de connexion";
+            this.router.navigateByUrl('/');
           break;
           case 404 :
             this.textSuccess="Compte introuvable vérifiez qu'il n'a pas déjà été traité"; 

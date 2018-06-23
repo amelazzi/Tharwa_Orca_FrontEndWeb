@@ -16,11 +16,12 @@
           </button>
         </form>
     </div>
-
+    <br>
     <div class="alert" 
     [ngClass]="{'alert-danger':successRecherche===false, 'invisible': successRecherche!=false}">
         {{textFailed}}
     </div>
+    
     <div class="card"
     [ngClass]="{'invisible': successRecherche!=true}">
         <div class="card-header" data-background-color="green">

@@ -17,10 +17,20 @@ export class AddbanquierComponent implements OnInit {
   adr:String;
   tel :String ; 
   pass : String;
+
+  show : boolean; // variable qui servira à définir si le mot de passe du banquier en saisi est visible ou non
+  iconVisibility : String; // variable qui contient l'icon à afficher selon la visibilité du mot de passe
+
+
+  
   constructor(private httpClient:HttpClient, private router:Router) { }
   formAddBanquier:FormGroup;
   ngOnInit() {
     localStorage.setItem('selectedItem','5');
+    
+    this.typeInput = "password" 
+    this.show = false;
+    this.iconVisibility = "visibility";
 
 
     this.formAddBanquier = new FormGroup({
@@ -64,5 +74,22 @@ export class AddbanquierComponent implements OnInit {
         }
       }
     );
+  }
+
+
+  typeInput : String;
+  showMdp()
+  //fonction qui cache ou montre le mot de passe en saisi du banquier
+  {
+    if(this.show === true)
+    {
+      this.typeInput = "text"
+      this.show = false;
+      this.iconVisibility = 'visibility_off';
+    }else{
+      this.typeInput = "password"
+      this.show = true;
+      this.iconVisibility = 'visibility'
+    }
   }
 }

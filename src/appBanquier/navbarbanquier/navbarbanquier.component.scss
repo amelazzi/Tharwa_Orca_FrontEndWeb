@@ -64,11 +64,16 @@
         display: flex;
         flex-direction: row;
     }
+    .navGeneral li i,
+    .navGeneral span
+    {
+        color: black;
+    }
 
     .navUl li:nth-child(1) 
     {
         
-        margin-left: -40%;
+        margin-left: -50%;
         margin-right: 40%;
     }
 
@@ -102,7 +107,8 @@
         box-shadow: 2px 0px 8px rgb(200,200,200);
     }
 
-    .navGeneral li
+    .navGeneral li i,
+    .navGeneral span
     {
         color: black;
     }
@@ -110,9 +116,8 @@
     
     .navUl li:nth-child(1) 
     {
-        width: 20%;
-        margin-left: 50%;
-        margin-right: 10%;
+        margin-left: -50%;
+        margin-right: 40%;
     }
 
 
@@ -125,12 +130,6 @@
     #sideMenuDisplayer 
     {
         visibility: visible;
-    }
-    
-
-    .nav-text
-    {
-        visibility: hidden;
     }
 
 }

@@ -120,6 +120,9 @@ export class HomeComponent implements OnInit {
 
     ///test a enlever plus tard 
     localStorage.setItem('blurGest','false');
+
+
+    
     this.selectedTab = 1 ;
     localStorage.setItem('selectedItem','1');
     if(localStorage.getItem('blurGest') === "false")

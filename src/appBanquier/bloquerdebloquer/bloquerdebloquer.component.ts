@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-
+import {HttpClient, HttpHeaders, HttpClientModule} from "@angular/common/http";
+import { CONST_UNAUTHORIZED, CONST_NOT_FOUND, CONST_SERVEUR_ERROR, CONST_DELAIDEPASSE, CONST_RESSOURCE } from '../../constante';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bloquerdebloquer',
@@ -9,7 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class BloquerdebloquerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpClient:HttpClient, private router:Router) { }
   
   mail:String;
   numCompte:String;
@@ -43,13 +45,94 @@ export class BloquerdebloquerComponent implements OnInit {
     });
   }
 
-  changerStatutCompte()
-  {
+  changerStatutCompte(status:Number)
+  { 
+    var headers = new HttpHeaders();
     
+
+    if(this.success == true)
+    {
+      this.success = false ;
+    }else 
+    {
+      this.success = true
+    }
+
+    this.httpClient.put('http://192.168.0.164:8080/accounts/reject',{headers:headers})
+    .subscribe(
+      data =>
+      {
+        this.success = true;
+        this.textSuccess="";
+      }
+      ,err => 
+      {
+        this.success = false;
+        switch (err['status'])
+        {
+          case CONST_UNAUTHORIZED :
+            this.textSuccess = CONST_RESSOURCE["401"];
+            this.router.navigateByUrl('/');
+          break;
+          case CONST_NOT_FOUND :
+            this.textSuccess =CONST_RESSOURCE["404"];
+          break;
+          case CONST_SERVEUR_ERROR :
+            this.textSuccess = CONST_RESSOURCE["500"];
+          break;
+          case CONST_DELAIDEPASSE :
+            this.textSuccess =CONST_RESSOURCE["0"];
+          break; 
+        }
+      }
+    );
   }
 
   rechercherCompte()
   {    
+    var headers = new HttpHeaders();
+    
+
+    if(this.successRecherche == true)
+    {
+      this.successRecherche = false ;
+    }else 
+    {
+      this.successRecherche = true
+    }
+
+    this.action = "Bloquer";
+    this.lock = "lock";
+
+    this.httpClient.put('http://192.168.0.164:8080/accounts/reject',{headers:headers})
+    .subscribe(
+      data =>
+      {
+        this.successRecherche = true;
+      }
+      ,err => 
+      {
+        this.successRecherche = false ;
+        
+        switch (err['status'])
+        {
+          case CONST_UNAUTHORIZED :
+            this.textFailed = CONST_RESSOURCE["401"];
+            this.router.navigateByUrl('/');
+          break;
+          case CONST_NOT_FOUND :
+            this.textFailed =CONST_RESSOURCE["404"];
+          break;
+          case CONST_SERVEUR_ERROR :
+            this.textFailed = CONST_RESSOURCE["500"];
+          break;
+          case CONST_DELAIDEPASSE :
+            this.textFailed =CONST_RESSOURCE["0"];
+          break; 
+        }
+      }
+    );
+
 
   }
 }

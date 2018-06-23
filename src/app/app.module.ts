@@ -18,6 +18,7 @@ import { AddbanqueComponent } from './addbanque/addbanque.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
+import { CommissionComponent } from './commission/commission.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HomeComponent } from './home/home.component';
     AddbanquierComponent,
     ListbanquierComponent,
     ListbanqueComponent,
-    ProfilComponent
+    ProfilComponent,
+    CommissionComponent
   ],
   imports: [
     ReactiveFormsModule,

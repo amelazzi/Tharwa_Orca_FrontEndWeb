@@ -30,6 +30,7 @@ import { ListbanquierComponent } from '../app/listbanquier/listbanquier.componen
 import { AddbanquierComponent } from '../app/addbanquier/addbanquier.component';
 import { ListvirexterneComponent } from '../app/listvirexterne/listvirexterne.component';
 import { AddbanqueComponent } from '../app/addbanque/addbanque.component';
+import { CommissionComponent} from '../app/commission/commission.component';
 
 const routes: Routes = [
   
@@ -78,6 +79,11 @@ const routes: Routes = [
         component : AddbanquierComponent,
         outlet:'popup'
       },
+      {
+        path : 'commission',
+        component : CommissionComponent,
+        outlet:'popup'
+      }
     ]
   },
   {

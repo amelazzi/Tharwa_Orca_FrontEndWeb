@@ -62,8 +62,9 @@
             <div class="col-md-3">
               <div class="form-group label-floating ">
                   <label class="control-label">Mot de passe</label>
-                  <input type="password" class="form-control" required name="pass"
-                  [(ngModel)]='pass' formControlName ="pass" >
+                  <input [type]="typeInput" class="form-control" required name="pass"
+                  [(ngModel)]='pass' formControlName ="pass">
+                  <i class="material-icons"(click)="showMdp()">{{iconVisibility}}</i>
               </div>
             </div>
           </div>

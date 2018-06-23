@@ -1,7 +1,14 @@
+.sidebar p:hover,
+.sidebar i:hover
+{
+    color: black;   
+}
+
 .sidebar p,i
 {
     color: white;
 }
+
 .sidebar
 {
     position: fixed;

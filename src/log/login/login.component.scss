@@ -6,66 +6,171 @@
 }
 
 
-.card
-{
-    width: 30%;
-    margin-left: 10%;
-    height: 550px;
+
+
+@media (min-width:1081px) {
+    /*pour les autres écran plus conséquents*/
+    .card
+    {
+        width: 30%;
+        margin-left: 10%;
+        height: 550px;
+    }
+
+
+    .envoie
+    {
+        margin-left: 20%;
+        margin-top: 5%;
+    }
+
+    .form-group
+    {
+        margin-left: 20%;
+        width: 60%;
+    }
+
+
+    #submit-log
+    {
+        margin-top: 5%;
+    }
+
+
+
+
+ 
+
+    .fond
+    {
+        position: fixed;
+        top: 0%;
+        left: 50%;
+        background-image: url("../../assets/img/fondAuth.jpg") ;
+        background-size: 100%  100%;
+        background-repeat: no-repeat;
+        width: 55%;
+        text-align: center;
+        padding-top: 25%;
+        padding-bottom: 25%;
+        color: white;
+
+    }
+
+
+    .btn
+    {
+        margin-top: -5%;
+    }
+
+    .logo
+    {
+        width: 50%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto ;
+    }
 }
 
 
-.envoie
-{
-    margin-left: 20%;
-    margin-top: 5%;
+@media (max-width:1081px) {
+    /*pour les autres écran plus conséquents*/
+    .card
+    {
+        width: 50%;
+        margin-left: 25%;
+        height: 600px;
+    }
+
+
+    .envoie
+    {
+        margin-left: 20%;
+        margin-top: 5%;
+    }
+
+    .form-group
+    {
+        margin-left: 20%;
+        width: 60%;
+    }
+
+
+    #submit-log
+    {
+        margin-top: 5%;
+    }
+
+    .fond
+    {
+        display: none;
+    }
+
+
+    .btn
+    {
+        margin-top: -5%;
+    }
+
+    .logo
+    {
+        width: 50%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto ;
+    }
 }
 
-.form-group
-{
-    margin-left: 20%;
-    width: 60%;
-}
+
+@media (max-width:760px) {
+    /*pour les autres écran plus conséquents*/
+    .content-fluid 
+    {
+        overflow-x: hidden;
+    }
+
+    .card
+    {
+        width: 80%;
+        margin-left: 10%;
+        height: 600px;
+    }
 
 
-#submit-log
-{
-    margin-top: 5%;
-}
+    .envoie
+    {
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+
+    .form-group
+    {
+        margin-left: 5%;
+        width: 95%;
+    }
 
 
+    #submit-log
+    {
+        margin-top: 5%;
+    }
+
+    .fond
+    {
+        display: none;
+    }
 
 
+    .btn
+    {
+        margin-top: -5%;
+    }
 
-
-.fond
-{
-    position: fixed;
-    top: 0%;
-    left: 50%;
-    background-image: url("../../assets/img/fondAuth.jpg") ;
-    background-size: 100%  100%;
-    background-repeat: no-repeat;
-    width: 55%;
-    text-align: center;
-    padding-top: 25%;
-    padding-bottom: 25%;
-    color: white;
-
-}
-
-
-.btn
-{
-    margin-top: -5%;
-}
-
-
-
-
-.logo
-{
-    width: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto ;
+    .logo
+    {
+        width: 50%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto ;
+    }
 }
