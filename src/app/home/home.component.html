@@ -29,6 +29,7 @@
 
     <div class="container-cards" [ngClass] = "{'body':getBlurState()=== true}">
         <div class="row">
+            
                     <div class="card card-stats card-dash">
                         <div class="card-header" data-background-color="orange">
                             <i class="material-icons">content_copy</i>
@@ -74,8 +75,12 @@
                     </div>
                 
         </div>
-            
-        <div class="card-dash container-dash">    
+        <div class="alert" 
+        [ngClass]="{'alert-danger':success===false, 'invisible': success!=false}">
+            {{textFailed}}
+        </div> 
+        <div class="card-dash container-dash">   
+
             <ul class="nav nav-tabs">
                 <li class="nav-items" [ngClass] = "{'activTab':selectedTab===1}" (click)="selectedTab=1">
                     <a class="link header" data-toggle="tab" href="#operation">Opérations</a>
@@ -84,14 +89,16 @@
                     <a class="link header" data-toggle="tab" href="#commission">Commissions</a>
                 </li>
             </ul>
-                
+
                 <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane active" id="operation">
-                    
+
+
+
 
                     <!--Card contenant le graphe du nombre de transactions par mois-->
-                    <div class="container-graphe">
+                <div class="container-graphe">
                     <div class=" card">
                         <div class="card-header" data-background-color="purple">
                             <h4 class="title">Opérations par Mois</h4>
@@ -126,31 +133,45 @@
                                     
                                     <!--Dessin des lignes du graphe virement entre compte du même client-->
                                     <g class="ct-series ct-series-a">
-                                        <path [(attr.d)] = "tabGraphes[0]" class="ct-line" name="grapheCac"/>
+                                        <path [(attr.d)] = "tabGraphes[101]" class="ct-line" name="grapheCD"/>
                                     </g>
-
-                                    <!--Dessin des lignes du graphe virement entre 
-                                    2 clients de banques différentes (Tharwa et une autre ) -->
                                     <g class="ct-series ct-series-b">
-                                        <path [(attr.d)] = "tabGraphes[1]" class="ct-line" name="grapheExt"/>
+                                        <path [(attr.d)] = "tabGraphes[102]" class="ct-line" name="grapheDC"/>
                                     </g>
-                                    <!--Dessin des lignes du graphe virement entre 2 clients différents de tharwa-->
                                     <g class="ct-series ct-series-c">
-                                        <path [(attr.d)] = "tabGraphes[2]" class="ct-line" name="grapheThw"/>
+                                        <path [(attr.d)] = "tabGraphes[103]" class="ct-line" name="grapheCE"/>
                                     </g>
-
-    
-
+                                    <g class="ct-series ct-series-d">
+                                        <path [(attr.d)] = "tabGraphes[104]" class="ct-line" name="grapheEC"/>
+                                    </g>
+                                    <g class="ct-series ct-series-e">
+                                        <path [(attr.d)] = "tabGraphes[105]" class="ct-line" name="grapheThw"/>
+                                    </g>
+                                    <g class="ct-series ct-series-f">
+                                        <path [(attr.d)] = "tabGraphes[106]" class="ct-line" name="grapheThwExt"/>
+                                    </g>
+                                    <g class="ct-series ct-series-g">
+                                        <path [(attr.d)] = "tabGraphes[107]" class="ct-line" name="grapheExtThw"/>
+                                    </g>
                                 </svg>
                                 
                                 <div class="footer">
                                         <div class="legend">
-                                            <i class="fa fa-circle text-info" (click)="showGraphe(0)">
-                                                Virement entre comptes du même client</i>
-                                            <i class="fa fa-circle text-danger" (click)="showGraphe(1)">
-                                                Virement externe</i>
-                                            <i class="fa fa-circle text-warning" (click)="showGraphe(2)">
-                                                Virement tharwa</i>
+                                            <i class="fa fa-circle text-info" (click)="showGraphe(101)">
+                                                Courant vers Devise</i>
+                                            <i class="fa fa-circle text-danger" (click)="showGraphe(102)">
+                                                Devise vers Courant</i>
+                                            <i class="fa fa-circle text-warning" (click)="showGraphe(103)">
+                                                Courant Vers Epargne</i>
+                                            <i class="fa fa-circle text-purple" (click)="showGraphe(104)">
+                                                Epargne vers Courant</i>
+                                            <i class="fa fa-circle text-success" (click)="showGraphe(105)">
+                                                Vers un autre client THARWA</i>
+                                            <i class="fa fa-circle text-gris" (click)="showGraphe(106)">
+                                                Vers un client d'une autre banque</i>
+                                            <i class="fa fa-circle text-gris" (click)="showGraphe(107)">
+                                                Virement reçu depuis une autre banque</i>
+                                            
                                         </div>
                                 </div>
                                 
@@ -161,83 +182,117 @@
                                 style="width: 74px; height: 20px">{{month}}</span>
                         </div>
                         <div class="ylabels">
-                                <span *ngFor="let nombre of nbVirsMois" class="ct-label ct-horizontal ct-end" 
+                                <span *ngFor="let nombre of YNbMois" class="ct-label ct-horizontal ct-end" 
                                 style="width: 74px; height: 20px">{{nombre}}</span>
                         </div>
                         
                     </div>
                 </div>
 
+
+
                     <!--Card contenant le graphe du nombre de transactions par trimestres-->
-                    <div class="container-graphe">
-                    <div class=" card">
-                        <div class="card-header" data-background-color="blue">
-                            <h4 class="title">Opérations par Trimestre</h4>
-                            <i class="category">Nombre d'opéarions par types et par trimestre</i>
-                        </div>
-                        <div class="ct-chart">    
-                            <svg  width="100%" height="245px" class="ct-chart-line">
-                                <!--Dessin de la grille du graphe ( lignes horizontales en pointillets-->
-                                <g class="ct-grids">
-                                    <line y1="185.625" y2="185.625" x1="50" x2="767" 
-                                    class="ct-grid ct-vertical"></line>
-                                    
-                                    <line y1="161.25" y2="161.25" x1="50" x2="767" 
-                                    class="ct-grid ct-vertical"></line>
-                                    
-                                    <line y1="136.875" y2="136.875" x1="50" x2="767" 
-                                    class="ct-grid ct-vertical"></line>
-                                    
-                                    <line y1="112.5" y2="112.5" x1="50" x2="767" 
-                                    class="ct-grid ct-vertical"></line>
-                                    
-                                    <line y1="88.125" y2="88.125" x1="50" x2="767" 
-                                    class="ct-grid ct-vertical"></line>
-                                    
-                                    <line y1="63.75" y2="63.75" x1="50" x2="767" 
-                                    class="ct-grid ct-vertical"></line>
-                                    
-                                    <line y1="39.375" y2="39.375" x1="50" x2="767" 
-                                    class="ct-grid ct-vertical"></line>
-                                </g> 
-                                <!--deltaY=23 entre 2 ligne horizontale pour 1.5mm de margin-->
-                                <!--Dessin des lignes du graphe-->
-                                <g class="ct-series ct-series-a">
-                                    <path [(attr.d)] = "tabGraphes[3]" class="ct-line" name="grapheJ"/>
-                                </g>
-                                <g class="ct-series ct-series-b">
-                                    <path [(attr.d)] = "tabGraphes[4]" class="ct-line" name="grapheJ"/>
-                                </g>
-                                <g class="ct-series ct-series-c">
-                                    <path [(attr.d)] = "tabGraphes[5]" class="ct-line" name="grapheJ"/>
-                                </g>
-                            </svg>
+                <div class="container-graphe">
+                        <div class=" card">
+                            <div class="card-header" data-background-color="blue">
+                                <h4 class="title">Opérations par Trimèstre</h4>
+                                <i class="category">Nombre d'opéarions par types et par trimèstre</i>
+                            </div>
                             
-                            <div class="footer">
+                            <div class="ct-chart">    
+                                <svg class="ct-chart-line">
+                                    <!--Dessin de la grille du graphe ( lignes horizontales en pointillets-->
+                                    <g class="ct-grids">
+                                        <line y1="185.625" y2="185.625" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="161.25" y2="161.25" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="136.875" y2="136.875" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="112.5" y2="112.5" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="88.125" y2="88.125" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="63.75" y2="63.75" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="39.375" y2="39.375" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                    </g> 
+                                    
+                                    <!--Dessin des lignes du graphe virement entre compte du même client-->
+                                    <g class="ct-series ct-series-a">
+                                        <path [(attr.d)] = "tabGraphes[201]" class="ct-line" name="grapheCD"/>
+                                    </g>
+                                    <g class="ct-series ct-series-b">
+                                        <path [(attr.d)] = "tabGraphes[202]" class="ct-line" name="grapheDC"/>
+                                    </g>
+                                    <g class="ct-series ct-series-c">
+                                        <path [(attr.d)] = "tabGraphes[203]" class="ct-line" name="grapheCE"/>
+                                    </g>
+                                    <g class="ct-series ct-series-d">
+                                        <path [(attr.d)] = "tabGraphes[204]" class="ct-line" name="grapheEC"/>
+                                    </g>
+                                    <g class="ct-series ct-series-e">
+                                        <path [(attr.d)] = "tabGraphes[205]" class="ct-line" name="grapheThw"/>
+                                    </g>
+                                    <g class="ct-series ct-series-f">
+                                        <path [(attr.d)] = "tabGraphes[206]" class="ct-line" name="grapheThwExt"/>
+                                    </g>
+                                    <g class="ct-series ct-series-g">
+                                        <path [(attr.d)] = "tabGraphes[207]" class="ct-line" name="grapheExtThw"/>
+                                    </g>
+                                </svg>
+                                
+                                <div class="footer">
                                     <div class="legend">
-                                        <i class="fa fa-circle text-info" (click)="showGraphe(3)">
-                                            Virement entre comptes du même client</i>
-                                        <i class="fa fa-circle text-danger" (click)="showGraphe(4)">
-                                            Virement externe</i>
-                                        <i class="fa fa-circle text-warning" (click)="showGraphe(5)">
-                                            Virement Tharwa</i>
+                                        <i class="fa fa-circle text-info" (click)="showGraphe(201)">
+                                            Courant vers Devise</i>
+                                        <i class="fa fa-circle text-danger" (click)="showGraphe(202)">
+                                            Devise vers Courant</i>
+                                        <i class="fa fa-circle text-warning" (click)="showGraphe(203)">
+                                            Courant Vers Epargne</i>
+                                        <i class="fa fa-circle text-purple" (click)="showGraphe(204)">
+                                            Epargne vers Courant</i>
+                                        <i class="fa fa-circle text-success" (click)="showGraphe(205)">
+                                            Vers un autre client THARWA</i>
+                                        <i class="fa fa-circle text-gris" (click)="showGraphe(206)">
+                                            Vers un client d'une autre banque</i>
+                                        <i class="fa fa-circle text-gris" (click)="showGraphe(207)">
+                                            Virement reçu depuis une autre banque</i>
                                     </div>
+                                </div>
+                            </div>
+                            
+                            <div class="xlabels">
+                                    <span *ngFor="let term of terms" class="ct-label ct-horizontal jour ct-end" 
+                                    style="width: 74px; height: 20px">{{term}}</span>
+                            </div>
+                            <div class="ylabels">
+                                    <span *ngFor="let nombre of YNbTrimetre" class="ct-label ct-horizontal ct-end" 
+                                    style="width: 74px; height: 20px">{{nombre}}</span>
                             </div>
                             
                         </div>
-                        <div class="xlabels">
-                                <span *ngFor="let term of terms" class="ct-label ct-horizontal jour ct-end" 
-                                style="width: 74px; height: 20px">{{term}}</span>
-                        </div>
-                        <div class="ylabels">
-                                <span *ngFor="let nombre of nbVirsTrim" class="ct-label ct-horizontal ct-end" 
-                                style="width: 74px; height: 20px">{{nombre}}</span>
-                        </div>
-                    </div>
                     </div>
 
+
+
+
+
+
+
+
+
+
+
                     <!--Card contenant le graphe du nombre de transactions par Annee-->
-                    <div class="container-graphe"> 
+                <div class="container-graphe"> 
                     <div class=" card">
                             <div class="card-header" data-background-color="green">
                                 <h4 class="title">Opérations par Année</h4>
@@ -271,58 +326,272 @@
                                     <!--deltaY=23 entre 2 ligne horizontale pour 1.5mm de margin-->
                                     <!--Dessin des lignes du graphe-->
                                     <g class="ct-series ct-series-a">
-                                        <path [(attr.d)] = "tabGraphes[6]" class="ct-line" />
+                                        <path [(attr.d)] = "tabGraphes[301]" class="ct-line" name="grapheCD"/>
                                     </g>
                                     <g class="ct-series ct-series-b">
-                                        <path [(attr.d)] = "tabGraphes[7]" class="ct-line" />
+                                        <path [(attr.d)] = "tabGraphes[302]" class="ct-line" name="grapheDC"/>
                                     </g>
                                     <g class="ct-series ct-series-c">
-                                        <path [(attr.d)] = "tabGraphes[8]" class="ct-line" />
+                                        <path [(attr.d)] = "tabGraphes[303]" class="ct-line" name="grapheCE"/>
+                                    </g>
+                                    <g class="ct-series ct-series-d">
+                                        <path [(attr.d)] = "tabGraphes[304]" class="ct-line" name="grapheEC"/>
+                                    </g>
+                                    <g class="ct-series ct-series-e">
+                                        <path [(attr.d)] = "tabGraphes[305]" class="ct-line" name="grapheThw"/>
+                                    </g>
+                                    <g class="ct-series ct-series-f">
+                                        <path [(attr.d)] = "tabGraphes[306]" class="ct-line" name="grapheThwExt"/>
+                                    </g>
+                                    <g class="ct-series ct-series-g">
+                                        <path [(attr.d)] = "tabGraphes[307]" class="ct-line" name="grapheExtThw"/>
                                     </g>
                                 </svg>
                                 
                                 <div class="footer">
                                         <div class="legend">
-                                            <i class="fa fa-circle text-info" (click)="showGraphe(6)">
-                                                Virement entre comptes du même client</i>
-                                            <i class="fa fa-circle text-danger" (click)="showGraphe(7)">
-                                                Virement externe</i>
-                                            <i class="fa fa-circle text-warning" (click)="showGraphe(8)">
-                                                Virement Tharwa</i>
+                                            <i class="fa fa-circle text-info" (click)="showGraphe(301)">
+                                                Courant vers Devise</i>
+                                            <i class="fa fa-circle text-danger" (click)="showGraphe(302)">
+                                                Devise vers Courant</i>
+                                            <i class="fa fa-circle text-warning" (click)="showGraphe(303)">
+                                                Courant Vers Epargne</i>
+                                            <i class="fa fa-circle text-purple" (click)="showGraphe(304)">
+                                                Epargne vers Courant</i>
+                                            <i class="fa fa-circle text-success" (click)="showGraphe(305)">
+                                                Vers un autre client THARWA</i>
+                                            <i class="fa fa-circle text-gris" (click)="showGraphe(306)">
+                                                Vers un client d'une autre banque</i>
+                                            <i class="fa fa-circle text-gris" (click)="showGraphe(307)">
+                                                Virement reçu depuis une autre banque</i>
                                         </div>
                                 </div>
                                 
                             </div>
                             <div class="xlabels">
-                                    <span *ngFor="let day of days" class="ct-label ct-horizontal annee ct-end" 
-                                    style="width: 74px; height: 20px">{{day}}</span>
+                                    <span *ngFor="let year of anneesNb" class="ct-label ct-horizontal annee ct-end" 
+                                    style="width: 74px; height: 20px">{{year}}</span>
                             </div>
                             <div class="ylabels">
-                                    <span *ngFor="let nombreA of nbVirsAnnee" class="ct-label ct-horizontal ct-end" 
+                                    <span *ngFor="let nombreA of YNbAnne " class="ct-label ct-horizontal ct-end" 
                                     style="width: 74px; height: 20px">{{nombreA}}</span>
                             </div>
                         </div>
                     </div>
                     
                 </div>
+
+                <!--********************************Commissions********************************************-->
                 <div class="tab-pane container" id="commission">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header card-chart" data-background-color="orange">
-                                <div class="ct-chart" id="emailsSubscriptionChart"></div>
+
+
+                        <!--********************************Commissions par Mois******************************-->
+
+                    <div class="container-graphe">
+                        <div class=" card">
+                            <div class="card-header" data-background-color="blue">
+                                <h4 class="title">Commissions par Mois</h4>
+                                <i  class="category">Montant des commissions par mois</i>
                             </div>
-                            <div class="card-content">
-                                <h4 class="title">Email Subscriptions</h4>
-                                <p class="category">Last Campaign Performance</p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            <div class="ct-chart">    
+                                <svg  width="100%" height="245px" class="ct-chart-line">
+                                    <!--Dessin de la grille du graphe ( lignes horizontales en pointillets-->
+                                    <g class="ct-grids">
+                                        <line y1="185.625" y2="185.625" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="161.25" y2="161.25" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="136.875" y2="136.875" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="112.5" y2="112.5" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="88.125" y2="88.125" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="63.75" y2="63.75" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="39.375" y2="39.375" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                    </g> 
+                                    <!--deltaY=23 entre 2 ligne horizontale pour 1.5mm de margin-->
+                                    <!--Dessin des lignes du graphe-->
+                                    <g class="ct-series ct-series-a">
+                                        <path [(attr.d)] = "tabGraphes[9]" class="ct-line" name="grapheJ"/>
+                                    </g>
+                                </svg>
+                                
+                                <div class="footer">
+                                        <div class="legend">
+                                            <i class="fa fa-circle text-info" (click)="showGraphe(3)">
+                                                Montant de commission</i>
+                                        </div>
                                 </div>
+                                
+                            </div>
+                            <div class="xlabels">
+                                    <span *ngFor="let mois of mois" class="ct-label ct-horizontal mois ct-end" 
+                                    style="width: 74px; height: 20px">{{mois}}</span>
+                            </div>
+                            <div class="ylabels">
+                                    <span *ngFor="let nombre of YComMois" class="ct-label ct-horizontal ct-end" 
+                                    style="width: 74px; height: 20px">{{nombre}}</span>
                             </div>
                         </div>
                     </div>
+
+
+                    <!--**************************************** commission par trimestre-->
+                    <div class="container-graphe">
+                        <div class=" card">
+                            <div class="card-header" data-background-color="yellow">
+                                <h4 class="title">Opérations par Trimestre</h4>
+                                <i class="category">Nombre d'opéarions par types et par trimestre</i>
+                            </div>
+                            <div class="ct-chart">    
+                                <svg  width="100%" height="245px" class="ct-chart-line">
+                                    <!--Dessin de la grille du graphe ( lignes horizontales en pointillets-->
+                                    <g class="ct-grids">
+                                        <line y1="185.625" y2="185.625" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="161.25" y2="161.25" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="136.875" y2="136.875" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="112.5" y2="112.5" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="88.125" y2="88.125" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="63.75" y2="63.75" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                        
+                                        <line y1="39.375" y2="39.375" x1="50" x2="767" 
+                                        class="ct-grid ct-vertical"></line>
+                                    </g> 
+                                    <!--deltaY=23 entre 2 ligne horizontale pour 1.5mm de margin-->
+                                    <!--Dessin des lignes du graphe-->
+                                    <g class="ct-series ct-series-a">
+                                        <path [(attr.d)] = "tabGraphes[12]" class="ct-line" name="grapheJ"/>
+                                    </g>
+                                </svg>
+                                
+                                <div class="footer">
+                                        <div class="legend">
+                                            <i class="fa fa-circle text-info">
+                                                Montant des commissions</i>
+                                        </div>
+                                </div>
+                                
+                            </div>
+                            <div class="xlabels">
+                                    <span *ngFor="let term of trimetres" class="ct-label ct-horizontal jour ct-end" 
+                                    style="width: 74px; height: 20px">{{term}}</span>
+                            </div>
+                            <div class="ylabels">
+                                    <span *ngFor="let nombre of YComTrimetre" class="ct-label ct-horizontal ct-end" 
+                                    style="width: 74px; height: 20px">{{nombre}}</span>
+                            </div>
+                        </div>
+                        </div>
+<!--***********************************************************Commission par Annee-->
+
+                    <div class="container-graphe"> 
+                        <div class=" card">
+                                <div class="card-header" data-background-color="green">
+                                    <h4 class="title">Commissions par Année</h4>
+                                    <i class="category">Montant des commisions par année</i>
+                                </div>
+                                <div class="ct-chart">    
+                                    <svg  width="100%" height="245px" class="ct-chart-line">
+                                        <!--Dessin de la grille du graphe ( lignes horizontales en pointillets-->
+                                        <g class="ct-grids">
+                                            <line y1="185.625" y2="185.625" x1="50" x2="767" 
+                                            class="ct-grid ct-vertical"></line>
+                                            
+                                            <line y1="161.25" y2="161.25" x1="50" x2="767" 
+                                            class="ct-grid ct-vertical"></line>
+                                            
+                                            <line y1="136.875" y2="136.875" x1="50" x2="767" 
+                                            class="ct-grid ct-vertical"></line>
+                                            
+                                            <line y1="112.5" y2="112.5" x1="50" x2="767" 
+                                            class="ct-grid ct-vertical"></line>
+                                            
+                                            <line y1="88.125" y2="88.125" x1="50" x2="767" 
+                                            class="ct-grid ct-vertical"></line>
+                                            
+                                            <line y1="63.75" y2="63.75" x1="50" x2="767" 
+                                            class="ct-grid ct-vertical"></line>
+                                            
+                                            <line y1="39.375" y2="39.375" x1="50" x2="767" 
+                                            class="ct-grid ct-vertical"></line>
+                                        </g> 
+                                        <!--deltaY=23 entre 2 ligne horizontale pour 1.5mm de margin-->
+                                        <!--Dessin des lignes du graphe-->
+                                        <g class="ct-series ct-series-a">
+                                            <path [(attr.d)] = "tabGraphes[10]" class="ct-line" />
+                                        </g>
+                                        
+                                    </svg>
+                                    
+                                    <div class="footer">
+                                            <div class="legend">
+                                                <i class="fa fa-circle text-info">
+                                                    Montant des commissions</i>
+                                            </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="xlabels">
+                                        <span *ngFor="let year of annees" class="ct-label ct-horizontal annee ct-end" 
+                                        style="width: 74px; height: 20px">{{year}}</span>
+                                </div>
+                                <div class="ylabels">
+                                        <span *ngFor="let nombre of YComAnne" class="ct-label ct-horizontal ct-end" 
+                                        style="width: 74px; height: 20px">{{nombre}}</span>
+                                </div>
+                            </div>
+                        </div>
+                <!--************************************************Commissions par jours-->
+                        <div class="container-graphe"> 
+                            <div class=" card ">
+                                    <div class="card-header" data-background-color="red">
+                                        <h4 class="title">Commissions par Jours</h4>
+                                        <i class="category">Montant des commisions par jours</i>
+                                    </div>
+                                    <input class="form-control" id="myInput" type="text" placeholder="Rechercher dans la table ...">
+                                    <div class="card-tableau">
+                                        <table class="table" id="myTable">
+                                                <thead class="table-header">
+                                                    <th>Date</th>
+                                                    <th>Montant</th>
+                                                </thead>
+                                                    
+                                                <tbody id="tbody">
+                                                    <tr *ngFor="let montant of montants">
+                                                        <td >{{montant.date}}</td>
+                                                        <td >{{montant.montant}}</td>
+                                                    </tr>
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                 </div>
+
+                
+                
+
+
             </div>
         </div>
     </div>    

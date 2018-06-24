@@ -13,7 +13,7 @@ import * as $ from 'jquery';
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home', 
   templateUrl: './homeBanquier.component.html',
   styleUrls: ['./homeBanquier.component.scss']
 })
@@ -25,6 +25,10 @@ export class HomeBanquierComponent implements OnInit {
   displayBlur : String;
   userId : String;
   mode : String ; // mode d'envoie du code de validation
+
+
+
+
 
   ngOnInit() 
   {

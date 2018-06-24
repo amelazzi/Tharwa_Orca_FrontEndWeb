@@ -198,9 +198,20 @@ body
     width: 100%;  
 }
 
+
+.card-tableau{
+    overflow-y: auto;
+    height: 50mm;
+}
+
 @media (min-width:1081px) {
     /* For PC */
-
+    #myTable
+    {
+        width: 90%;
+        margin-left: 5%;
+        font-size: 23px;
+    }
 
     .nav-items 
     {
@@ -269,6 +280,13 @@ body
 
 @media (max-width:1080px) {
     /* For tablets: */
+    #myTable
+    {
+        width: 90%;
+        margin-left: 5%;
+        font-size: 18px;
+    }
+
     .card-dash
     {       
         width: 47%;
@@ -304,6 +322,14 @@ body
 
 @media (max-width:890px) {
     /* For tablets: */
+
+    #myTable
+    {
+        width: 90%;
+        margin-left: 5%;
+        font-size: 16px;
+    }
+
     .card-dash
     {       
         width: 47%;
@@ -341,6 +367,12 @@ body
 
 @media (max-width:762px){
     /* For mobile phones: */
+    #myTable
+    {
+        width: 50%;
+        margin-left: 5%;
+        font-size: 14px;
+    }
     .card-dash
     {
         width: 95%;
@@ -404,7 +436,13 @@ body
     margin-right: 72px;
 }
 
+.text-gris
+{
+    color: rgb(100,100,100);
+}
 
-
-
+.text-purple
+{
+    color: rgb(86, 14, 180);
+}
 

@@ -14,7 +14,7 @@ export class Service{
         var userMail : String;
         var code :number;
         var customHttpClient = new CustomHttpClient(this.httpClient);    
-        return customHttpClient.get('http://192.168.0.39:8080/Virement/ListVirementNonTraites',headers);
+        return customHttpClient.get('http://192.168.137.1:8080/Virement/ListVirementNonTraites',headers);
     }
 
 
@@ -28,7 +28,7 @@ export class Service{
 
         var customHttpClient = new CustomHttpClient(this.httpClient); 
         return this.httpClient
-        .get("http://192.168.0.39:8080/virement/justificatif", {responseType:'blob',headers:headers});
+        .get("http://192.168.137.1:8080/virement/justificatif", {responseType:'blob',headers:headers});
     }
 
     
@@ -43,6 +43,6 @@ export class Service{
         };
         var headers = new HttpHeaders();
         var customHttpClient = new CustomHttpClient(this.httpClient);
-        return customHttpClient.post('http://192.168.0.39:8080/virement/validRejetVirement',body,headers);
+        return customHttpClient.post('http://192.168.137.1:8080/virement/validRejetVirement',body,headers);
     }
 }
