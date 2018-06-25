@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { Service } from './listvireexterne.service';
+import { CONST_RESSOURCE } from '../../constante';
 
 @Component({
   selector: 'app-listvirexterne',
@@ -15,11 +16,10 @@ export class ListvirexterneComponent implements OnInit {
 
   ngOnInit() {
     localStorage.setItem('selectedItem','3');
-    
-    localStorage.setItem('blurGest','false');
+    localStorage.setItem('token_access',"Vk5sdkIaq5fAnhepbrXOndqFtRscTXrVQWPUKX5bjAKsZAI4UJSpEKItNEoBJdsgECrVCHTCOohIozlsuugwnD3wKnRtYOtnZBJ14NGwZH4Ya6TnOpfSWbo5Bxvh4ybjI1385jHklEDfsqoSwLstQv792W7E6ENA3klObi4QrMExjbEPOJUbmUX5j6uwT36MM87zNIjXqOW6c3GKaXGANvQ9HOCaX2eNaDQtySq5iJv5dvUJgnQodrN7GYXVpxq");
+
 
     this.getVireExterne();
-
   }
 
   virements :any[];
@@ -52,14 +52,14 @@ export class ListvirexterneComponent implements OnInit {
           i=i+1;
         }
 
-
+ 
       }, err =>
       {
         this.successGet = false;
         switch (err['status'])
         {
           case 401 :
-            this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
+            alert(CONST_RESSOURCE["401"]);
             this.router.navigateByUrl('/');
           break;
           case 500 :

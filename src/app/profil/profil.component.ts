@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import {FormGroup, FormControl, FormControlName} from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
+import { CONST_URL } from '../../constante';
 
 @Component({
   selector: 'app-profil',
@@ -23,25 +24,7 @@ export class ProfilComponent implements OnInit {
   mail:String=" ";
   tel:String=" ";
 
-  updateProfile(){
-    var headers = new HttpHeaders();
 
-    headers = headers.append("token",localStorage.getItem('token_access'));
-    headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
-    
-    var body = "";
-    this.httpClient.post('',body,{headers:headers})
-    .subscribe(
-      data =>
-      {
-         
-      }
-      ,err => 
-      {
-         
-      }
-    )
-  }
 
 
   ngOnInit() {
@@ -69,7 +52,7 @@ export class ProfilComponent implements OnInit {
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
 
     var body ="userId="+localStorage.getItem('mail')+"";
-    
+
     this.httpClient.post('http://192.168.0.196:8080/profil',body,{headers:headers})
     .subscribe(
       data => 
@@ -115,17 +98,19 @@ export class ProfilComponent implements OnInit {
 
 
    
-  changerMdp(mdp:String){
-    
-    if(this.mdpNew == this.mdpNewRep){
+  changerMdp(){
       
       var headers = new HttpHeaders();
       headers = headers.append("token",localStorage.getItem('token_access'));
-      headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
 
-      var body ="userId="+localStorage.getItem('mail')+"";
+      var body ={
+        'newMdP' : this.mdpNew,
+        'oldMDP' : this.mdpOld
+      }
+      
+      
 
-      this.httpClient.post('http://192.168.0.196:8080/profil',body,{headers:headers})
+      this.httpClient.put('http://'+CONST_URL+':8080/users/mdp',body,{headers:headers})
       .subscribe(
         data => 
         {
@@ -138,7 +123,8 @@ export class ProfilComponent implements OnInit {
           switch (err['status'])
           {
             case 401 :
-              this.textMDP ="cette session a expiré vous allez être redirigé vers la page de connexion";
+              alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+              this.router.navigateByUrl('/');
             break;
             case 500 :
               this.textMDP="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
@@ -149,11 +135,6 @@ export class ProfilComponent implements OnInit {
           }
         }
       );
-    }else{
-      this.successMdp = false;
-      this.textMDP ="Vous avez mal répéter le mot de passe";
-    }
-
     
   }
 }

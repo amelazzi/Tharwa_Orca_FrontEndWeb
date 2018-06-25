@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 
 import {NgStyle} from '@angular/common';
-import { CONST_CD, CONST_CE, CONST_DC, CONST_EC, CONST_Thw, CONST_ExtThw, CONST_ThwExt, CONST_URL } from '../../constante';
+import { CONST_CD, CONST_CE, CONST_DC, CONST_EC, CONST_Thw, CONST_ExtThw, CONST_ThwExt, CONST_URL, CONST_RESSOURCE } from '../../constante';
 
 @Component({
   selector: 'app-home',
@@ -121,7 +121,7 @@ export class HomeComponent implements OnInit {
   {
     this.userId = localStorage.getItem('mail');
     ///test a enlever plus tard 
-    localStorage.setItem('blurGest','false');
+    //localStorage.setItem('blurGest','false');
     
     this.getComMois();
     this.getComAnnee();
@@ -158,7 +158,7 @@ export class HomeComponent implements OnInit {
     }
     var headers = new HttpHeaders()
     headers = headers.append('token',localStorage.getItem('token_access'))
-    this.httpClient.post('http://'+CONST_URL+':8088/statistique/commission',body,{headers:headers})
+    this.httpClient.post('http://'+CONST_URL+':8080/statistique/commission',body,{headers:headers})
     .subscribe(
       data => {
         let max = data["succe"][0]["montant"];
@@ -194,7 +194,8 @@ export class HomeComponent implements OnInit {
         switch (err['status'])
         {
           case 401 :
-            this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
+          alert(CONST_RESSOURCE["401"]);
+          this.router.navigateByUrl('/');
           break;
           case 500 :
             this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
@@ -215,7 +216,7 @@ export class HomeComponent implements OnInit {
     }
     var headers = new HttpHeaders()
     headers = headers.append('token',localStorage.getItem('token_access'))
-    this.httpClient.post('http://'+CONST_URL+':8088/statistique/commission',body,{headers:headers})
+    this.httpClient.post('http://'+CONST_URL+':8080/statistique/commission',body,{headers:headers})
     .subscribe(
       data => {
         let max = data["succe"][0]["montant"];
@@ -251,7 +252,8 @@ export class HomeComponent implements OnInit {
         switch (err['status'])
         {
           case 401 :
-            this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
+          alert(CONST_RESSOURCE["401"]);
+          this.router.navigateByUrl('/');
           break;
           case 500 :
             this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
@@ -274,7 +276,7 @@ export class HomeComponent implements OnInit {
     }
     var headers = new HttpHeaders()
     headers = headers.append('token',localStorage.getItem('token_access'))
-    this.httpClient.post('http://'+CONST_URL+':8088/statistique/commission',body,{headers:headers})
+    this.httpClient.post('http://'+CONST_URL+':8080/statistique/commission',body,{headers:headers})
     .subscribe(
       data => {
         this.montants = data["succe"];
@@ -285,7 +287,8 @@ export class HomeComponent implements OnInit {
         switch (err['status'])
         {
           case 401 :
-            this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
+          alert(CONST_RESSOURCE["401"]);
+          this.router.navigateByUrl('/');
           break;
           case 500 :
             this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
@@ -306,7 +309,7 @@ export class HomeComponent implements OnInit {
     }
     var headers = new HttpHeaders()
     headers = headers.append('token',localStorage.getItem('token_access'))
-    this.httpClient.post('http://'+CONST_URL+':8088/statistique/commission',body,{headers:headers})
+    this.httpClient.post('http://'+CONST_URL+':8080/statistique/commission',body,{headers:headers})
     .subscribe(
       data => {
         let max = data["succe"][0]["montant"];
@@ -341,7 +344,8 @@ export class HomeComponent implements OnInit {
         switch (err['status'])
         {
           case 401 :
-            this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
+          alert(CONST_RESSOURCE["401"]);
+          this.router.navigateByUrl('/');
           break;
           case 500 :
             this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
@@ -365,7 +369,7 @@ getNbMois(){
   }
   var headers = new HttpHeaders()
   headers = headers.append('token',localStorage.getItem('token_access'))
-  this.httpClient.post('http://'+CONST_URL+':8088/statistique/operation',body,{headers:headers})
+  this.httpClient.post('http://'+CONST_URL+':8080/statistique/operation',body,{headers:headers})
   .subscribe(
     data => {
       let max = data["succe"][0]["nombre"];
@@ -446,7 +450,8 @@ getNbMois(){
       switch (err['status'])
       {
         case 401 :
-          this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
+        alert(CONST_RESSOURCE["401"]);
+        this.router.navigateByUrl('/');
         break;
         case 500 :
           this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
@@ -470,7 +475,7 @@ getNbMois(){
     }
     var headers = new HttpHeaders()
     headers = headers.append('token',localStorage.getItem('token_access'))
-    this.httpClient.post('http://'+CONST_URL+':8088/statistique/operation',body,{headers:headers})
+    this.httpClient.post('http://'+CONST_URL+':8080/statistique/operation',body,{headers:headers})
     .subscribe(
       data => {
         let max = data["succe"][0]["nombre"];
@@ -552,7 +557,8 @@ getNbMois(){
         switch (err['status'])
         {
           case 401 :
-            this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
+          alert(CONST_RESSOURCE["401"]);
+          this.router.navigateByUrl('/');
           break;
           case 500 :
             this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
@@ -573,7 +579,7 @@ getNbMois(){
     }
     var headers = new HttpHeaders()
     headers = headers.append('token',localStorage.getItem('token_access'))
-    this.httpClient.post('http://'+CONST_URL+':8088/statistique/operation',body,{headers:headers})
+    this.httpClient.post('http://'+CONST_URL+':8080/statistique/operation',body,{headers:headers})
     .subscribe(
       data => {
         let max = data["succe"][0]["nombre"];
@@ -660,7 +666,8 @@ getNbMois(){
         switch (err['status'])
         {
           case 401 :
-            this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
+          alert(CONST_RESSOURCE["401"]);
+          this.router.navigateByUrl('/');
           break;
           case 500 :
             this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
@@ -735,7 +742,7 @@ getNbMois(){
     
 
     //on envoie la requete au serveur d'authentification pour vérifier le code a 4 chiffres
-    this.httpClient.post('http://192.168.0.164:8081/oauth/login',body,{headers:headers})
+    this.httpClient.post('http://'+CONST_URL+':8081/oauth/login',body,{headers:headers})
     .subscribe(responseToken =>
       //reponse donné par le serveur après avoir valider le code, elle contient l'access token
       {
@@ -751,7 +758,7 @@ getNbMois(){
         //on envoie la requete pour vérifier le token reçu au service app
         
         //this.httpClient.get('http://api-tharwaa.cleverapps.io/users/dashBoard',{headers : headers})
-        this.httpClient.get('http://192.168.0.164:8080/users/dashBoard',{headers : headers})
+        this.httpClient.get('http://'+CONST_URL+':8080/users/dashBoard',{headers : headers})
         .subscribe(response =>  
           {
             // si le code est valide
@@ -777,8 +784,6 @@ getNbMois(){
         alert("oups une erreur sur notre serveur est survenue ! veuillez réessayer dans un instant");
       }
     });
-
-
   }
 
   showGraphe(idGraphe : number)
@@ -802,6 +807,7 @@ getNbMois(){
   getBlurState()
   {
     if (localStorage.getItem('blurGest')==='true'){
+      alert("");
       return true;
     }
     else

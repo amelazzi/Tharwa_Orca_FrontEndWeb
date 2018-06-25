@@ -6,6 +6,7 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
 
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { CONST_URL } from '../../constante';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,9 @@ export class LoginComponent implements OnInit {
       mail: new FormControl(''),
       pass: new FormControl(''),
     });
+    localStorage.clear();
     localStorage.setItem('blur','true');
+    localStorage.setItem('blurGest','true');
     this.mode = "0";
   }
 
@@ -35,29 +38,24 @@ export class LoginComponent implements OnInit {
   authentifier( userMail:String, pass:String )
   {
     var headers = new HttpHeaders();
-    
-
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
-
-    
     const body="userId=" + userMail + "&Pwd=" + pass + "&code="+this.mode+"";
     
-    //this.httpClient.post('https://auththarwa.cleverapps.io/oauth/code',body, {headers: headers})
-    this.httpClient.post('http://192.168.0.164:8081/oauth/code',body, {headers: headers})
+    this.httpClient.post('http://'+CONST_URL+':8081/oauth/code',body, {headers: headers})
     .subscribe(response => 
       {
         console.log(response);
+        
         
         //blur sera utilisé pour savoir si on doit floudifier le fond ou pas
 
         localStorage.setItem('mail',""+this.mail);
         localStorage.setItem('mode',""+this.mode+"");
-        localStorage.setItem('auth','true');
-        //auth sera utilisé pour savoir si l'utilisateur s'est authentifier avec succès
         localStorage.setItem('blur','true');
         localStorage.setItem('blurGest','true');
         if ( response["type"] === 0)
         {
+        
           this.router.navigateByUrl('/gestionnaire');
         }
         else if (response["type"] === 1)

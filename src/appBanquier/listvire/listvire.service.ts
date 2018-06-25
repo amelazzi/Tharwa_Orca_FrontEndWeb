@@ -2,6 +2,7 @@ import {Injectable, Inject} from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {CustomHttpClient} from '../../CustomHttpClient'
 import {HttpHeaders} from '@angular/common/http';
+import { CONST_URL } from '../../constante';
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class Service{
         var userMail : String;
         var code :number;
         var customHttpClient = new CustomHttpClient(this.httpClient);    
-        return customHttpClient.get('http://192.168.137.1:8080/Virement/ListVirementNonTraites',headers);
+        return customHttpClient.get('http://192.168.137.171:8080/Virement/ListVirementNonTraites',headers);
     }
 
 
@@ -24,11 +25,12 @@ export class Service{
         headers = headers.append('codevirement',id);
         headers = headers.append('responseType', 'blob');
 
+
         headers = headers.append("token", localStorage.getItem('token_access'));
 
         var customHttpClient = new CustomHttpClient(this.httpClient); 
         return this.httpClient
-        .get("http://192.168.137.1:8080/virement/justificatif", {responseType:'blob',headers:headers});
+        .get("http://192.168.137.171:8080/virement/justificatif", {responseType:'blob',headers:headers});
     }
 
     
@@ -43,6 +45,6 @@ export class Service{
         };
         var headers = new HttpHeaders();
         var customHttpClient = new CustomHttpClient(this.httpClient);
-        return customHttpClient.post('http://192.168.137.1:8080/virement/validRejetVirement',body,headers);
+        return customHttpClient.post('http://192.168.137.171:8080/virement/validRejetVirement',body,headers);
     }
 }

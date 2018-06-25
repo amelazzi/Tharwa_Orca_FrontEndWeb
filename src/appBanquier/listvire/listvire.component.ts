@@ -32,10 +32,8 @@ export class ListvireComponent implements OnInit {
   //texte qui affiche le résultat de la requete qui traite un virement
   ngOnInit() {
 
-
-  
+    
     this.success = null;
-
     
 
     this.getVirement();
@@ -111,7 +109,7 @@ export class ListvireComponent implements OnInit {
       this.noJustif = 'table';
       
       this.getImageFromService(this.Virement["Code"]);
-      //this.getImageFromService('THW000003DZDTHW000004DZD201805150916');
+      
     }else{
       this.noJustif = 'none';      
     }

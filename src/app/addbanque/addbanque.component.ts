@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
-import { CONST_UNAUTHORIZED, CONST_DELAIDEPASSE,CONST_NOT_FOUND,CONST_RESSOURCE,CONST_SERVEUR_ERROR,CONST_VALIDE } from '../../constante';
+import { CONST_UNAUTHORIZED, CONST_DELAIDEPASSE,CONST_NOT_FOUND,CONST_RESSOURCE,CONST_SERVEUR_ERROR,CONST_VALIDE, CONST_BADREQUEST } from '../../constante';
 import { Service } from '../../app/addbanque/addbanque.service';
 
 @Component({
@@ -42,28 +42,31 @@ export class AddbanqueComponent implements OnInit {
     let service = new Service(this.httpClient);
     
     var body={
-      'code': this.code,
-      'raison': this.raison,
-      'adresse' :this.adresse,
-      'mail' : this.mail
+      'Code': this.code,
+      'RaisonSocial': this.raison,
+      'Adresse' :this.adresse,
+      'Mail' : this.mail
     };
-
+    
     service.addBanque(body)
     .subscribe(
       data => {
         ////à compléter une fois le service coté back end pret
-
-        alert("banque ajouté");
         
-        this.router.navigateByUrl('/gestionnaire/listbanque');
+        this.router.navigateByUrl('gestionnaire/(popup:listbanque)');
       },err =>{
         this.success = false;
         console.log(err);
         switch (err['status'])
         {
           case CONST_UNAUTHORIZED :
-            this.textFailed = CONST_RESSOURCE["401"];
+            alert(CONST_RESSOURCE["401"]);
+            
             this.router.navigateByUrl('/');
+          break;
+          case CONST_BADREQUEST :
+         
+            this.textFailed = CONST_RESSOURCE["BanqueAjoutee"];
           break;
           case CONST_NOT_FOUND :
             this.textFailed =CONST_RESSOURCE["404"];

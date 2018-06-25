@@ -40,7 +40,7 @@
             [ngClass]="{'alert-danger':success===false, 'invisible': success!=false}">
                 {{textFailed}}
             </div>
-          <input class="btn pull-right" type="submit" (submit)="addBanque()" [disabled]="formBanque.invalid" 
+          <input class="btn pull-right" type="submit" (click)="addBanque()" [disabled]="formBanque.invalid" 
           data-background-color="orange">
             
         </form>

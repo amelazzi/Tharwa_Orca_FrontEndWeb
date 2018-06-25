@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import {Service} from './addbanquier.service';
+import { CONST_RESSOURCE } from '../../constante';
 @Component({
   selector: 'app-addbanquier',
   templateUrl: './addbanquier.component.html',
@@ -54,8 +55,8 @@ export class AddbanquierComponent implements OnInit {
     .subscribe(
       data => 
       {
-        alert("Le Compte banquier a bien été ajouté");
-        this.router.navigateByUrl('/gestionnaire/listbanquier');
+        
+        this.router.navigateByUrl('gestionnaire/(popup:listbanquier)');
       }
       ,err => 
       {
@@ -63,10 +64,14 @@ export class AddbanquierComponent implements OnInit {
         switch (err['status'])
         {
           case 401 :
-            this.textFailed="cette session a expiré vous allez être redirigé vers la page de connexion";
+          alert(CONST_RESSOURCE["401"]);
+          this.router.navigateByUrl('/');
           break;
           case 500 :
             this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
+          break;
+          case 400 :
+            this.textFailed="Ce compte existe deja";
           break;
           case 0 :
             this.textFailed="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";

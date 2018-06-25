@@ -10,6 +10,7 @@ import { Service } from './homeBanquier.service';
 import 'bootstrap'; 
 
 import * as $ from 'jquery';
+import { CONST_RESSOURCE, CONST_URL } from '../../constante';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class HomeBanquierComponent implements OnInit {
 
     //test a enlever plus tard  
     localStorage.setItem('blur','false'); 
+    localStorage.setItem('token_access','Vk5sdkIaq5fAnhepbrXOndqFtRscTXrVQWPUKX5bjAKsZAI4UJSpEKItNEoBJdsgECrVCHTCOohIozlsuugwnD3wKnRtYOtnZBJ14NGwZH4Ya6TnOpfSWbo5Bxvh4ybjI1385jHklEDfsqoSwLstQv792W7E6ENA3klObi4QrMExjbEPOJUbmUX5j6uwT36MM87zNIjXqOW6c3GKaXGANvQ9HOCaX2eNaDQtySq5iJv5dvUJgnQodrN7GYXVpxq')
 
     //si on est dans un etat ou le user a entré un bon code on vérifie l'access_token qu'on a
     if(localStorage.getItem('blur') === "false")
@@ -82,7 +84,7 @@ export class HomeBanquierComponent implements OnInit {
         switch (err['status'])
         {
           case 401 :
-            this.textFailed ="cette session a expiré vous allez être redirigé vers la page de connexion";
+          alert(CONST_RESSOURCE["401"]);
             this.router.navigateByUrl('/');
           break;
           case 500 :
@@ -144,14 +146,16 @@ export class HomeBanquierComponent implements OnInit {
     headers = headers.append("token", localStorage.getItem('token_access'));
     var body = "num="+this.numCompte+"";
 
-    //this.httpClient.put('http://api-tharwaa.cleverapps.io/accounts/validate',body,{headers:headers})
-    this.httpClient.put('http://192.168.0.164:8080/accounts/validate',body,{headers:headers})
+    
+    this.httpClient.put('http://'+CONST_URL+':8080/accounts/validate',body,{headers:headers})
     .subscribe(
       data =>
       {
-        this.textSuccess="Compte validé avec succès";
-        this.success = true;
+        
+        this.success = null;
         this.getCompte();
+        $("#info .close").click();
+        $("#infoBack .close").click();
       }
       ,err => 
       {
@@ -159,7 +163,7 @@ export class HomeBanquierComponent implements OnInit {
         switch (err['status'])
         {
           case 401 :
-            this.textSuccess="Cette session a expiré vous allez être redirigé vers la page de connexion";
+          alert(CONST_RESSOURCE["401"]);
             this.router.navigateByUrl('/');
           break;
           case 404 :
@@ -184,14 +188,15 @@ export class HomeBanquierComponent implements OnInit {
     headers = headers.append("token", localStorage.getItem('token_access'));
     var body = "num="+this.numCompte+"";
 
-    //this.httpClient.put('http://api-tharwaa.cleverapps.io/accounts/validate',body,{headers:headers})
-    this.httpClient.put('http://192.168.0.164:8080/accounts/reject',body,{headers:headers})
+    
+    this.httpClient.put('http://'+CONST_URL+':8080/accounts/reject',body,{headers:headers})
     .subscribe(
       data =>
       {
-        this.success = true;
-        this.textSuccess="Compte rejeté avec succès";
+        this.success = null;
         this.getCompte();
+        $("#info .close").click();
+        $("#infoBack .close").click();
       }
       ,err => 
       {
@@ -199,7 +204,7 @@ export class HomeBanquierComponent implements OnInit {
         switch (err['status'])
         {
           case 401 :
-            this.textSuccess="cette session a expiré vous allez être redirigé vers la page de connexion";
+            alert(CONST_RESSOURCE["401"]);
             this.router.navigateByUrl('/');
           break;
           case 404 :
@@ -232,7 +237,7 @@ export class HomeBanquierComponent implements OnInit {
 
     //on envoie la requete au service pour vérifier le code a 4 chiffres
     //this.httpClient.post('https://auththarwa.cleverapps.io/oauth/login',body,{headers:headers})
-    this.httpClient.post('http://192.168.0.164:8081/oauth/login',body,{headers:headers})
+    this.httpClient.post('http://'+CONST_URL+':8081/oauth/login',body,{headers:headers})
     .subscribe(responseToken =>
       //reponse donné par le serveur après avoir valider le code, elle contient l'access token
       {
@@ -245,7 +250,7 @@ export class HomeBanquierComponent implements OnInit {
         headers = headers.append("token",localStorage.getItem('token_access'));
 
         //on envoie la requete pour vérifier le token reçu au service app
-        this.httpClient.get('http://192.168.0.164:8080/users/dashBoard',{headers : headers})
+        this.httpClient.get('http://'+CONST_URL+':8080/users/dashBoard',{headers : headers})
         .subscribe(response =>  
           {
             // si le code est valide
@@ -267,7 +272,7 @@ export class HomeBanquierComponent implements OnInit {
       switch (err['status'])
         {
           case 401 :
-            alert("cette session a expiré vous allez être redirigé vers la page de connexion");
+            alert(CONST_RESSOURCE["401"]);
             this.router.navigateByUrl('/');
           break;
           case 404 :

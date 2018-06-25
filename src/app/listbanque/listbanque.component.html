@@ -12,43 +12,45 @@
 
 <!--modl qui s'affiche pour éditer les information relatives à une banque selectionné-->
     <div id="info" class="modal fade info2" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog " id="infoBack">
             <div class="modal-content modal-banque">
                 <div class="modal-header">
                     <p>Infomations sur la banque</p>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="form-group label-floating col-md-4">
-                                <label class="control-label">Code de la banque</label>
-                                <input type="text" class="form-control" [(ngModel)]="banque['code']" 
-                                >
+                    <form [formGroup]="formBanque">
+                        <div class="row">
+                            <div class="form-group label-floating col-md-4">
+                                    <label class="control-label">Code de la banque</label>
+                                    <input type="text" class="form-control" [(ngModel)]="banque['Code']" 
+                                    pattern="[A-Z]{3}" formControlName="code" readonly required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group label-floating col-md-4">
-                            <label class="control-label">Raison sociale</label>
-                            <input type="text" class="form-control" [(ngModel)]="banque['raisonSoaciale']" 
-                            >
+                        <div class="row">
+                            <div class="form-group label-floating col-md-8">
+                                <label class="control-label">Raison sociale</label>
+                                <input type="text" class="form-control" [(ngModel)]="banque['RaisonSocial']" 
+                                required  formControlName="raison">
+                            </div>
                         </div>
-                    </div>
-                     
-                    <div class="row">
-                        <div class="form-group label-floating col-md-4">
-                                <label class="control-label">Adresse</label>
-                                <input type="text" class="form-control" [(ngModel)]="banque['adresse']" 
-                                >
+                        
+                        <div class="row">
+                            <div class="form-group label-floating col-md-8">
+                                    <label class="control-label">Adresse</label>
+                                    <input type="text" class="form-control" [(ngModel)]="banque['Adresse']" 
+                                    required formControlName="adresse">
+                            </div>
                         </div>
-                    </div>
- 
-                    <div class="row">
-                        <div class="form-group label-floating col-md-4">
-                                <label class="control-label">E-mail</label>
-                                <input type="text" class="form-control" [(ngModel)]="banque['mail']" 
-                                >
+    
+                        <div class="row">
+                            <div class="form-group label-floating col-md-8">
+                                    <label class="control-label">E-mail</label>
+                                    <input type="text" class="form-control" [(ngModel)]="banque['Mail']" 
+                                    required formControlName ="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="form-footer">
                     <div class="alert" [ngClass]="{'alert-success': success===true, 'alert-danger':success===false,
@@ -57,7 +59,7 @@
                     </div>
 
                     <button type="button" class="btn btn-success pull-right" id="valider"
-                    (click) = "valider(Virement['Code'],1)">
+                    (click) = "updateBanque()" [disabled]="formBanque.invalid">
                         Valider
                     </button>
                 </div>
@@ -69,25 +71,26 @@
 <!--Modal qui s'affiche lors du clic sur le boutton de suppression de banque afin que l'utilisateur confirme
 qu'il veut vraiment supprimer la banque en question-->
     <div id="warning" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog" id="warningBack">
                 <div class="modal-content modal-banque">
                     <div class="modal-header">
                         <p>Êtes vous sûr(e) de vouloir supprimer cette banque ?</p>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
-                    <div class="alert" [ngClass]="{'alert-success': success===true, 'alert-danger':success===false,
-                    'invisible' : success ===NULL}">
-                        {{textSuccess}}
+                    <div class="alert" [ngClass]="{'alert-success': successDelete===true, 'alert-danger':successDelete===false,
+                    'invisible' : successDelete ===NULL}">
+                        {{textDelete}}
                     </div>
                     
                     <div class="modal-content">
                         <div class="form-footer">
                             <button type="button" class="btn btn-danger pull-left" data-dismiss="modal"
-                            (click) = "valider(Virement['Code'],1)">
+                            >
                                 Non
                             </button>
                             <button type="button" class="btn btn-success pull-right"
-                            (click) = "valider(Virement['Code'],1)">
+                            (click) = "deleteBanque()">
                                 Oui
                             </button>
                         </div>
@@ -128,34 +131,14 @@ qu'il veut vraiment supprimer la banque en question-->
                                         <td>
                                             <i class="material-icons" data-toggle="modal" 
                                             data-target="#info"
-                                            (click)="voirInfoCompte(compte.IdUser)">
-                                                edit
-                                            </i>
-                                        </td>
-                                        <td>
-                                            <i class="material-icons" data-toggle="modal" 
-                                            data-target="#info"
-                                            (click)="voirInfoCompte(compte.IdUser)">
-                                                delete
-                                            </i>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td >BNA</td>
-                                        <td>banque nationnale d'Algérie</td>
-                                        <td >une adresse pour test 26</td>
-                                        <td >mal@bna.com</td>
-                                        <td>
-                                            <i class="material-icons" data-toggle="modal" 
-                                            data-target="#info">
+                                            (click)="getBanqueInfo(banque)">
                                                 edit
                                             </i>
                                         </td>
                                         <td>
                                             <i class="material-icons" data-toggle="modal" 
                                             data-target="#warning"
-                                            (click)="getVirementInfo(virement.Code)">
+                                            (click)="getBanqueId(banque.Code)">
                                                 delete
                                             </i>
                                         </td>

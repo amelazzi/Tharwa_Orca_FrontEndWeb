@@ -27,7 +27,7 @@
                                   <div class="form-group label-floating">
                                       <label class="control-label">Nom</label>
                                       <input type="text" formControlName ="nom" name="nom" 
-                                      required pattern="[A-Za-z]+"
+                                      required pattern="[A-Za-z]+" readonly
                                       class="form-control"[(ngModel)]='nom'>
                                   </div>
                               </div>
@@ -35,7 +35,7 @@
                                   <div class="form-group label-floating">
                                       <label class="control-label">Prenom</label>
                                       <input type="text" formControlName ="prenom" name="prenom" 
-                                      pattern="[A-Za-z]+"
+                                      pattern="[A-Za-z]+" readonly
                                       required class="form-control"[(ngModel)]='prenom'>
                                   </div>
                               </div>
@@ -45,13 +45,12 @@
                                   <div class="form-group label-floating">
                                       <label class="control-label">Télephone</label>
                                       <input type="text" formControlName ="tel" name="tel" 
-                                      pattern="[0-9]{10}"
+                                      pattern="[0-9]{10}" readonly
                                       required class="form-control"[(ngModel)]='tel'>
                                   </div>
                               </div>
                           </div>
-                          <button type="submit" [disabled]="formCtrl.invalid" 
-                          class="btn btn-primary pull-right" (click)="updateProfile()">Confirmer</button>
+                          
                           <div class="clearfix"></div>
                       </form>
                   </div>
@@ -62,7 +61,7 @@
 
 
 
-
+<!--Modal du changement de mot de passe-->
 
           <div class="col-md-4">
 
@@ -71,7 +70,6 @@
                       <h4 class="card-title">Sécurité de Compte</h4>
                       <button class="btn btn-primary btn-round" 
                       data-toggle="modal" data-target="#changeMDP">Changer de Mot de Passe</button>
-
                   </div>
               </div>
           </div>
@@ -89,7 +87,7 @@
                           <div class="col-md-12">
                               <div class="form-group label-floating">
                                   <label class="control-label">Mot de passe actuel</label>
-                                  <input type="password" formControlName ="mpdOld" name="mdpOld" 
+                                  <input type="password" formControlName ="mdpOld" name="mdpOld" 
                                   required
                                   class="form-control">
                               </div>
@@ -100,24 +98,15 @@
                               <div class="form-group label-floating">
                                   <label class="control-label">Nouveau mot de passe</label>
                                   <input type="password" formControlName ="mdpNew" name="mdpNew" 
-                                  required [(ngModel)] = 'mpdNew' 
-                                  class="form-control">
-                              </div>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-12">
-                              <div class="form-group label-floating">
-                                  <label class="control-label">Répéter le nouveau mot de passe</label>
-                                  <input type="password" formControlName ="mdpNewRep" name="mdpNewRep" 
-                                  required  [(ngModel)] = 'mdpNewRep'
+                                  required [(ngModel)] = 'mdpNew' 
                                   class="form-control">
                               </div>
                           </div>
                       </div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" [disabled] = "formMdp.invalid">
+                      <button type="button" class="btn btn-primary" [disabled] = "formMdp.invalid" 
+                      (click)="changerMDP()">
                         Changer
                       </button>
                   </div>

@@ -10,7 +10,8 @@
   <div class="content">
     <div class="search">
         <form>
-          <input type="text" placeholder="Entrez un numéro de compte" name="search" id="searchInput">
+          <input type="text" placeholder="Entrez un numéro de compte" name="search" id="searchInput"
+          [(ngModel)]='search'>
           <button type="submit" (click)="rechercherCompte()">
             <i class="fa fa-search"></i>
           </button>
@@ -48,8 +49,8 @@
             <div class="col-md-5">
                 <div class="form-group label-floating">
                     <label class="control-label">Bénéficiaire</label>
-                    <input type="text" name="nom" 
-                        class="form-control"[(ngModel)]='nom' readonly>
+                    <input type="text" name="mail" 
+                        class="form-control"[(ngModel)]='mail' readonly>
                 </div>
               </div>
 
@@ -61,30 +62,9 @@
           <div class="row">
               <div class="col-md-6"> 
                 <div class="form-group label-floating ">
-                    <label class="control-label">Adresse</label>
+                    <label class="control-label">Balance</label>
                     <input type="text"  name="adr" 
-                    class="form-control"[(ngModel)]='adr' readonly>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group label-floating ">
-                    <label class="control-label">Téléphone</label>
-                    <input type="text"  name="tel" 
-                        class="form-control"[(ngModel)]='tel' readonly>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group label-floating ">
-                    <label class="control-label">Fonction</label>
-                    <input type="text" name="fonction" 
-                      class="form-control"[(ngModel)]='fonction' readonly>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group label-floating ">
-                    <label class="control-label">E-mail</label>
-                    <input type="text"  name="mail" 
-                      class="form-control"[(ngModel)]='mail' readonly>
+                    class="form-control"[(ngModel)]='balance' readonly>
                 </div>
               </div>
           </div>
@@ -94,10 +74,18 @@
            'invisible': success===NULL}">
               {{textSuccess}}
           </div>
-          <button  class="btn pull-center" 
-          data-background-color="red" (click)="changerStatutCompte()">
-            {{action}} <i class="material-icons">{{lock}}</i>
-          </button>
+          <form [formGroup]="formBanque">
+              
+              <textarea rows="6" required cols="50" class="col-md-12" 
+              placeholder="entrez votre motif" name="motif" [(ngModel)]='motif'
+              formControlName ="motif"
+              ></textarea>
+              <button class="btn pull-center" [disabled]="formBanque.invalid" 
+              data-background-color="red" (click)="changerStatutCompte()">
+                {{action}} <i class="material-icons">{{lock}}</i>
+              </button>
+          </form> 
+
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {HttpClient, HttpHeaders, HttpClientModule} from "@angular/common/http";
-import { CONST_UNAUTHORIZED, CONST_NOT_FOUND, CONST_SERVEUR_ERROR, CONST_DELAIDEPASSE, CONST_RESSOURCE } from '../../constante';
+import { CONST_UNAUTHORIZED, CONST_NOT_FOUND, CONST_SERVEUR_ERROR, CONST_DELAIDEPASSE, CONST_RESSOURCE, CONST_URL } from '../../constante';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,21 +13,21 @@ export class BloquerdebloquerComponent implements OnInit {
 
   constructor(private httpClient:HttpClient, private router:Router) { }
   
-  mail:String;
-  numCompte:String;
-  nom:String;
+  mail:String=" ";
+  numCompte:String= " ";
   monnaie : String;
-  adr:String;
-  tel :String ; 
-  fonction: String;
+  balance : number=0;
+  status : number;
+  motif :String;
 
   success : boolean;
   successRecherche : boolean;
-  textFailed : String;
+  textFailed : String; 
   textSuccess: String;
   formCompte:FormGroup;
-
+  formBanque : FormGroup;
   action : String;
+  actionUrl: String;
   lock:String;
   
   
@@ -43,35 +43,47 @@ export class BloquerdebloquerComponent implements OnInit {
       numCompte : new FormControl(''),
       adr : new FormControl('')
     });
+
+    this.formBanque = new FormGroup({
+      motif: new FormControl(''),
+    });
   }
 
-  changerStatutCompte(status:Number)
+  changerStatutCompte()
   { 
     var headers = new HttpHeaders();
-    
 
-    if(this.success == true)
-    {
-      this.success = false ;
-    }else 
-    {
-      this.success = true
+  
+    if (this.status === 1){
+      this.actionUrl = "bloc";
+    }else if (this.status === 3){
+      this.actionUrl = "debloc";
     }
+    this.success = null;
+    var body ={
+      'num' : this.numCompte,
+      'motif': this.motif
+    }
+    
+    // token vers le PC de nwel pour tester le reste
 
-    this.httpClient.put('http://192.168.0.164:8080/accounts/reject',{headers:headers})
+    headers = headers.append('token',localStorage.getItem('token_access'));
+    this.httpClient.put('http://'+CONST_URL+':8080/accounts/'+this.actionUrl+'',body,{headers:headers})
     .subscribe(
       data =>
       {
         this.success = true;
-        this.textSuccess="";
+        alert('Compte '+this.action+ 'avec succès');
+        this.rechercherCompte();
+        
       }
       ,err => 
       {
         this.success = false;
-        switch (err['status'])
+        switch (err['status']) 
         {
           case CONST_UNAUTHORIZED :
-            this.textSuccess = CONST_RESSOURCE["401"];
+            alert(CONST_RESSOURCE["401"]);
             this.router.navigateByUrl('/');
           break;
           case CONST_NOT_FOUND :
@@ -88,26 +100,35 @@ export class BloquerdebloquerComponent implements OnInit {
     );
   }
 
+  search = "";
+  
   rechercherCompte()
   {    
     var headers = new HttpHeaders();
     
-
-    if(this.successRecherche == true)
-    {
-      this.successRecherche = false ;
-    }else 
-    {
-      this.successRecherche = true
-    }
-
-    this.action = "Bloquer";
-    this.lock = "lock";
-
-    this.httpClient.put('http://192.168.0.164:8080/accounts/reject',{headers:headers})
+    this.success = null;
+    
+    
+    headers = headers.append('token',localStorage.getItem('token_access'));
+    
+    this.httpClient.get('http://'+CONST_URL+':8080/gestionnaire/infoCompte?Num='+this.search+'',{headers:headers})
     .subscribe(
       data =>
       {
+        this.monnaie = data["compte"]["CodeMonnaie"];
+        
+        this.numCompte = data["compte"]["Num"];
+        this.status = data["compte"]["Etat"];
+        this.balance = data["compte"]["Balance"]
+        this.mail = data["compte"]["IdUser"];
+        
+        if(this.status === 1){
+          this.action = "Bloquer"
+          this.lock = "lock"
+        }else if (this.status === 3){
+          this.action = "Débloquer";
+          this.lock = "lock_open"
+        }
         this.successRecherche = true;
       }
       ,err => 
@@ -117,7 +138,7 @@ export class BloquerdebloquerComponent implements OnInit {
         switch (err['status'])
         {
           case CONST_UNAUTHORIZED :
-            this.textFailed = CONST_RESSOURCE["401"];
+            alert(CONST_RESSOURCE["401"]);
             this.router.navigateByUrl('/');
           break;
           case CONST_NOT_FOUND :
@@ -132,7 +153,5 @@ export class BloquerdebloquerComponent implements OnInit {
         }
       }
     );
-
-
   }
 }

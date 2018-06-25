@@ -5,6 +5,7 @@ import { HttpClientModule,HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { Service } from './listbanquier.service';
+import { CONST_RESSOURCE } from '../../constante';
 
 @Component({
   selector: 'app-listbanquier',
@@ -52,7 +53,7 @@ export class ListbanquierComponent implements OnInit {
         switch (err['status'])
         {
           case 401 :
-            this.textFailed ="cette session a expiré vous allez être redirigé vers la page de connexion";
+            alert(CONST_RESSOURCE["401"]);
             this.router.navigateByUrl('/');
           break;
           case 500 :

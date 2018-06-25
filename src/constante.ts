@@ -3,6 +3,7 @@ export const CONST_DELAIDEPASSE = 0;
 export const CONST_NOT_FOUND = 404;
 export const CONST_SERVEUR_ERROR = 500;
 export const CONST_UNAUTHORIZED = 401;
+export const CONST_BADREQUEST = 400;
 declare var require: any
 export const CONST_RESSOURCE = require('ressources/erreur.json');
 
@@ -15,4 +16,4 @@ export const CONST_ThwExt = "Vers un client d'une autre banque";
 export const CONST_ExtThw = "Virement reçu depuis une autre banque";
 
 
-export const CONST_URL = "25.18.251.171";
+export const CONST_URL = "192.168.137.171";

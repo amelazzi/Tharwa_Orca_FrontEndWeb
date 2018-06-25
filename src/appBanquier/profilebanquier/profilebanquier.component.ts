@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import {FormGroup, FormControl, FormControlName} from '@angular/forms';
 import { Router } from '@angular/router';
+import { CONST_UNAUTHORIZED, CONST_URL } from '../../constante';
 
 
 @Component({
@@ -38,7 +39,6 @@ export class ProfileBanquierComponent implements OnInit {
 
 
     this.formMdp = new FormGroup({
-      mdpNewRep: new FormControl(''), // nouveau mot de apsse répété
       mdpNew : new FormControl(''), // nouveau mot de passe 
       mdpOld : new FormControl(''), // ancien mot de passe
     });
@@ -57,16 +57,15 @@ export class ProfileBanquierComponent implements OnInit {
   {
     var headers = new HttpHeaders();
     headers = headers.append("token",localStorage.getItem('token_access'));
-    headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
+    
 
     var body ="userId="+mailId+"";
     
-    this.httpClient.post('http://192.168.0.196:8080/profil',body,{headers:headers})
+    this.httpClient.get('http://'+CONST_URL+':8088/profil',{headers:headers})
     .subscribe(
       data => 
       {
         var nomPrenom : any[];
-        console.log(data[0]);
         nomPrenom = data[0]["username"].split(' ',2);
         
         this.nom = nomPrenom[0];
@@ -81,7 +80,46 @@ export class ProfileBanquierComponent implements OnInit {
         switch (err['status'])
         {
           case 401 :
-            this.textFailed ="cette session a expiré vous allez être redirigé vers la page de connexion";
+            alert(CONST_UNAUTHORIZED["401"]);
+            this.router.navigateByUrl('/');
+          break;
+          case 500 :
+            this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
+          break;
+          case 0 :
+            this.textFailed="Le délai d'attente de la connexion a été dépassé, vérifier votre connexion internet";
+          break;
+        }
+      }
+    );
+  }
+
+  mdpOld:String;
+  mdpNew:String;
+  changerMDP(){
+    var headers = new HttpHeaders();
+    headers = headers.append("token",localStorage.getItem('token_access'));
+    
+
+    var body ={
+      'old':this.mdpOld,
+      'new':this.mdpNew
+    }
+    
+    this.httpClient.post('http://'+CONST_URL+':8088/clients/info',body,{headers:headers})
+    .subscribe(
+      data => 
+      {
+        
+      }
+      ,err => 
+      {
+        this.successGet = false;
+        switch (err['status'])
+        {
+          case 401 :
+            alert(CONST_UNAUTHORIZED["401"]);
+            this.router.navigateByUrl('/');
           break;
           case 500 :
             this.textFailed="Une erreur interne au serveur s'est produite veuillez réessayer ulérieurement";
@@ -95,25 +133,7 @@ export class ProfileBanquierComponent implements OnInit {
   }
 
 
-  updateProfile(){
-    var headers = new HttpHeaders();
 
-    headers = headers.append("token",localStorage.getItem('token_access'));
-    headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
-    
-    var body = "";
-    this.httpClient.post('',body,{headers:headers})
-    .subscribe(
-      data =>
-      {
-         
-      }
-      ,err => 
-      {
-         
-      }
-    )
-  }
 
 
 
